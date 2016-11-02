@@ -1,0 +1,19 @@
+﻿<Window x:Class="test.forms.insert"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:test.forms"
+        mc:Ignorable="d"
+        Title="insert" Height="300" Width="500"
+        Background="{x:Null}" WindowStyle="None" AllowsTransparency="True">
+    <Grid Width="500" Height="300">
+        <Border CornerRadius="2" Background="#FF3191F0" MouseDown="Border_MouseDown" Width="500" Height="300">
+            <Grid Margin="255,40,10,10" Width="235" Height="250">
+                <Border Grid.Column="1" Grid.Row="1" CornerRadius="2" Background="White">
+                </Border>
+                <Button x:Name="button" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="-127,-1,0,0"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
