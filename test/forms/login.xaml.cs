@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.OleDb;
 using System.Windows;
 using System.Windows.Input;
 using test.common;
@@ -8,21 +9,26 @@ using test.entities;
 namespace test.forms
 {
     /// <summary>
-    /// login.xaml 的交互逻辑
+    /// Login window.
     /// </summary>
-    public partial class insert : Window
+    public partial class Login : Window
     {
 
-        //string strCon = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\magazine\test\bin\Debug\dbo.mdb";
-        //string strCon = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\magazine\dbo.mdb";
-        string strCon = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=dbo.mdb";
-        public insert()
+        //TODO: Reconstruct it.
+
+        //Database connection.
+        private OleDbConnection connection;
+
+        public Login()
         {
             InitializeComponent();
-
-            lbl_wronginput.Visibility = Visibility.Hidden;
         }
 
+        /// <summary>
+        /// Make this window dragable.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Mouse button event.</param>
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -81,5 +87,14 @@ namespace test.forms
 
         }
 
+        /// <summary>
+        /// Execute while login windown loaded. Designed for set lbl_woronginput as an invisible control.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Routed event</param>
+        private void Login_Loaded(object sender, RoutedEventArgs e)
+        {
+            lbl_wronginput.Visibility = Visibility.Hidden;
+        }
     }
 }

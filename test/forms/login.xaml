@@ -1,12 +1,12 @@
-﻿<Window x:Name="暨大杂志管理系统" x:Class="test.forms.insert"
+﻿<Window x:Name="Login1" x:Class="test.forms.Login"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:test.forms"
         mc:Ignorable="d"
-        Title="insert" Height="300" Width="500"
-        Background="{x:Null}" WindowStyle="None" AllowsTransparency="True">
+        Title="Login" Height="300" Width="500"
+        Background="{x:Null}" WindowStyle="None" AllowsTransparency="True" Loaded="Login_Loaded">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">

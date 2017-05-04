@@ -2,144 +2,127 @@
 using System.Data;
 using System.Data.OleDb;
 using System.Windows.Forms;
+using test.Properties;
 
-/// <summary>
-/// Responsible for the query transactions in local Access DB file.
-/// </summary>
 namespace test.common
 {
-
-    class AccessHandler
+    /// <summary>
+    /// A static class responsible for Access operations.
+    /// </summary>
+    public static class AccessHandler
     {
 
-        //todo: Reconstruct it
-
-        //Connection descriptor
-        private string strCon { get; set; }
-
-        //Database connection
-        private OleDbConnection connection { get; set; }
-
+        //TODO: Reconstruct it to fit singleton, in order to share database connection between windows.
 
         /// <summary>
-        /// Get the local database connection for the use in this class, or
-        /// for other class
+        /// Get the database connection according to the given connection string and return it as result. If it is 
+        /// unable to get to the database connection, it returns null.
         /// </summary>
         /// <returns>Connection</returns>
-        public OleDbConnection GetConnection()
+        public static OleDbConnection GetConnection(string strCon)
         {
-            if (connection == null)
+            OleDbConnection connection;
+
+            try
             {
-                try
-                {
-                    connection = new OleDbConnection(strCon);
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.ToString() + "Program terminated.");
-                    if (connection.State == ConnectionState.Open)
-                    {
-                        connection.Dispose();
-                    }
-                    Environment.Exit(1);
-                }
+                connection = new OleDbConnection(strCon);
             }
-            
+            catch (Exception e)
+            {
+                MessageBox.Show(Resources.string_no_database_connection + e + Resources.string_try_again_later);
+                return null;
+            }
+
             return connection;
         }
 
         /// <summary>
-        /// Execute the database query command and return the results in
-        /// a DataTable.
+        /// Execute the database query command and return the results in a DataTable. If it is unable to finish 
+        /// successfully, it return null.
         /// </summary>
         /// <param name="strSql">SQL command to be excuted.</param>
+        /// <param name="connection">Open or non-open database connection.</param>
         /// <returns>Resulats in a DataTable.</returns>
-        public DataTable Query(string strSql)
+        public static DataTable Query(string strSql, OleDbConnection connection)
         {
             DataTable result = new DataTable();
 
             /**
-             * If the program unable to get the required database connection, it simply report
-             * this error and terminate.
+             * If the program unable to get the required database connection, it simply reports this error and
+             * returns null.
              */
-            if (connection == null && strCon == null)
+            if (connection == null)
             {
                 //Failed to get the connection.
-                MessageBox.Show("Unabale to get the database connestion. Program termanated.");
-                if (connection.State == ConnectionState.Open)
-                {
-                    connection.Dispose();
-                }
-                Environment.Exit(1);
+                MessageBox.Show(Resources.string_no_database_connection + Resources.string_try_again_later);
+                return null;
             }
-            else
+
+            if (connection.State != ConnectionState.Open)
             {
-                //Successfully get the connection.
                 try
                 {
-                    //OleDbConnection connection = new OleDbConnection(strCon);
-
-                    //Execute the command.
-                    OleDbCommand command = new OleDbCommand(strSql, connection);
-                    if(connection.State == ConnectionState.Closed)
-                    {
-                        connection.Open();
-                    }
-                    OleDbDataReader reader;
-                    reader = command.ExecuteReader();
-                    result.Load(reader);
+                    connection.Open();
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.ToString());
-                    if (connection.State == ConnectionState.Open)
-                    {
-                        connection.Dispose();
-                    }
-                    Environment.Exit(1);
-                }              
+                    MessageBox.Show(Resources.string_unable_to_open_connection + e +
+                                    Resources.string_try_again_later);
+                    return null;
+                }
             }
+
+            //Successfully get the connection. Execute the command.
+            OleDbCommand command = new OleDbCommand(strSql, connection);
+            try
+            {
+                OleDbDataReader reader = command.ExecuteReader();
+                if (reader != null)
+                {
+                    result.Load(reader);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(Resources.string_unable_to_read_result + e + Resources.string_try_again_later);
+                return null;
+            }
+
             return result;
         }
 
         /// <summary>
-        /// Execute the SQL command without return value, such as DELETE.
+        /// Execute the SQL command without return value, such as DELETE. If it is unable to finish successfully, 
+        /// it returns -1.
         /// Rrturns the number of rows affected.
         /// </summary>
         /// <param name="strSql">SQL command to be executed.</param>
-        public int ExecuteWithoutReturn(string strSql)
+        /// <param name="connection">Open or non-open database connection.</param>
+        public static int ExecuteWithoutReturn(string strSql, OleDbConnection connection)
         {
-            int affected = 0;
-            if (connection == null)
+            //-1 means error. If this "strSQL" is successfully executed, it returns the number of rows affected.
+            try
             {
-                connection = GetConnection();
-            }
-            else
-            {
-                try
+                if (connection.State != ConnectionState.Open)
                 {
-                    //OleDbConnection connection = new OleDbConnection(strCon);
-                    if (connection.State != ConnectionState.Open)
-                    {
-                        connection.Open(); 
-                    }
-                    OleDbCommand command = new OleDbCommand(strSql, connection);
                     connection.Open();
-                    return command.ExecuteNonQuery();
                 }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.ToString());
-                    if (connection.State == ConnectionState.Open)
-                    {
-                        connection.Dispose();
-                    }
-                    Environment.Exit(1);
-                }
+                OleDbCommand command = new OleDbCommand(strSql, connection);
+                connection.Open();
+                //Returns the number of affected rows.
+                return command.ExecuteNonQuery();
             }
-            return affected; 
+            catch (Exception e)
+            {
+                MessageBox.Show(Resources.string_unable_to_execute_command + e + Resources.string_try_again_later);
+                connection.Dispose();
+                return -1;
+            }
         }
-
     }
 
 }
