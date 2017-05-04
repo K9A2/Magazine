@@ -54,7 +54,7 @@
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Background" TargetName="border">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="F:\test\test\forms\微信截图_20161010235108.png"></ImageBrush>
+                                        <ImageBrush ImageSource="C:\Users\Administrator\Desktop\test\test\forms\微信截图_20161010235108.png"></ImageBrush>
                                     </Setter.Value>
                                 </Setter>
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
@@ -132,7 +132,7 @@
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
                                 <Setter Property="Background" TargetName="border">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="F:\test\test\forms\微信截图_20161010235108.png"/>
+                                        <ImageBrush ImageSource="C:\Users\Administrator\Desktop\test\test\forms\微信截图_20161010235108.png"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -179,7 +179,7 @@
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Background" TargetName="border">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="F:\test\test\forms\微信截图_20161010235108.png"/>
+                                        <ImageBrush ImageSource="C:\Users\Administrator\Desktop\test\test\forms\微信截图_20161010235108.png"/>
                                     </Setter.Value>
                                 </Setter>
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
