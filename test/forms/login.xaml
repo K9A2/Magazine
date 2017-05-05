@@ -284,14 +284,14 @@
                 <Border Grid.Column="1" Grid.Row="1" CornerRadius="2" Background="White">
                     <Label x:Name="label2" Content="登录使用者账号" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="55,35,0,0" FontSize="16"/>
                 </Border>
-                <Button x:Name="button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Margin="190,-30,0,0" Height="20" BorderThickness="0" Style="{DynamicResource btn_mini}" Click="button_Click">
+                <Button x:Name="btn_minimize" HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Margin="190,-30,0,0" Height="20" BorderThickness="0" Style="{DynamicResource btn_mini}" Click="btn_minimize_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="/test;component/img/最小化普通.png"/>
                     </Button.Background>
                 </Button>
             </Grid>
         </Border>
-        <Button x:Name="button1" Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Margin="0,10,10,0" Height="20" BorderThickness="0" Style="{DynamicResource btn_close}" Click="button1_Click">
+        <Button x:Name="btn_close" Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Margin="0,10,10,0" Height="20" BorderThickness="0" Style="{DynamicResource btn_close}" Click="btn_close_Click">
             <Button.Background>
                 <ImageBrush ImageSource="关闭正常.png"/>
             </Button.Background>
@@ -314,7 +314,7 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <Button x:Name="button2" Content="登录" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="153" Margin="0,0,50,70.093" Height="23" Style="{DynamicResource btn_login}" Background="#FF3191F0" Foreground="White" Click="button2_Click" TabIndex="3" BorderThickness="0"/>
+        <Button x:Name="btn_login" Content="登录" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="153" Margin="0,0,50,70.093" Height="23" Style="{DynamicResource btn_login}" Background="#FF3191F0" Foreground="White" Click="btn_login_Click" TabIndex="3" BorderThickness="0"/>
         <Label x:Name="lbl_wronginput" Content="账号或者密码错误" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,103.093,97,0" d:LayoutOverrides="HorizontalAlignment" Foreground="Red"/>
     </Grid>
 </Window>

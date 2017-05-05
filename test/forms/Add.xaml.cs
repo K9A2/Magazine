@@ -153,9 +153,9 @@ namespace test.forms
             strSql += txt_q2009.Text.ToString().Trim() + "','";
             strSql += txt_note.Text.ToString().Trim() + "')";
 
-            AccessHandler handler = new AccessHandler(strCon);
+            AccessUtil util = new AccessUtil(strCon);
 
-            handler.ExecuteWithoutReturn(strSql);
+            util.ExecuteWithoutReturn(strSql);
         }
 
         private void txt_f2007_LostFocus(object sender, RoutedEventArgs e)

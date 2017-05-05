@@ -169,7 +169,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="common\AccessHandler.cs" />
+    <Compile Include="common\AccessUtil.cs" />
     <Compile Include="common\Coder.cs" />
     <Compile Include="common\SqlHandler.cs" />
     <Compile Include="controls\RightClickItem.xaml.cs">

@@ -96,9 +96,9 @@ namespace test.forms
 
             string strSql = "UPDATE view_all SET ISSN='" + txt_issn.Text.ToString().Trim() + "',ShortName='" + txt_sname.Text.ToString().Trim() + "',FullName='" + txt_fname.Text.Trim() + "',ChineseName='" + txt_cname.Text.ToString().Trim() + "',ClassName='" + ((System.Windows.Controls.ContentControl)cbo_ClassName.SelectedValue).Content.ToString() + "',MultiClassName='" + txt_mclass.Text.ToString().Trim() + "',ClassID='" + ClassID + "',IsTop='" + IsTop + "',Factor2007='" + txt_f2007.Text.ToString().Trim() + "',Factor2008='" + txt_f2008.Text.ToString().Trim() + "',Factor2009='" + txt_f2009.Text.ToString().Trim() + "',FactorAvg='" + FAVG.ToString() + "',Quote2007='" + txt_q2007.Text.ToString().Trim() + "',Quote2008='" + txt_q2008.Text.ToString().Trim() + "',Quote2009='" + txt_q2009.Text.ToString().Trim() + "',[Note]='" + txt_note.Text.ToString().Trim() + "' WHERE ID=" + Convert.ToInt32(magazine.ID) + "";
 
-            AccessHandler handler = new AccessHandler(strCon);
+            AccessUtil util = new AccessUtil(strCon);
 
-            handler.ExecuteWithoutReturn(strSql);
+            util.ExecuteWithoutReturn(strSql);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

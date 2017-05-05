@@ -15,7 +15,8 @@ namespace test.forms
     public partial class main : Window
     {
 
-        private string strCon = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\magazine\dbo.mdb";
+        //TODO: Fix all the errors.
+        //TODO: Use delegation and event to exchange messages between windows
 
         private string currentSql = "";
 
@@ -41,30 +42,15 @@ namespace test.forms
 
         private bool IsQuoteFilterEnabled = false;
 
-        public main(string strCon, User user, OleDbConnection connection)
+        public main(User user, OleDbConnection connection)
         {
             InitializeComponent();
-
-            this.strCon = strCon;
 
             this.user = user;
 
             txb_user.Text = user.UserName;
 
             grid_filter.Visibility = Visibility.Hidden;
-
-            //this.connection = connection;
-
-            //chk_ClassName.Checked += new RoutedEventHandler(btn_clear_Click);
-            //btn_clear.Click += new RoutedEventHandler(chk_ClassName_Click);
-
-            //btn_clear.Click += new RoutedEventHandler(chk_ClassID_Click);
-
-            //btn_clear.Click += new RoutedEventHandler(chk_IsTop_Click);
-
-            //btn_clear.Click += new RoutedEventHandler(chk_Factor_Click);
-
-            //btn_clear.Click += new RoutedEventHandler(chk_Quote_Click);
 
         }
 
@@ -107,9 +93,9 @@ namespace test.forms
             //全显
             string strSql = "SELECT * FROM view_all";
 
-            AccessHandler handler = new AccessHandler(strCon);
+            AccessUtil util = new AccessUtil(strCon);
 
-            DataTable table = handler.Query(strSql);
+            DataTable table = util.Query(strSql);
 
             dg_main.ItemsSource = table.DefaultView;
 
@@ -184,9 +170,9 @@ namespace test.forms
                 //用户已经进行过查询
                 dg_main.IsReadOnly = false;
 
-                AccessHandler handler = new AccessHandler(strCon);
+                AccessUtil util = new AccessUtil(strCon);
 
-                DataTable table = handler.Query(currentSql);
+                DataTable table = util.Query(currentSql);
 
                 table = TableNameEngToChn(table);
 
@@ -286,9 +272,9 @@ namespace test.forms
 
             //string strSql = "SELECT * FROM dbo.view_all";
 
-            AccessHandler handler = new AccessHandler(strCon);
+            AccessUtil util = new AccessUtil(strCon);
 
-            DataTable table = handler.Query(strSql);
+            DataTable table = util.Query(strSql);
 
             /*
             table.Columns[2].ColumnName = "刊名简称";
@@ -335,9 +321,9 @@ namespace test.forms
 
             string strSql = "DELETE * FROM tb_query";
 
-            AccessHandler handler = new AccessHandler(strCon);
+            AccessUtil util = new AccessUtil(strCon);
 
-            handler.ExecuteWithoutReturn(strSql);
+            util.ExecuteWithoutReturn(strSql);
 
             if (title != "所有记录")
             {
@@ -348,7 +334,7 @@ namespace test.forms
                 strSql = "INSERT INTO tb_query VALUES('" + title + "','" + user.UserID + "','" + user.UserName + "','" + time + "')";
             }
 
-            handler.ExecuteWithoutReturn(strSql);
+            util.ExecuteWithoutReturn(strSql);
         }
 
         private void button4_Copy1_Click(object sender, RoutedEventArgs e)

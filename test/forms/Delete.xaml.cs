@@ -130,8 +130,8 @@ namespace test.forms
         private void btn_delete_Click(object sender, RoutedEventArgs e)
         {
             //确定删除
-            AccessHandler handler = new AccessHandler(strCon);
-            handler.ExecuteWithoutReturn("DELETE FROM view_all WHERE ID=" + magazine.ID);
+            AccessUtil util = new AccessUtil(strCon);
+            util.ExecuteWithoutReturn("DELETE FROM view_all WHERE ID=" + magazine.ID);
 
             this.Close();   
         }

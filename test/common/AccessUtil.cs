@@ -6,19 +6,19 @@ using test.Properties;
 
 namespace test.common
 {
+
     /// <summary>
     /// A static class responsible for Access operations.
     /// </summary>
-    public static class AccessHandler
+    public static class AccessUtil
     {
-
-        //TODO: Reconstruct it to fit singleton, in order to share database connection between windows.
 
         /// <summary>
         /// Get the database connection according to the given connection string and return it as result. If it is 
         /// unable to get to the database connection, it returns null.
         /// </summary>
-        /// <returns>Connection</returns>
+        /// <param name="strCon">Connection string</param>
+        /// <returns>Valid database connection</returns>
         public static OleDbConnection GetConnection(string strCon)
         {
             OleDbConnection connection;
@@ -77,14 +77,11 @@ namespace test.common
             try
             {
                 OleDbDataReader reader = command.ExecuteReader();
-                if (reader != null)
-                {
-                    result.Load(reader);
-                }
-                else
+                if (!reader.HasRows)
                 {
                     return null;
                 }
+                result.Load(reader);
             }
             catch (Exception e)
             {

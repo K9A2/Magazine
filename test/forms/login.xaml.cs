@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.OleDb;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using test.common;
@@ -8,16 +9,22 @@ using test.entities;
 
 namespace test.forms
 {
+
     /// <summary>
     /// Login window.
     /// </summary>
-    public partial class Login : Window
+    public partial class Login
     {
 
-        //TODO: Reconstruct it.
+        //TODO: Fix all the errors.
+        //TODO: Use delegation and event to exchange messages between windows
 
         //Database connection.
-        private OleDbConnection connection;
+        private OleDbConnection _connection;
+
+        //User login event and delegate
+        public delegate void UserLoginHandler(User user, OleDbConnection connection);
+        public event UserLoginHandler UserLoginEvent;
 
         public Login()
         {
@@ -25,10 +32,73 @@ namespace test.forms
         }
 
         /// <summary>
+        /// Execute while login windown loaded. Designed for set lbl_woronginput as an invisible control.
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Routed event</param>
+        private void Login_Loaded(object sender, RoutedEventArgs e)
+        {
+            lbl_wronginput.Visibility = Visibility.Hidden;
+
+            //Check if the Access database file exiets
+            if (File.Exists(@"./dbo.mdb"))
+            {
+                return;
+            }
+            MessageBox.Show("The Access database file does not exists" +
+                            Properties.Resources.string_program_terminated, "Fatal Error");
+            Environment.Exit(-1);
+        }
+
+        /// <summary>
+        /// Start the authentication process when clicked.
+        /// </summary>
+        /// <param name="sender">Event Sender</param>
+        /// <param name="e">Routed event</param>
+        private void btn_login_Click(object sender, RoutedEventArgs e)
+        {
+
+            string uname = txt_uname.Text.Trim();
+            string ucode = Coder.StrToMD5(pwd_login.Password.Trim());
+
+            string strSql = "SELECT * FROM view_user WHERE uname='" + uname + "' AND upass='" + ucode + "'";
+
+            //Get database connection
+            _connection = AccessUtil.GetConnection(Properties.Resources.string_connection_string);
+            //Get query result
+            DataTable table = AccessUtil.Query(strSql, _connection);
+
+            if (table == null)
+            {
+                //Failed, and try again
+                lbl_wronginput.Visibility = Visibility.Visible;
+            }
+            else if (table.Rows[0][1].ToString() == uname && table.Rows[0][2].ToString() == ucode)
+            {
+                //Success, construct user entity
+                User user = new User
+                {
+                    UserID = table.Rows[0][0].ToString().Trim(),
+                    UserName = table.Rows[0][1].ToString().Trim(),
+                    UserPassWord = ucode,
+                    UserRight = int.Parse(table.Rows[0][3].ToString().Trim())
+                };
+
+                //Open main window
+                main main = new main(user, _connection);
+                main.Show();
+
+                //Close this window
+                Close();
+            }
+
+        }
+
+        /// <summary>
         /// Make this window dragable.
         /// </summary>
-        /// <param name="sender">Event sender.</param>
-        /// <param name="e">Mouse button event.</param>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Mouse button event</param>
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -37,64 +107,24 @@ namespace test.forms
             }
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Mininize this window when clicked.
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Routed event</param>
+        private void btn_minimize_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
-        }
-
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
-
-        private void button2_Click(object sender, RoutedEventArgs e)
-        {
-
-            string uname = txt_uname.Text.ToString().Trim();
-            string ucode = Coder.StrToMD5(pwd_login.Password.ToString().Trim());
-            //不能添加dbo，vs会自动从当前目录查找dbo.mdb
-            string strSql = "SELECT * FROM view_user WHERE uname='" + uname + "' AND upass='" + ucode + "'";
-
-            //Console.WriteLine(Coder.StrToMD5("user"));
-
-            AccessHandler handler = new AccessHandler(strCon);
-
-            DataTable table = handler.Query(strSql);
-
-            if (table.Rows.Count == 0)
-            {
-                //登录失败
-                lbl_wronginput.Visibility = Visibility.Visible;
-            }
-            else if (table.Rows[0][1].ToString() == uname && table.Rows[0][2].ToString() == ucode)
-            {
-                //登录成功
-
-                //构建用户实体
-                User user = new User();
-                user.UserID = table.Rows[0][0].ToString().Trim();
-                user.UserName = table.Rows[0][1].ToString().Trim();
-                user.UserPassWord = ucode;
-                user.UserRight = Int32.Parse(table.Rows[0][3].ToString().Trim());
-
-                //打开主窗体并传入用户实体
-                main main = new main(strCon, user, handler.GetConnection());
-                main.Show();
-
-                //登录窗体退出
-                this.Close();
-            }
-
+            WindowState = WindowState.Minimized;
         }
 
         /// <summary>
-        /// Execute while login windown loaded. Designed for set lbl_woronginput as an invisible control.
+        /// Close this window and terminate this program when clicked.
         /// </summary>
-        /// <param name="sender">Event sender.</param>
+        /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
-        private void Login_Loaded(object sender, RoutedEventArgs e)
+        private void btn_close_Click(object sender, RoutedEventArgs e)
         {
-            lbl_wronginput.Visibility = Visibility.Hidden;
+            Environment.Exit(0);
         }
     }
 }

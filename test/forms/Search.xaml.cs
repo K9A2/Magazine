@@ -41,9 +41,9 @@ namespace test.forms
 
             //string strSql = "SELECT * FROM dbo.view_all";
 
-            AccessHandler handler = new AccessHandler(strCon);
+            AccessUtil util = new AccessUtil(strCon);
 
-            DataTable table = handler.Query(strSql);
+            DataTable table = util.Query(strSql);
 
             currentSql = strSql;
 
@@ -59,10 +59,10 @@ namespace test.forms
 
             strSql = "DELETE * FROM tb_query";
 
-            handler.ExecuteWithoutReturn(strSql);
+            util.ExecuteWithoutReturn(strSql);
 
             strSql = "INSERT INTO tb_query VALUES('关键字" + txt_search.Text.ToString().Trim() + "的搜索结果','" + user.UserID + "','" + user.UserName + "','" + time + "')";
-            handler.ExecuteWithoutReturn(strSql);
+            util.ExecuteWithoutReturn(strSql);
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

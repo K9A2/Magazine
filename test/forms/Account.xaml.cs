@@ -53,9 +53,9 @@ namespace test.forms
             if (txt_oldName.Text.ToString().Trim() == user.UserName)
             {
                 string strSql = "UPDATE view_user SET uname='" + txt_newName.Text.ToString().Trim() + "' WHERE uid='" + user.UserID + "'";
-                AccessHandler handler = new AccessHandler(strCon);
+                AccessUtil util = new AccessUtil(strCon);
 
-                handler.ExecuteWithoutReturn(strSql);
+                util.ExecuteWithoutReturn(strSql);
 
                 this.user.UserName = txt_newName.Text.ToString().Trim();
             }
@@ -96,9 +96,9 @@ namespace test.forms
             {
                 string strSql = "UPDATE view_user SET upass='" + Coder.StrToMD5(pwd_newPass.Password.ToString().Trim()) + "' WHERE uid='" + user.UserID + "'";
 
-                AccessHandler handler = new AccessHandler(strCon);
+                AccessUtil util = new AccessUtil(strCon);
 
-                handler.ExecuteWithoutReturn(strSql);
+                util.ExecuteWithoutReturn(strSql);
 
                 this.user.UserName = txt_newName.Text.ToString().Trim();
             }
