@@ -10,13 +10,16 @@ using test.entities;
 namespace test.forms
 {
 
+    //Event handler for user login
+    public delegate void UserLoginHandler(OleDbConnection connection, User user);
+
+
     /// <summary>
     /// Login window.
     /// </summary>
     public partial class Login
     {
 
-        //TODO: Fix all the errors.
         //TODO: Use delegation and event to exchange messages between windows
 
         //Database connection.
@@ -51,13 +54,45 @@ namespace test.forms
         }
 
         /// <summary>
+        /// Make this window dragable.
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Mouse button event</param>
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        /// <summary>
+        /// Mininize this window when clicked.
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Routed event</param>
+        private void BtnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        /// <summary>
+        /// Close this window and terminate this program when clicked.
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Routed event</param>
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        /// <summary>
         /// Start the authentication process when clicked.
         /// </summary>
         /// <param name="sender">Event Sender</param>
         /// <param name="e">Routed event</param>
-        private void btn_login_Click(object sender, RoutedEventArgs e)
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-
             string uname = txt_uname.Text.Trim();
             string ucode = Coder.StrToMD5(pwd_login.Password.Trim());
 
@@ -85,46 +120,13 @@ namespace test.forms
                 };
 
                 //Open main window
-                main main = new main(user, _connection);
+                main main = new main(this);
                 main.Show();
 
                 //Close this window
                 Close();
             }
-
         }
 
-        /// <summary>
-        /// Make this window dragable.
-        /// </summary>
-        /// <param name="sender">Event sender</param>
-        /// <param name="e">Mouse button event</param>
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-        }
-
-        /// <summary>
-        /// Mininize this window when clicked.
-        /// </summary>
-        /// <param name="sender">Event sender</param>
-        /// <param name="e">Routed event</param>
-        private void btn_minimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        /// <summary>
-        /// Close this window and terminate this program when clicked.
-        /// </summary>
-        /// <param name="sender">Event sender</param>
-        /// <param name="e">Routed event</param>
-        private void btn_close_Click(object sender, RoutedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
     }
 }

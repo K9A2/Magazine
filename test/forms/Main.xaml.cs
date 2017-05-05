@@ -10,7 +10,7 @@ using test.entities;
 namespace test.forms
 {
     /// <summary>
-    /// main.xaml 的交互逻辑
+    /// Main window for this program.
     /// </summary>
     public partial class main : Window
     {
@@ -20,17 +20,17 @@ namespace test.forms
 
         private string currentSql = "";
 
-        User user = new User();
+        private User user = new User();
 
-        DataTable source = new DataTable();
+        private DataTable source = new DataTable();
 
-        DataTable copy = new DataTable();
+        private DataTable copy = new DataTable();
+
+        private OleDbConnection connection;
 
         private bool IsFilterShowed = false;
 
         private bool IsFilterEnabled = true;
-
-        private OleDbCommand connection = null;
 
         private bool IsClassNameFilterEnabled = false;
 
@@ -42,36 +42,40 @@ namespace test.forms
 
         private bool IsQuoteFilterEnabled = false;
 
-        public main(User user, OleDbConnection connection)
+        public main(Login window_login)
         {
             InitializeComponent();
 
+            window_login.UserLoginEvent += Init;
+
+            /*
             this.user = user;
 
             txb_user.Text = user.UserName;
 
             grid_filter.Visibility = Visibility.Hidden;
 
+            this.connection = connection;
+            */
+
         }
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        /// <summary>
+        /// Delegation method for initializ the database connection and user entity.
+        /// </summary>
+        /// <param name="loginedUser">Logined user</param>
+        /// <param name="connection">Database connection</param>
+        private void Init(User loginedUser, OleDbConnection connection)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
+            this.connection = connection;
+            user = loginedUser;
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_Copy_Click(object sender, RoutedEventArgs e)
         {
             this.Top = 0;
@@ -765,5 +769,38 @@ namespace test.forms
             return table;
         }
 
+        /// <summary>
+        /// Close this program while clicked.
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Routed event</param>
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            connection.Dispose();
+            Environment.Exit(0);
+        }
+
+        /// <summary>
+        /// Make this window dragable.
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Mouse button event</param>
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        /// <summary>
+        /// Minimize this program when clicked.
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Routed event</param>
+        private void BtnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
     }
 }
