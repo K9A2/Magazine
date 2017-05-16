@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:test.forms"
         xmlns:my="clr-namespace:test.controls"
-        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="test.forms.main"
+        xmlns:themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="test.forms.Main"
         mc:Ignorable="d"
         xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms" 
         Title="main" Height="593" Width="1000" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}">
@@ -25,7 +25,7 @@
         <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
         <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-        <Style x:Key="btn_mini" TargetType="{x:Type Button}">
+        <Style x:Key="BtnMini" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -84,7 +84,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="btn_close" TargetType="{x:Type Button}">
+        <Style x:Key="BtnClose" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -143,7 +143,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="btn_maximize" TargetType="{x:Type Button}">
+        <Style x:Key="BtnMaximize" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -205,7 +205,7 @@
         <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
         <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
         <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
-        <Style x:Key="btn_advSearch" TargetType="{x:Type Button}">
+        <Style x:Key="BtnAdvSearch" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -274,7 +274,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="btn_add" TargetType="{x:Type Button}">
+        <Style x:Key="BtnAdd" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -343,7 +343,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="btn_delete" TargetType="{x:Type Button}">
+        <Style x:Key="BtnDelete" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -431,7 +431,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="btn_update" TargetType="{x:Type Button}">
+        <Style x:Key="BtnUpdate" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -502,7 +502,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="btn_report" TargetType="{x:Type Button}">
+        <Style x:Key="BtnReport" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -575,7 +575,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="btn_user" TargetType="{x:Type Button}">
+        <Style x:Key="BtnUser" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -644,13 +644,13 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="grid_search" TargetType="{x:Type Grid}">
+        <Style x:Key="GridSearch" TargetType="{x:Type Grid}">
             <Setter Property="Background" Value="White"/>
         </Style>
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
         <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
         <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
-        <Style x:Key="txt_uname" TargetType="{x:Type TextBox}">
+        <Style x:Key="TxtUname" TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
             <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
@@ -692,7 +692,7 @@
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
-        <Style x:Key="btn_login" TargetType="{x:Type Button}">
+        <Style x:Key="BtnLogin" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -730,7 +730,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="btn_search" TargetType="{x:Type Button}">
+        <Style x:Key="BtnSearch" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -940,7 +940,7 @@
                     <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
                 </Grid.ColumnDefinitions>
                 <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
-                    <Themes:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
+                    <themes:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
                         <Border x:Name="dropDownBorder" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
                             <ScrollViewer x:Name="DropDownScrollViewer">
                                 <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
@@ -951,7 +951,7 @@
                                 </Grid>
                             </ScrollViewer>
                         </Border>
-                    </Themes:SystemDropShadowChrome>
+                    </themes:SystemDropShadowChrome>
                 </Popup>
                 <ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxToggleButton}"/>
                 <Border x:Name="border" Background="{StaticResource TextBox.Static.Background}" Margin="{TemplateBinding BorderThickness}">
@@ -985,7 +985,7 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-        <Style x:Key="cbo_filter" TargetType="{x:Type ComboBox}">
+        <Style x:Key="CboFilter" TargetType="{x:Type ComboBox}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource ComboBox.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource ComboBox.Static.Border}"/>
@@ -1006,7 +1006,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        <Style x:Key="btn_search_ingrid" TargetType="{x:Type Button}">
+        <Style x:Key="BtnSearchIngrid" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -1043,7 +1043,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="btn_refresh" TargetType="{x:Type Button}">
+        <Style x:Key="BtnRefresh" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -1080,7 +1080,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="btn_viewall" TargetType="{x:Type Button}">
+        <Style x:Key="BtnViewall" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -1129,24 +1129,24 @@
             <Border.Background>
                 <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
             </Border.Background>
-            <Button x:Name="BtnClose" Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Margin="0,10,10,0" Height="20" BorderThickness="0" Style="{DynamicResource btn_close}" Click="BtnClose_Click">
+            <Button x:Name="BtnClose" Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Margin="0,10,10,0" Height="20" BorderThickness="0" Style="{DynamicResource BtnClose}" Click="BtnClose_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="/test;component/img/关闭正常.png"/>
                 </Button.Background>
             </Button>
         </Border>
-        <Button x:Name="BtnMinimize" HorizontalAlignment="Right" Width="20" Margin="0,10,70,0" BorderThickness="0" Style="{DynamicResource btn_mini}" Click="BtnMinimize_Click" Height="19.566" VerticalAlignment="Top">
+        <Button x:Name="BtnMinimize" HorizontalAlignment="Right" Width="20" Margin="0,10,70,0" BorderThickness="0" Style="{DynamicResource BtnMini}" Click="BtnMinimize_Click" Height="19.566" VerticalAlignment="Top">
             <Button.Background>
                 <ImageBrush ImageSource="/test;component/img/最小化普通.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="button_Copy" HorizontalAlignment="Right" Width="20" Margin="0,0,40,563.333" BorderThickness="0" Style="{DynamicResource btn_maximize}" Click="button_Copy_Click" Height="20" VerticalAlignment="Bottom">
+        <Button x:Name="BtnMax" HorizontalAlignment="Right" Width="20" Margin="0,0,40,563.333" BorderThickness="0" Style="{DynamicResource BtnMaximize}" Click="BtnMax_Click" Height="20" VerticalAlignment="Bottom">
             <Button.Background>
                 <ImageBrush ImageSource="最大化正常.png"/>
             </Button.Background>
         </Button>
-        <Label x:Name="label1" Content="期刊管理系统" HorizontalAlignment="Left" Margin="10,12,0,0" Foreground="White" VerticalAlignment="Top" VerticalContentAlignment="Center" Padding="5,0,5,5"/>
-        <Button x:Name="button2" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="121,20.499,0,0" Click="btn_search_Click" Height="100" Style="{DynamicResource btn_advSearch}" BorderThickness="0">
+        <Label x:Name="Label1" Content="期刊管理系统" HorizontalAlignment="Left" Margin="10,12,0,0" Foreground="White" VerticalAlignment="Top" VerticalContentAlignment="Center" Padding="5,0,5,5"/>
+        <Button x:Name="Button2" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="121,20.499,0,0" Click="BtnSearch_Click" Height="100" Style="{DynamicResource BtnAdvSearch}" BorderThickness="0">
             <Button.Background>
                 <ImageBrush ImageSource="查询正常.png"/>
             </Button.Background>
@@ -1154,22 +1154,22 @@
                 <ImageBrush ImageSource="查询正常.png"/>
             </Button.BorderBrush>
         </Button>
-        <Button x:Name="button2_Copy" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="206,20.499,0,0" Height="100" Style="{DynamicResource btn_add}" BorderThickness="0" Click="button2_Copy_Click">
+        <Button x:Name="BtnAdd" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="206,20.499,0,0" Height="100" Style="{DynamicResource BtnAdd}" BorderThickness="0" Click="BtnAdd_Click">
             <Button.Background>
                 <ImageBrush ImageSource="增加正常.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="button2_Copy1" VerticalAlignment="Top" Margin="461,20.499,459,0" Height="100" BorderThickness="0" Style="{DynamicResource btn_report}" Width="80" HorizontalAlignment="Left" Click="button2_Copy1_Click">
+        <Button x:Name="BtnDetailedReport" VerticalAlignment="Top" Margin="461,20.499,459,0" Height="100" BorderThickness="0" Style="{DynamicResource BtnReport}" Width="80" HorizontalAlignment="Left" Click="BtnPrint_Click">
             <Button.Background>
                 <ImageBrush ImageSource="报表正常.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="button2_Copy2" Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,20.499,374,0" Height="100" BorderThickness="0" Style="{DynamicResource btn_user}" HorizontalContentAlignment="Left" Click="button2_Copy2_Click">
+        <Button x:Name="BtnUserControl" Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,20.499,374,0" Height="100" BorderThickness="0" Style="{DynamicResource BtnUser}" HorizontalContentAlignment="Left" Click="BtnUserControl_Click">
             <Button.Background>
                 <ImageBrush ImageSource="用户账户.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="button2_Copy3" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="291,20.499,0,0" Height="100" BorderThickness="0" Style="{DynamicResource btn_delete}" Click="button2_Copy3_Click">
+        <Button x:Name="BtnDelete" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="291,20.499,0,0" Height="100" BorderThickness="0" Style="{DynamicResource BtnDelete}" Click="BtnDelete_Click">
             <Button.Background>
                 <ImageBrush ImageSource="删除正常.png"/>
             </Button.Background>
@@ -1177,7 +1177,7 @@
                 <ImageBrush ImageSource="删除正常.png"/>
             </Button.BorderBrush>
         </Button>
-        <Button x:Name="button2_Copy4" Content="" VerticalAlignment="Top" Margin="376,20.499,0,0" Width="80" Height="100" HorizontalAlignment="Left" d:LayoutOverrides="Width" BorderThickness="0" Style="{DynamicResource btn_update}" Click="button2_Copy4_Click_1">
+        <Button x:Name="BtnUpdate" Content="" VerticalAlignment="Top" Margin="376,20.499,0,0" Width="80" Height="100" HorizontalAlignment="Left" d:LayoutOverrides="Width" BorderThickness="0" Style="{DynamicResource BtnUpdate}" Click="BtnUpdate_Click">
             <Button.Background>
                 <ImageBrush ImageSource="更新正常.png"/>
             </Button.Background>
@@ -1186,25 +1186,25 @@
             </Button.BorderBrush>
         </Button>
         <Grid Margin="10,125.499,10,10">
-            <Grid x:Name="grid_search" Style="{DynamicResource grid_search}">
+            <Grid x:Name="GridSearch" Style="{DynamicResource GridSearch}">
                 <Grid.Background>
                     <ImageBrush/>
                 </Grid.Background>
                 <Border BorderThickness="0" Background="White" CornerRadius="2">
-                    <Button x:Name="btn_search" Content="快速搜索" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="330,10,0,0" Height="24.501" Style="{DynamicResource btn_search_ingrid}" BorderThickness="0" Foreground="White" Click="btn_search_Click">
+                    <Button x:Name="BtnSearch" Content="快速搜索" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="330,10,0,0" Height="24.501" Style="{DynamicResource BtnSearchIngrid}" BorderThickness="0" Foreground="White" Click="BtnSearch_Click">
                         <Button.Background>
                             <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
                         </Button.Background>
                     </Button>
                 </Border>
-                <DataGrid x:Name="dg_main" Margin="10,40,10,10" MouseRightButtonDown="dg_main_MouseRightButtonDown">
+                <DataGrid x:Name="DgMain" Margin="10,40,10,10" MouseRightButtonDown="DgMain_MouseRightButtonDown">
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="详细信息" Click="MenuItem_Click"/>
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                 </DataGrid>
-                <Button x:Name="button3" Content="全显" VerticalAlignment="Top" Margin="430,10,470,0" Height="24.501" BorderThickness="0" Foreground="White" Click="button3_Click_1" Style="{DynamicResource btn_viewall}">
+                <Button x:Name="BtnShowAll" Content="全显" VerticalAlignment="Top" Margin="430,10,470,0" Height="24.501" BorderThickness="0" Foreground="White" Click="BtnShowAll_Click" Style="{DynamicResource BtnViewall}">
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
                     </Button.Background>
@@ -1224,39 +1224,39 @@
                 </TextBlock.Style>
             </TextBlock>
         </Grid>
-        <TextBox x:Name="txt_search" HorizontalAlignment="Left" TextWrapping="Wrap" Width="300" Margin="20,135,0,0" Style="{DynamicResource txt_uname}" MaxLines="1" MaxLength="37" VerticalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock" IsHitTestVisible="False" TextWrapping="Wrap" Text="搜索ID、ISSN与题名" VerticalAlignment="Top" Margin="20,135,0,0" Width="280" Height="25" Foreground="DarkGray"  HorizontalAlignment="Left" TextAlignment="Justify" Padding="5,5,0,0">
+        <TextBox x:Name="TxtSearch" HorizontalAlignment="Left" TextWrapping="Wrap" Width="300" Margin="20,135,0,0" Style="{DynamicResource TxtUname}" MaxLines="1" MaxLength="37" VerticalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
+        <TextBlock x:Name="TextBlock" IsHitTestVisible="False" TextWrapping="Wrap" Text="搜索ID、ISSN与题名" VerticalAlignment="Top" Margin="20,135,0,0" Width="280" Height="25" Foreground="DarkGray"  HorizontalAlignment="Left" TextAlignment="Justify" Padding="5,5,0,0">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Setter Property="UseLayoutRounding" Value="False"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=txt_search}" Value="">
+                        <DataTrigger Binding="{Binding Text, ElementName=TxtSearch}" Value="">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <Button x:Name="button4" Content="打印报表" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,135,380,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource btn_refresh}" Click="button4_Click">
+        <Button x:Name="BtnPrint" Content="打印报表" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,135,380,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="BtnPrint_Click">
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
             </Button.Background>
         </Button>
-        <TextBlock x:Name="txb_tip" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,32.24,0,0" Padding="5,0,0,0" Foreground="White" Width="95"><Run Text="已登录"/><Run Text="用户"/><Run Text="："/></TextBlock>
-        <TextBlock x:Name="txb_user" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Margin="10,52.48,0,0" Padding="5,0,0,0" Foreground="White"/>
-        <Button x:Name="button4_Copy" Content="刷新" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,135.25,280,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource btn_refresh}" Click="button4_Copy_Click">
+        <TextBlock x:Name="TxbTip" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,32.24,0,0" Padding="5,0,0,0" Foreground="White" Width="95"><Run Text="已登录"/><Run Text="用户"/><Run Text="："/></TextBlock>
+        <TextBlock x:Name="TxbUser" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Margin="10,52.48,0,0" Padding="5,0,0,0" Foreground="White"/>
+        <Button x:Name="BtnRefresh" Content="刷新" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,135.25,280,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="BtnRefresh_Click">
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_filter" Content="过滤器" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,135,180,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource btn_refresh}" Click="button4_Copy1_Click">
+        <Button x:Name="BtnFilter" Content="过滤器" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,135,180,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="button4_Copy1_Click">
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
             </Button.Background>
         </Button>
-        <Grid x:Name="grid_filter" Margin="90,210,155,138.333">
-            <ComboBox x:Name="cbo_ClassName" VerticalAlignment="Top" Margin="216,25,0,0" Height="25" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="140" IsEditable="True" SelectionChanged="cbo_ClassName_SelectionChanged">
+        <Grid x:Name="GridFilter" Margin="90,210,155,138.333">
+            <ComboBox x:Name="CboClassName" VerticalAlignment="Top" Margin="216,25,0,0" Height="25" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="140" IsEditable="True" SelectionChanged="cbo_ClassName_SelectionChanged">
                 <ComboBoxItem Content="地学" VerticalContentAlignment="Center" Padding="4,1"/>
                 <ComboBoxItem Content="地学天文" VerticalContentAlignment="Center"/>
                 <ComboBoxItem Content="工程技术" VerticalContentAlignment="Center"/>
@@ -1271,40 +1271,40 @@
                 <ComboBoxItem Content="综合性期刊" VerticalContentAlignment="Center"/>
                 <ComboBoxItem Content="管理科学"/>
             </ComboBox>
-            <RadioButton x:Name="rdo_1" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="216,58.433,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID" Width="30" Checked="rdo_1_Checked"/>
-            <RadioButton x:Name="rdo_2" Content="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="251,58,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID" Width="30" Checked="rdo_2_Checked"/>
-            <RadioButton x:Name="rdo_3" Content="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="286,58.433,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID" Width="30" Checked="rdo_3_Checked"/>
-            <RadioButton x:Name="rdo_4" Content="4" VerticalAlignment="Top" Margin="321,58.433,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID" HorizontalAlignment="Left" Width="30" Checked="rdo_4_Checked"/>
-            <RadioButton x:Name="rdo_yes" Content="是" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="216,93.433,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="IsTop" Width="30" Checked="rdo_yes_Checked"/>
-            <RadioButton x:Name="rdo_no" Content="否" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="251,93.433,0,0" Height="25" VerticalContentAlignment="Center" GroupName="IsTop" Width="30" Checked="rdo_no_Checked"/>
-            <TextBox x:Name="txt_1" HorizontalAlignment="Right" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Margin="0,130,310,0" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="txt_2" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Margin="495,130,0,0" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="txt_3" HorizontalAlignment="Right" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Margin="0,168.1,310,0" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="txt_4" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Margin="495,168.1,0,0" VerticalContentAlignment="Center"/>
-            <ComboBox x:Name="cbo_Factor" VerticalAlignment="Bottom" Margin="220,0,0,90" Height="25" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="120">
+            <RadioButton x:Name="Rdo1" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="216,58.433,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID" Width="30" Checked="rdo_1_Checked"/>
+            <RadioButton x:Name="Rdo2" Content="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="251,58,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID" Width="30" Checked="rdo_2_Checked"/>
+            <RadioButton x:Name="Rdo3" Content="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="286,58.433,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID" Width="30" Checked="rdo_3_Checked"/>
+            <RadioButton x:Name="Rdo4" Content="4" VerticalAlignment="Top" Margin="321,58.433,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID" HorizontalAlignment="Left" Width="30" Checked="rdo_4_Checked"/>
+            <RadioButton x:Name="RdoYes" Content="是" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="216,93.433,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="IsTop" Width="30" Checked="rdo_yes_Checked"/>
+            <RadioButton x:Name="RdoNo" Content="否" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="251,93.433,0,0" Height="25" VerticalContentAlignment="Center" GroupName="IsTop" Width="30" Checked="rdo_no_Checked"/>
+            <TextBox x:Name="Txt1" HorizontalAlignment="Right" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Margin="0,130,310,0" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="Txt2" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Margin="495,130,0,0" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="Txt3" HorizontalAlignment="Right" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Margin="0,168.1,310,0" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="Txt4" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Margin="495,168.1,0,0" VerticalContentAlignment="Center"/>
+            <ComboBox x:Name="CboFactor" VerticalAlignment="Bottom" Margin="220,0,0,90" Height="25" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="120">
                 <ComboBoxItem Content="2007年影响因子"/>
                 <ComboBoxItem Content="2008年影响因子"/>
                 <ComboBoxItem Content="2009年影响因子"/>
                 <ComboBoxItem Content="平均影响因子"/>
             </ComboBox>
-            <ComboBox x:Name="cbo_Quote" VerticalAlignment="Bottom" Margin="220,0,0,51.9" Height="25" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="120">
+            <ComboBox x:Name="CboQuote" VerticalAlignment="Bottom" Margin="220,0,0,51.9" Height="25" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="120">
                 <ComboBoxItem Content="2007年引用数"/>
                 <ComboBoxItem Content="2008年引用数"/>
                 <ComboBoxItem Content="2009年引用数"/>
             </ComboBox>
-            <Label x:Name="label_Copy" Content="~" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,275,90" IsEnabled="False" Height="25"/>
-            <Label x:Name="label" Content="~" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,275,51.9" IsEnabled="False" Height="25"/>
-            <Button x:Name="btn_Factor" Content="确定" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,130,90,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource btn_refresh}" Click="btn_Factor_Click">
+            <Label x:Name="LabelCopy" Content="~" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,275,90" IsEnabled="False" Height="25"/>
+            <Label x:Name="Label" Content="~" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,275,51.9" IsEnabled="False" Height="25"/>
+            <Button x:Name="BtnFactor" Content="确定" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,130,90,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="btn_Factor_Click">
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="btn_Quote" Content="确定" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,168,90,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource btn_refresh}" Click="btn_Quote_Click">
+            <Button x:Name="BtnQuote" Content="确定" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,168,90,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="btn_Quote_Click">
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="btn_OnOff" Content="开关过滤器" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,210,455,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource btn_refresh}" Background="#FFE90000" Click="btn_OnOff_Click"/>
+            <Button x:Name="BtnOnOff" Content="开关过滤器" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,210,455,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Background="#FFE90000" Click="btn_OnOff_Click"/>
         </Grid>
     </Grid>
 </Window>

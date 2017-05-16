@@ -1,7 +1,6 @@
 ﻿using System.Data;
 using System.Windows;
 using System.Windows.Input;
-using test.common;
 using test.entities;
 
 namespace test.forms
@@ -31,11 +30,12 @@ namespace test.forms
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
-            main main = new main(strCon, user);
+            /*
+            Main main = new Main(strCon, user);
 
-            main.dg_main.IsReadOnly = false;
+            main.DgMain.IsReadOnly = false;
 
-            string target = "'%" + txt_search.Text.ToString().Trim().ToUpper() + "%'";
+            string target = "'%" + TxtSearch.Text.ToString().Trim().ToUpper() + "%'";
 
             string strSql = "SELECT * FROM view_all WHERE ID like " + target + " or ISSN like " + target + " or ShortName like " + target + " or FullName like " + target + " or ChineseName like " + target;
 
@@ -47,9 +47,9 @@ namespace test.forms
 
             currentSql = strSql;
 
-            main.dg_main.ItemsSource = table.DefaultView;
+            main.DgMain.ItemsSource = table.DefaultView;
 
-            main.dg_main.IsReadOnly = true;
+            main.DgMain.IsReadOnly = true;
 
             source = table;
 
@@ -61,8 +61,9 @@ namespace test.forms
 
             util.ExecuteWithoutReturn(strSql);
 
-            strSql = "INSERT INTO tb_query VALUES('关键字" + txt_search.Text.ToString().Trim() + "的搜索结果','" + user.UserID + "','" + user.UserName + "','" + time + "')";
+            strSql = "INSERT INTO tb_query VALUES('关键字" + TxtSearch.Text.ToString().Trim() + "的搜索结果','" + user.UserID + "','" + user.UserName + "','" + time + "')";
             util.ExecuteWithoutReturn(strSql);
+            */
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -75,12 +76,12 @@ namespace test.forms
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            WindowState = WindowState.Minimized;
         }
 
         private void button_Copy_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

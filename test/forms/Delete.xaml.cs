@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Data.OleDb;
+using System.Windows;
 using System.Windows.Input;
 using test.common;
 using test.entities;
@@ -11,23 +12,27 @@ namespace test.forms
     public partial class Delete : Window
     {
 
-        private string strCon = "";
+        //private string strCon = "";
 
-        Magazine magazine = new Magazine();
+        private Magazine _magazine = new Magazine();
 
-        public Delete(string strCon, Magazine magazine)
+        private OleDbConnection _connection;
+
+        public Delete(OleDbConnection connection, Magazine magazine)
         {
             InitializeComponent();
 
-            this.strCon = strCon;
+            //this.strCon = strCon;
 
-            this.magazine = magazine;
+            _magazine = magazine;
+
+            _connection = connection;
 
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            WindowState = WindowState.Minimized;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -40,100 +45,100 @@ namespace test.forms
 
         private void button_Copy_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void btn_abort_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //加载获取的magazine实体
-            txt_fname.Text = magazine.FullName;
-            txt_sname.Text = magazine.ShortName;
-            txt_issn.Text = magazine.ISSN;
-            txt_cname.Text = magazine.ChineseName;
+            TxtFname.Text = _magazine.FullName;
+            TxtSname.Text = _magazine.ShortName;
+            TxtIssn.Text = _magazine.ISSN;
+            TxtCname.Text = _magazine.ChineseName;
 
-            switch (magazine.ClassName)
+            switch (_magazine.ClassName)
             {
-                case "地学":cbo_ClassName.SelectedIndex = 0;break;
-                case "地学天文": cbo_ClassName.SelectedIndex = 1; break;
-                case "工程技术": cbo_ClassName.SelectedIndex = 2; break;
-                case "管理科学": cbo_ClassName.SelectedIndex = 3; break;
-                case "化学": cbo_ClassName.SelectedIndex = 4; break;
-                case "环境科学": cbo_ClassName.SelectedIndex = 5; break;
-                case "农林科学": cbo_ClassName.SelectedIndex = 6; break;
-                case "社会科学": cbo_ClassName.SelectedIndex = 7; break;
-                case "生物": cbo_ClassName.SelectedIndex = 8; break;
-                case "数学": cbo_ClassName.SelectedIndex = 9; break;
-                case "物理": cbo_ClassName.SelectedIndex = 10; break;
-                case "医学": cbo_ClassName.SelectedIndex = 11; break;
-                case "综合性期刊": cbo_ClassName.SelectedIndex = 12; break;
+                case "地学":CboClassName.SelectedIndex = 0;break;
+                case "地学天文": CboClassName.SelectedIndex = 1; break;
+                case "工程技术": CboClassName.SelectedIndex = 2; break;
+                case "管理科学": CboClassName.SelectedIndex = 3; break;
+                case "化学": CboClassName.SelectedIndex = 4; break;
+                case "环境科学": CboClassName.SelectedIndex = 5; break;
+                case "农林科学": CboClassName.SelectedIndex = 6; break;
+                case "社会科学": CboClassName.SelectedIndex = 7; break;
+                case "生物": CboClassName.SelectedIndex = 8; break;
+                case "数学": CboClassName.SelectedIndex = 9; break;
+                case "物理": CboClassName.SelectedIndex = 10; break;
+                case "医学": CboClassName.SelectedIndex = 11; break;
+                case "综合性期刊": CboClassName.SelectedIndex = 12; break;
                 default:break;
             }
-            txt_mclass.Text = magazine.MultyClassName;
-            switch (magazine.ClassID)
+            TxtMclass.Text = _magazine.MultyClassName;
+            switch (_magazine.ClassID)
             {
-                case "1":rdo_1.IsChecked = true;break;
-                case "2":rdo_2.IsChecked = true;break;
-                case "3":rdo_3.IsChecked = true;break;
-                case "4":rdo_4.IsChecked = true;break;
+                case "1":Rdo1.IsChecked = true;break;
+                case "2":Rdo2.IsChecked = true;break;
+                case "3":Rdo3.IsChecked = true;break;
+                case "4":Rdo4.IsChecked = true;break;
                 default:break;
             }
-            if (magazine.isTop == "Y")
+            if (_magazine.isTop == "Y")
             {
-                rdo_yes.IsChecked = true;
+                RdoYes.IsChecked = true;
             }else
             {
-                rdo_no.IsChecked = true;
+                RdoNo.IsChecked = true;
             }
-            txt_f2007.Text = magazine.f2007;
-            txt_f2008.Text = magazine.f2008;
-            txt_f2009.Text = magazine.f2009;
-            if (magazine.fAVG.Length <= 13)
+            TxtF2007.Text = _magazine.f2007;
+            TxtF2008.Text = _magazine.f2008;
+            TxtF2009.Text = _magazine.f2009;
+            if (_magazine.fAVG.Length <= 13)
             {
-                txb_avg.Text = magazine.fAVG;
+                TxbAvg.Text = _magazine.fAVG;
             }
             else
             {
-                txb_avg.Text = magazine.fAVG.Substring(0, 13);
+                TxbAvg.Text = _magazine.fAVG.Substring(0, 13);
             }
-            txt_q2007.Text = magazine.q2007;
-            txt_q2008.Text = magazine.q2008;
-            txt_q2009.Text = magazine.q2009;
-            txt_note.Text = magazine.Note;
+            TxtQ2007.Text = _magazine.q2007;
+            TxtQ2008.Text = _magazine.q2008;
+            TxtQ2009.Text = _magazine.q2009;
+            TxtNote.Text = _magazine.Note;
 
             //设置只读
-            txt_issn.IsReadOnly = true;
-            txt_sname.IsReadOnly = true;
-            txt_fname.IsReadOnly = true;
-            txt_cname.IsReadOnly = true;
-            cbo_ClassName.IsEnabled = false;
-            txt_mclass.IsReadOnly = true;
-            rdo_1.IsEnabled = false;
-            rdo_2.IsEnabled = false;
-            rdo_3.IsEnabled = false;
-            rdo_4.IsEnabled = false;
-            rdo_no.IsEnabled = false;
-            rdo_yes.IsEnabled = false;
-            txt_f2007.IsReadOnly = true;
-            txt_f2008.IsReadOnly = true;
-            txt_f2009.IsReadOnly = true;
-            txt_q2007.IsReadOnly = true;
-            txt_q2008.IsReadOnly = true;
-            txt_q2009.IsReadOnly = true;
-            txt_note.IsReadOnly = true;
+            TxtIssn.IsReadOnly = true;
+            TxtSname.IsReadOnly = true;
+            TxtFname.IsReadOnly = true;
+            TxtCname.IsReadOnly = true;
+            CboClassName.IsEnabled = false;
+            TxtMclass.IsReadOnly = true;
+            Rdo1.IsEnabled = false;
+            Rdo2.IsEnabled = false;
+            Rdo3.IsEnabled = false;
+            Rdo4.IsEnabled = false;
+            RdoNo.IsEnabled = false;
+            RdoYes.IsEnabled = false;
+            TxtF2007.IsReadOnly = true;
+            TxtF2008.IsReadOnly = true;
+            TxtF2009.IsReadOnly = true;
+            TxtQ2007.IsReadOnly = true;
+            TxtQ2008.IsReadOnly = true;
+            TxtQ2009.IsReadOnly = true;
+            TxtNote.IsReadOnly = true;
         }
 
         private void btn_delete_Click(object sender, RoutedEventArgs e)
         {
             //确定删除
-            AccessUtil util = new AccessUtil(strCon);
-            util.ExecuteWithoutReturn("DELETE FROM view_all WHERE ID=" + magazine.ID);
+            //AccessUtil util = new AccessUtil(strCon);
+            AccessUtil.ExecuteWithoutReturn("DELETE FROM view_all WHERE ID=" + _magazine.ID, _connection);
 
-            this.Close();   
+            Close();   
         }
     }
 }

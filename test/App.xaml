@@ -6,7 +6,7 @@
     <Application.Resources>
 
         <Color x:Key="淡蓝色背景二">#FF3191F0</Color>
-        <Color x:Key="Color_DialogWindowBackground">#FF32A9FD</Color>
+        <Color x:Key="ColorDialogWindowBackground">#FF32A9FD</Color>
 
     </Application.Resources>
 </Application>

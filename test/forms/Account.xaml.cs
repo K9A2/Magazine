@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Data.OleDb;
+using System.Windows;
 using System.Windows.Input;
 using test.common;
 using test.entities;
@@ -11,7 +12,7 @@ namespace test.forms
     public partial class Account : Window
     {
 
-        User user = new User();
+        private User _user;
 
         private string UserID = "";
 
@@ -19,54 +20,56 @@ namespace test.forms
 
         private string UserPassWord = "";
 
-        private int UserRight = 0;
+        private int UserRight;
 
-        private string strCon = "";
+        //private string strCon = "";
 
+        private OleDbConnection _connection;
 
-        public Account(string strCon,User user)
+        public Account(OleDbConnection connection, User user)
         {
             InitializeComponent();
 
-            this.user = user;
+            _user = user;
+
+            _connection = connection;
 
             UserID = user.UserID;
             UserName = user.UserName;
             UserPassWord = user.UserPassWord;
             UserRight = user.UserRight;
 
-            this.strCon = strCon;
+            //this.strCon = strCon;
        }
 
         private void button_Copy_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            WindowState = WindowState.Minimized;
         }
 
         private void button3_Click_1(object sender, RoutedEventArgs e)
         {
-            if (txt_oldName.Text.ToString().Trim() == user.UserName)
+            if (TxtOldName.Text.Trim() == _user.UserName)
             {
-                string strSql = "UPDATE view_user SET uname='" + txt_newName.Text.ToString().Trim() + "' WHERE uid='" + user.UserID + "'";
-                AccessUtil util = new AccessUtil(strCon);
+                string strSql = "UPDATE view_user SET uname='" + TxtNewName.Text.Trim() + "' WHERE uid='" + _user.UserID + "'";
 
-                util.ExecuteWithoutReturn(strSql);
+                AccessUtil.ExecuteWithoutReturn(strSql, _connection);
 
-                this.user.UserName = txt_newName.Text.ToString().Trim();
+                //AccessUtil util = new AccessUtil(strCon);
+
+                //util.ExecuteWithoutReturn(strSql);
+
+                _user.UserName = TxtNewName.Text.Trim();
             }
             else
             {
                 MessageBox.Show("您输入了错误的账户名");
             }
-            
-
-            
-
 
         }
 
@@ -80,27 +83,29 @@ namespace test.forms
 
         private void btn_confirm_Copy1_Click(object sender, RoutedEventArgs e)
         {
-            txt_newName.Text = "";
-            txt_oldName.Text = "";
+            TxtNewName.Text = "";
+            TxtOldName.Text = "";
         }
 
         private void btn_confirm_Copy3_Click(object sender, RoutedEventArgs e)
         {
-            pwd_oldPass.Password = "";
-            pwd_newPass.Password = "";
+            PwdOldPass.Password = "";
+            PwdNewPass.Password = "";
         }
 
         private void btn_confirm_Copy2_Click(object sender, RoutedEventArgs e)
         {
-            if (Coder.StrToMD5(pwd_oldPass.Password.ToString().Trim()) == user.UserPassWord)
+            if (Coder.StrToMD5(PwdOldPass.Password.Trim()) == _user.UserPassWord)
             {
-                string strSql = "UPDATE view_user SET upass='" + Coder.StrToMD5(pwd_newPass.Password.ToString().Trim()) + "' WHERE uid='" + user.UserID + "'";
+                string strSql = "UPDATE view_user SET upass='" + Coder.StrToMD5(PwdNewPass.Password.Trim()) + "' WHERE uid='" + _user.UserID + "'";
 
-                AccessUtil util = new AccessUtil(strCon);
+                AccessUtil.ExecuteWithoutReturn(strSql, _connection);
 
-                util.ExecuteWithoutReturn(strSql);
+                //AccessUtil util = new AccessUtil(strCon);
 
-                this.user.UserName = txt_newName.Text.ToString().Trim();
+                //util.ExecuteWithoutReturn(strSql);
+
+                _user.UserName = TxtNewName.Text.Trim();
             }
             else
             {

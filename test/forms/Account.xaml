@@ -22,7 +22,7 @@
         <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
         <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-        <Style x:Key="btn_minimize" TargetType="{x:Type Button}">
+        <Style x:Key="BtnMinimize" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -90,7 +90,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="btn_close" TargetType="{x:Type Button}">
+        <Style x:Key="BtnClose" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -161,7 +161,7 @@
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
         <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
         <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
-        <Style x:Key="txt_note" TargetType="{x:Type TextBox}">
+        <Style x:Key="TxtNote" TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
             <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
@@ -205,7 +205,7 @@
         <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
         <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
         <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
-        <Style x:Key="btn_add_return" TargetType="{x:Type Button}">
+        <Style x:Key="BtnAddReturn" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -242,7 +242,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="btn_add_finish" TargetType="{x:Type Button}">
+        <Style x:Key="BtnAddFinish" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -285,26 +285,26 @@
     </Window.Background>
     <Grid Margin="0,0,5,0">
         <Border BorderThickness="0" MouseDown="Border_MouseDown" CornerRadius="2" Height="368.988" VerticalAlignment="Top" Background="#FF32A9FD" HorizontalAlignment="Left" Width="320" Margin="0,1.012,0,0"/>
-        <Button x:Name="button" Content="" VerticalAlignment="Top" Margin="265,10.985,0,0" HorizontalAlignment="Left" Width="20" Height="19.945" BorderThickness="0" Style="{DynamicResource btn_minimize}" Click="button_Click" RenderTransformOrigin="0,0.452">
+        <Button x:Name="Button" Content="" VerticalAlignment="Top" Margin="265,10.985,0,0" HorizontalAlignment="Left" Width="20" Height="19.945" BorderThickness="0" Style="{DynamicResource BtnMinimize}" Click="button_Click" RenderTransformOrigin="0,0.452">
             <Button.Background>
                 <ImageBrush ImageSource="对话框最小化普通.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="button_Copy" Content="" VerticalAlignment="Top" Margin="295,10.985,30,0" Height="19.945" BorderThickness="0" Style="{DynamicResource btn_close}" Click="button_Copy_Click">
+        <Button x:Name="ButtonCopy" Content="" VerticalAlignment="Top" Margin="295,10.985,30,0" Height="19.945" BorderThickness="0" Style="{DynamicResource BtnClose}" Click="button_Copy_Click">
             <Button.Background>
                 <ImageBrush ImageSource="对话框关闭正常.png"/>
             </Button.Background>
         </Button>
-        <Label x:Name="label" Content="用户账户设置" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Margin="10,8.99,0,0" Padding="5,4,5,5" Height="24.174"/>
+        <Label x:Name="Label" Content="用户账户设置" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Margin="10,8.99,0,0" Padding="5,4,5,5" Height="24.174"/>
         <Grid Margin="10,38.15,0,279.234" HorizontalAlignment="Left" Width="300" d:LayoutOverrides="LeftMargin, RightMargin">
             <Grid.Background>
                 <ImageBrush/>
             </Grid.Background>
             <Border BorderThickness="1" CornerRadius="2" Margin="0,1.38,0,-270" d:LayoutOverrides="VerticalAlignment" Background="White" HorizontalAlignment="Left" Width="300"/>
         </Grid>
-        <GroupBox x:Name="grp" Header="修改用户名&#xD;&#xA;" HorizontalAlignment="Left" Margin="20,50.875,0,0" Width="275" Height="140.994" VerticalAlignment="Top"/>
-        <Label x:Name="label12" Content="2009年引用数" HorizontalAlignment="Right" Margin="0,274.894,192,94.094"/>
-        <TextBlock x:Name="textBlock" IsHitTestVisible="False" TextAlignment="Justify" Foreground="DarkGray" HorizontalAlignment="Left" TextWrapping="Wrap" Text="如有需要，可输入备注" Margin="40,283,0,87" Padding="2,0,0,0" d:LayoutOverrides="Height">
+        <GroupBox x:Name="Grp" Header="修改用户名&#xD;&#xA;" HorizontalAlignment="Left" Margin="20,50.875,0,0" Width="275" Height="140.994" VerticalAlignment="Top"/>
+        <Label x:Name="Label12" Content="2009年引用数" HorizontalAlignment="Right" Margin="0,274.894,192,94.094"/>
+        <TextBlock x:Name="TextBlock" IsHitTestVisible="False" TextAlignment="Justify" Foreground="DarkGray" HorizontalAlignment="Left" TextWrapping="Wrap" Text="如有需要，可输入备注" Margin="40,283,0,87" Padding="2,0,0,0" d:LayoutOverrides="Height">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -317,9 +317,9 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,160.574,84.853,0" d:LayoutOverrides="VerticalAlignment" Height="15.199"/>
-        <TextBox x:Name="textBox8_Copy1" HorizontalAlignment="Right" TextWrapping="Wrap" Width="105" Margin="0,275.751,35,93.237"/>
-        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="备注" Foreground="DarkGray"  VerticalAlignment="Bottom" Margin="40,0,0,46.946" RenderTransformOrigin="0.65,2.1">
+        <TextBlock x:Name="TextBlock1" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,160.574,84.853,0" d:LayoutOverrides="VerticalAlignment" Height="15.199"/>
+        <TextBox x:Name="TextBox8Copy1" HorizontalAlignment="Right" TextWrapping="Wrap" Width="105" Margin="0,275.751,35,93.237"/>
+        <TextBlock x:Name="TextBlock2" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="备注" Foreground="DarkGray"  VerticalAlignment="Bottom" Margin="40,0,0,46.946" RenderTransformOrigin="0.65,2.1">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -332,24 +332,24 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="9.973" Margin="-60,125.67,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="0"/>
-        <TextBox x:Name="txt_oldName" HorizontalAlignment="Left" Height="24.932" TextWrapping="Wrap" VerticalAlignment="Top" Width="139" Margin="140,80.793,0,0" VerticalContentAlignment="Center"/>
-        <Label x:Name="label1" Content="输入您当前用户名" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,80.793,0,0" Height="24.932"/>
-        <Label x:Name="label1_Copy" Content="输入新的用户名" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,110.711,0,0" Height="24.932"/>
-        <TextBox x:Name="txt_newName" HorizontalAlignment="Left" Height="24.932" TextWrapping="Wrap" VerticalAlignment="Top" Width="139" Margin="140,110.711,0,0" VerticalContentAlignment="Center"/>
-        <Button x:Name="btn_confirm_Copy" Content="修改" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="55" Margin="69,0,0,189.548" Height="28.987" Style="{DynamicResource btn_add_finish}" Click="button3_Click_1"/>
-        <Button x:Name="btn_confirm_Copy1" Content="清空" VerticalAlignment="Bottom" Margin="185,0,0,189.548" Height="28.987" Style="{DynamicResource btn_add_finish}" Click="btn_confirm_Copy1_Click" HorizontalAlignment="Left" Width="55"/>
-        <GroupBox x:Name="grp_Copy" Header="修改密码&#xA;" HorizontalAlignment="Left" Margin="20,197,0,0" Width="275" Height="141" VerticalAlignment="Top"/>
-        <Label x:Name="label1_Copy1" Content="输入旧密码" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,0,0,114.685" Height="24.932"/>
-        <Label x:Name="label1_Copy2" Content="输入新密码" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,0,0,84.768" Height="24.931"/>
-        <Button x:Name="btn_confirm_Copy2" Content="修改" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="55" Margin="69,0,0,46.818" Height="28.986" Style="{DynamicResource btn_add_finish}" d:LayoutOverrides="VerticalAlignment" Click="btn_confirm_Copy2_Click"/>
-        <Button x:Name="btn_confirm_Copy3" Content="清空" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="55" Margin="185,0,0,46.818" Height="28.986" Style="{DynamicResource btn_add_finish}" Click="btn_confirm_Copy3_Click" d:LayoutOverrides="VerticalAlignment"/>
-        <Button x:Name="button_Copy1" Content="" VerticalAlignment="Top" Margin="0,10,10,0" HorizontalAlignment="Right" Width="20" Height="20" BorderThickness="0" Style="{DynamicResource btn_close}" Click="button_Copy_Click">
+        <TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="9.973" Margin="-60,125.67,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="0"/>
+        <TextBox x:Name="TxtOldName" HorizontalAlignment="Left" Height="24.932" TextWrapping="Wrap" VerticalAlignment="Top" Width="139" Margin="140,80.793,0,0" VerticalContentAlignment="Center"/>
+        <Label x:Name="Label1" Content="输入您当前用户名" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,80.793,0,0" Height="24.932"/>
+        <Label x:Name="Label1Copy" Content="输入新的用户名" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,110.711,0,0" Height="24.932"/>
+        <TextBox x:Name="TxtNewName" HorizontalAlignment="Left" Height="24.932" TextWrapping="Wrap" VerticalAlignment="Top" Width="139" Margin="140,110.711,0,0" VerticalContentAlignment="Center"/>
+        <Button x:Name="BtnConfirmCopy" Content="修改" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="55" Margin="69,0,0,189.548" Height="28.987" Style="{DynamicResource BtnAddFinish}" Click="button3_Click_1"/>
+        <Button x:Name="BtnConfirmCopy1" Content="清空" VerticalAlignment="Bottom" Margin="185,0,0,189.548" Height="28.987" Style="{DynamicResource BtnAddFinish}" Click="btn_confirm_Copy1_Click" HorizontalAlignment="Left" Width="55"/>
+        <GroupBox x:Name="GrpCopy" Header="修改密码&#xA;" HorizontalAlignment="Left" Margin="20,197,0,0" Width="275" Height="141" VerticalAlignment="Top"/>
+        <Label x:Name="Label1Copy1" Content="输入旧密码" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,0,0,114.685" Height="24.932"/>
+        <Label x:Name="Label1Copy2" Content="输入新密码" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,0,0,84.768" Height="24.931"/>
+        <Button x:Name="BtnConfirmCopy2" Content="修改" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="55" Margin="69,0,0,46.818" Height="28.986" Style="{DynamicResource BtnAddFinish}" d:LayoutOverrides="VerticalAlignment" Click="btn_confirm_Copy2_Click"/>
+        <Button x:Name="BtnConfirmCopy3" Content="清空" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="55" Margin="185,0,0,46.818" Height="28.986" Style="{DynamicResource BtnAddFinish}" Click="btn_confirm_Copy3_Click" d:LayoutOverrides="VerticalAlignment"/>
+        <Button x:Name="ButtonCopy1" Content="" VerticalAlignment="Top" Margin="0,10,10,0" HorizontalAlignment="Right" Width="20" Height="20" BorderThickness="0" Style="{DynamicResource BtnClose}" Click="button_Copy_Click">
             <Button.Background>
                 <ImageBrush ImageSource="对话框关闭正常.png"/>
             </Button.Background>
         </Button>
-        <PasswordBox x:Name="pwd_oldPass" HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Margin="140,230,0,0" Height="25" VerticalContentAlignment="Center"/>
-        <PasswordBox x:Name="pwd_newPass" HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Margin="140,260,0,0" Height="25" VerticalContentAlignment="Center"/>
+        <PasswordBox x:Name="PwdOldPass" HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Margin="140,230,0,0" Height="25" VerticalContentAlignment="Center"/>
+        <PasswordBox x:Name="PwdNewPass" HorizontalAlignment="Left" VerticalAlignment="Top" Width="139" Margin="140,260,0,0" Height="25" VerticalContentAlignment="Center"/>
     </Grid>
 </Window>

@@ -11,7 +11,7 @@ namespace test.forms
 {
 
     //Event handler for user login
-    public delegate void UserLoginHandler(OleDbConnection connection, User user);
+    //public delegate void UserLoginHandler(OleDbConnection connection, User user);
 
 
     /// <summary>
@@ -41,7 +41,7 @@ namespace test.forms
         /// <param name="e">Routed event</param>
         private void Login_Loaded(object sender, RoutedEventArgs e)
         {
-            lbl_wronginput.Visibility = Visibility.Hidden;
+            LblWronginput.Visibility = Visibility.Hidden;
 
             //Check if the Access database file exiets
             if (File.Exists(@"./dbo.mdb"))
@@ -93,8 +93,8 @@ namespace test.forms
         /// <param name="e">Routed event</param>
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            string uname = txt_uname.Text.Trim();
-            string ucode = Coder.StrToMD5(pwd_login.Password.Trim());
+            string uname = TxtUname.Text.Trim();
+            string ucode = Coder.StrToMD5(PwdLogin.Password.Trim());
 
             string strSql = "SELECT * FROM view_user WHERE uname='" + uname + "' AND upass='" + ucode + "'";
 
@@ -106,7 +106,7 @@ namespace test.forms
             if (table == null)
             {
                 //Failed, and try again
-                lbl_wronginput.Visibility = Visibility.Visible;
+                LblWronginput.Visibility = Visibility.Visible;
             }
             else if (table.Rows[0][1].ToString() == uname && table.Rows[0][2].ToString() == ucode)
             {
@@ -120,7 +120,8 @@ namespace test.forms
                 };
 
                 //Open main window
-                main main = new main(this);
+                Main main = new Main(this);
+                UserLoginEvent?.Invoke(user, _connection);
                 main.Show();
 
                 //Close this window

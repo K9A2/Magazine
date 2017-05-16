@@ -1,7 +1,6 @@
-﻿using CrystalDecisions.CrystalReports.Engine;
-using System;
-using System.Data;
+﻿using System.Data;
 using System.Windows;
+using CrystalDecisions.CrystalReports.Engine;
 using test.entities;
 using test.report;
 
@@ -37,7 +36,7 @@ namespace test.forms
             userID.Text = user.UserID;
             title.Text = "关键字“"+this.title+"”的搜索结果";
             report.SetDataSource(dt);
-            crv.ViewerCore.ReportSource = report;
+            Crv.ViewerCore.ReportSource = report;
 
             /*
             PrintDataSet pds = new PrintDataSet();

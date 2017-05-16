@@ -22,7 +22,7 @@
         <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
         <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-        <Style x:Key="btn_minimize" TargetType="{x:Type Button}">
+        <Style x:Key="BtnMinimize" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -90,7 +90,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="btn_close" TargetType="{x:Type Button}">
+        <Style x:Key="BtnClose" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -161,7 +161,7 @@
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
         <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
         <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
-        <Style x:Key="txt_note" TargetType="{x:Type TextBox}">
+        <Style x:Key="TxtNote" TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
             <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
@@ -205,7 +205,7 @@
         <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
         <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
         <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
-        <Style x:Key="btn_add_return" TargetType="{x:Type Button}">
+        <Style x:Key="BtnAddReturn" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -242,7 +242,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="btn_add_more" TargetType="{x:Type Button}">
+        <Style x:Key="BtnAddMore" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -279,7 +279,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="btn_add_finish" TargetType="{x:Type Button}">
+        <Style x:Key="BtnAddFinish" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -322,32 +322,32 @@
     </Window.Background>
     <Grid>
         <Border BorderThickness="0" MouseDown="Border_MouseDown" CornerRadius="2" Height="370" VerticalAlignment="Top" Background="#FF32A9FD"/>
-        <Button x:Name="button" Content="" VerticalAlignment="Top" Margin="0,10,35,0" HorizontalAlignment="Right" Width="20" Height="20" BorderThickness="0" Style="{DynamicResource btn_minimize}" Click="button_Click">
+        <Button x:Name="Button" Content="" VerticalAlignment="Top" Margin="0,10,35,0" HorizontalAlignment="Right" Width="20" Height="20" BorderThickness="0" Style="{DynamicResource BtnMinimize}" Click="button_Click">
             <Button.Background>
                 <ImageBrush ImageSource="对话框最小化普通.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="button_Copy" Content="" VerticalAlignment="Top" Margin="0,10,10,0" HorizontalAlignment="Right" Width="20" Height="20" BorderThickness="0" Style="{DynamicResource btn_close}" Click="button_Copy_Click">
+        <Button x:Name="ButtonCopy" Content="" VerticalAlignment="Top" Margin="0,10,10,0" HorizontalAlignment="Right" Width="20" Height="20" BorderThickness="0" Style="{DynamicResource BtnClose}" Click="button_Copy_Click">
             <Button.Background>
                 <ImageBrush ImageSource="对话框关闭正常.png"/>
             </Button.Background>
         </Button>
-        <Label x:Name="label" Content="修改选中记录为" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Margin="10,8,0,0" Padding="5,4,5,5"/>
+        <Label x:Name="Label" Content="修改选中记录为" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Margin="10,8,0,0" Padding="5,4,5,5"/>
         <Grid Margin="10,37.24,0,280">
             <Grid.Background>
                 <ImageBrush/>
             </Grid.Background>
             <Border BorderThickness="1" CornerRadius="2" Margin="0,1.38,10,-270" d:LayoutOverrides="VerticalAlignment" Background="White">
-                <GroupBox x:Name="groupBox" Header="基本信息" Margin="9,9,0,0" HorizontalAlignment="Left" Width="275" Foreground="Black" Height="301.38" VerticalAlignment="Top" d:LayoutOverrides="TopMargin, BottomMargin">
-                    <TextBox x:Name="txt_note" TextWrapping="Wrap" Margin="10,0,8,2.76" Height="35" VerticalAlignment="Bottom" Style="{DynamicResource txt_note}"/>
+                <GroupBox x:Name="GroupBox" Header="基本信息" Margin="9,9,0,0" HorizontalAlignment="Left" Width="275" Foreground="Black" Height="301.38" VerticalAlignment="Top" d:LayoutOverrides="TopMargin, BottomMargin">
+                    <TextBox x:Name="TxtNote" TextWrapping="Wrap" Margin="10,0,8,2.76" Height="35" VerticalAlignment="Bottom" Style="{DynamicResource TxtNote}"/>
                 </GroupBox>
             </Border>
         </Grid>
-        <Label x:Name="label1" Content="刊名全称" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34.543,65,0,0" Height="25" Width="68"/>
-        <Label x:Name="label2" Content="刊名简称" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34.543,95,0,0" Width="60" Height="25"/>
-        <Label x:Name="label3" Content="ISSN" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34.543,125,0,0" Height="25" d:LayoutOverrides="VerticalAlignment"/>
-        <Label x:Name="label4" Content="中文名称" HorizontalAlignment="Left" Margin="34.543,155,0,0" Height="25" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>
-        <ComboBox x:Name="cbo_ClassName" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Margin="140,185,0,0" Height="25" VerticalContentAlignment="Center">
+        <Label x:Name="Label1" Content="刊名全称" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34.543,65,0,0" Height="25" Width="68"/>
+        <Label x:Name="Label2" Content="刊名简称" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34.543,95,0,0" Width="60" Height="25"/>
+        <Label x:Name="Label3" Content="ISSN" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34.543,125,0,0" Height="25" d:LayoutOverrides="VerticalAlignment"/>
+        <Label x:Name="Label4" Content="中文名称" HorizontalAlignment="Left" Margin="34.543,155,0,0" Height="25" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>
+        <ComboBox x:Name="CboClassName" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Margin="140,185,0,0" Height="25" VerticalContentAlignment="Center">
             <ComboBoxItem Content="地学" VerticalContentAlignment="Center" Padding="4,1"/>
             <ComboBoxItem Content="地学天文" VerticalContentAlignment="Center"/>
             <ComboBoxItem Content="工程技术" VerticalContentAlignment="Center"/>
@@ -362,69 +362,69 @@
             <ComboBoxItem Content="综合性期刊" VerticalContentAlignment="Center"/>
             <ComboBoxItem Content="管理科学"/>
         </ComboBox>
-        <Label x:Name="label5" Content="复分" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34.543,245,0,0" Height="25"/>
-        <GroupBox x:Name="groupBox1" Header="影响因子" HorizontalAlignment="Right" Margin="0,48.62,20,0" Width="275" Height="141.38" VerticalAlignment="Top"/>
-        <Label x:Name="label7" Content="2007年影响因子" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,65,180,0" Height="25"/>
-        <Label x:Name="label8" Content="2008年影响因子" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,95,180,0" Height="25" d:LayoutOverrides="HorizontalAlignment"/>
-        <Label x:Name="label9" Content="2009年影响因子" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,125,180,0" Height="25" d:LayoutOverrides="VerticalAlignment"/>
-        <GroupBox x:Name="groupBox2" Header="引用数" HorizontalAlignment="Right" Margin="0,200,20,170" Width="275"/>
-        <Label x:Name="label12" Content="2009年引用数" HorizontalAlignment="Right" Margin="0,275.141,192,94.859"/>
-        <Button x:Name="btn_return" Content="返回" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="130" Margin="0,0,20,20.934" Height="29.066" BorderThickness="0" Style="{DynamicResource btn_add_return}" Click="button1_Click" d:LayoutOverrides="VerticalAlignment"/>
-        <Button x:Name="btn_confirm" Content="修改" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="135" Margin="0,0,160,20.934" Height="29.066" Style="{DynamicResource btn_add_finish}" Click="button3_Click_1" d:LayoutOverrides="VerticalAlignment"/>
-        <TextBox x:Name="txt_fname" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="140" Margin="140,65,0,0" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="txt_sname" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="140" Margin="140,95,0,0" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="txt_issn" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="140" Margin="140,125,0,0" VerticalContentAlignment="Center" d:LayoutOverrides="VerticalAlignment"/>
-        <TextBox x:Name="txt_cname" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="140" Margin="140,155,0,0" VerticalContentAlignment="Center" d:LayoutOverrides="VerticalAlignment"/>
-        <Label x:Name="label13" Content="大类名称" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34.543,185,0,0" Height="25"/>
-        <TextBox x:Name="txt_mclass" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="140" Margin="140,245,0,0" VerticalContentAlignment="Center"/>
-        <RadioButton x:Name="rdo_yes" Content="是" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,275,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="IsTop"/>
-        <RadioButton x:Name="rdo_no" Content="否" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="176,275,0,0" Height="25" VerticalContentAlignment="Center" GroupName="IsTop"/>
-        <Label x:Name="label14" Content="是否为TOP期刊" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34.543,274.38,0,0" Height="25"/>
-        <TextBlock x:Name="textBlock" IsHitTestVisible="False" TextAlignment="Justify" Foreground="DarkGray" HorizontalAlignment="Left" TextWrapping="Wrap" Text="如有需要，可输入备注" Margin="40,283,0,87" Padding="2,0,0,0" d:LayoutOverrides="Height">
+        <Label x:Name="Label5" Content="复分" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34.543,245,0,0" Height="25"/>
+        <GroupBox x:Name="GroupBox1" Header="影响因子" HorizontalAlignment="Right" Margin="0,48.62,20,0" Width="275" Height="141.38" VerticalAlignment="Top"/>
+        <Label x:Name="Label7" Content="2007年影响因子" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,65,180,0" Height="25"/>
+        <Label x:Name="Label8" Content="2008年影响因子" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,95,180,0" Height="25" d:LayoutOverrides="HorizontalAlignment"/>
+        <Label x:Name="Label9" Content="2009年影响因子" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,125,180,0" Height="25" d:LayoutOverrides="VerticalAlignment"/>
+        <GroupBox x:Name="GroupBox2" Header="引用数" HorizontalAlignment="Right" Margin="0,200,20,170" Width="275"/>
+        <Label x:Name="Label12" Content="2009年引用数" HorizontalAlignment="Right" Margin="0,275.141,192,94.859"/>
+        <Button x:Name="BtnReturn" Content="返回" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="130" Margin="0,0,20,20.934" Height="29.066" BorderThickness="0" Style="{DynamicResource BtnAddReturn}" Click="button1_Click" d:LayoutOverrides="VerticalAlignment"/>
+        <Button x:Name="BtnConfirm" Content="修改" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="135" Margin="0,0,160,20.934" Height="29.066" Style="{DynamicResource BtnAddFinish}" Click="button3_Click_1" d:LayoutOverrides="VerticalAlignment"/>
+        <TextBox x:Name="TxtFname" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="140" Margin="140,65,0,0" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="TxtSname" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="140" Margin="140,95,0,0" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="TxtIssn" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="140" Margin="140,125,0,0" VerticalContentAlignment="Center" d:LayoutOverrides="VerticalAlignment"/>
+        <TextBox x:Name="TxtCname" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="140" Margin="140,155,0,0" VerticalContentAlignment="Center" d:LayoutOverrides="VerticalAlignment"/>
+        <Label x:Name="Label13" Content="大类名称" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34.543,185,0,0" Height="25"/>
+        <TextBox x:Name="TxtMclass" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="140" Margin="140,245,0,0" VerticalContentAlignment="Center"/>
+        <RadioButton x:Name="RdoYes" Content="是" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,275,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="IsTop"/>
+        <RadioButton x:Name="RdoNo" Content="否" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="176,275,0,0" Height="25" VerticalContentAlignment="Center" GroupName="IsTop"/>
+        <Label x:Name="Label14" Content="是否为TOP期刊" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34.543,274.38,0,0" Height="25"/>
+        <TextBlock x:Name="TextBlock" IsHitTestVisible="False" TextAlignment="Justify" Foreground="DarkGray" HorizontalAlignment="Left" TextWrapping="Wrap" Text="如有需要，可输入备注" Margin="40,283,0,87" Padding="2,0,0,0" d:LayoutOverrides="Height">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Setter Property="UseLayoutRounding" Value="False"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=txt_note}" Value="">
+                        <DataTrigger Binding="{Binding Text, ElementName=TxtNote}" Value="">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <Label x:Name="label6" Content="07-09年平均影响因子" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,155,150,0" Height="25" Width="128.147" d:LayoutOverrides="VerticalAlignment"/>
-        <TextBox x:Name="txt_f2007" HorizontalAlignment="Right" Height="25" VerticalAlignment="Top" Width="105" Margin="0,65,35,0" VerticalContentAlignment="Center" Text="0" MaxLength="14" LostFocus="txt_f2007_LostFocus"/>
-        <TextBox x:Name="txt_f2008" HorizontalAlignment="Right" Height="25" VerticalAlignment="Top" Width="105" Margin="0,95,35,0" VerticalContentAlignment="Center" Text="0" MaxLength="14" LostFocus="txt_f2007_LostFocus"/>
-        <TextBox x:Name="txt_f2009" HorizontalAlignment="Right" Height="25" VerticalAlignment="Top" Width="105" Margin="0,125,35,0" VerticalContentAlignment="Center" Text="0" d:LayoutOverrides="VerticalAlignment" MaxLength="14" LostFocus="txt_f2007_LostFocus"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,160,84.853,0" d:LayoutOverrides="VerticalAlignment"/>
-        <TextBox x:Name="textBox8_Copy1" HorizontalAlignment="Right" TextWrapping="Wrap" Width="105" Margin="0,276,35,94"/>
-        <GroupBox x:Name="groupBox3" Header="引用数" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,60" Height="115" Width="275" d:LayoutOverrides="VerticalAlignment"/>
-        <Label x:Name="label9_Copy" Content="2009年引用数" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,192,130" Height="25"/>
-        <Label x:Name="label9_Copy1" Content="2009年引用数" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,192,100" Height="25"/>
-        <Label x:Name="label9_Copy2" Content="2009年引用数" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,192,70" Height="25"/>
-        <TextBox x:Name="txt_q2007" HorizontalAlignment="Right" Height="25" VerticalAlignment="Top" Width="105" Margin="0,215,35,0" VerticalContentAlignment="Center" Text="0" MaxLength="14"/>
-        <TextBox x:Name="txt_q2008" HorizontalAlignment="Right" Height="25" VerticalAlignment="Top" Width="105" Margin="0,245,35,0" VerticalContentAlignment="Center" Text="0" MaxLength="14"/>
-        <TextBox x:Name="txt_q2009" HorizontalAlignment="Right" Height="25" VerticalAlignment="Top" Width="105" Margin="0,275,35,0" VerticalContentAlignment="Center" Text="0" MaxLength="14"/>
-        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="备注" Foreground="DarkGray"  VerticalAlignment="Bottom" Margin="40,0,0,46.946" RenderTransformOrigin="0.65,2.1">
+        <Label x:Name="Label6" Content="07-09年平均影响因子" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,155,150,0" Height="25" Width="128.147" d:LayoutOverrides="VerticalAlignment"/>
+        <TextBox x:Name="TxtF2007" HorizontalAlignment="Right" Height="25" VerticalAlignment="Top" Width="105" Margin="0,65,35,0" VerticalContentAlignment="Center" Text="0" MaxLength="14" LostFocus="txt_f2007_LostFocus"/>
+        <TextBox x:Name="TxtF2008" HorizontalAlignment="Right" Height="25" VerticalAlignment="Top" Width="105" Margin="0,95,35,0" VerticalContentAlignment="Center" Text="0" MaxLength="14" LostFocus="txt_f2007_LostFocus"/>
+        <TextBox x:Name="TxtF2009" HorizontalAlignment="Right" Height="25" VerticalAlignment="Top" Width="105" Margin="0,125,35,0" VerticalContentAlignment="Center" Text="0" d:LayoutOverrides="VerticalAlignment" MaxLength="14" LostFocus="txt_f2007_LostFocus"/>
+        <TextBlock x:Name="TextBlock1" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,160,84.853,0" d:LayoutOverrides="VerticalAlignment"/>
+        <TextBox x:Name="TextBox8Copy1" HorizontalAlignment="Right" TextWrapping="Wrap" Width="105" Margin="0,276,35,94"/>
+        <GroupBox x:Name="GroupBox3" Header="引用数" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,60" Height="115" Width="275" d:LayoutOverrides="VerticalAlignment"/>
+        <Label x:Name="Label9Copy" Content="2009年引用数" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,192,130" Height="25"/>
+        <Label x:Name="Label9Copy1" Content="2009年引用数" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,192,100" Height="25"/>
+        <Label x:Name="Label9Copy2" Content="2009年引用数" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,192,70" Height="25"/>
+        <TextBox x:Name="TxtQ2007" HorizontalAlignment="Right" Height="25" VerticalAlignment="Top" Width="105" Margin="0,215,35,0" VerticalContentAlignment="Center" Text="0" MaxLength="14"/>
+        <TextBox x:Name="TxtQ2008" HorizontalAlignment="Right" Height="25" VerticalAlignment="Top" Width="105" Margin="0,245,35,0" VerticalContentAlignment="Center" Text="0" MaxLength="14"/>
+        <TextBox x:Name="TxtQ2009" HorizontalAlignment="Right" Height="25" VerticalAlignment="Top" Width="105" Margin="0,275,35,0" VerticalContentAlignment="Center" Text="0" MaxLength="14"/>
+        <TextBlock x:Name="TextBlock2" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="备注" Foreground="DarkGray"  VerticalAlignment="Bottom" Margin="40,0,0,46.946" RenderTransformOrigin="0.65,2.1">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Setter Property="UseLayoutRounding" Value="False"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=txt_note}" Value="">
+                        <DataTrigger Binding="{Binding Text, ElementName=TxtNote}" Value="">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="10" Margin="-60,125,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="0"/>
-        <Label x:Name="label10" Content="大类分区" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="34.543,0,0,130" Height="25"/>
-        <RadioButton x:Name="rdo_1" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,215,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID"/>
-        <RadioButton x:Name="rdo_2" Content="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="171.036,215,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID"/>
-        <RadioButton x:Name="rdo_3" Content="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="202.072,215,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID"/>
-        <RadioButton x:Name="rdo_4" Content="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="233.108,215,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID"/>
-        <TextBlock x:Name="txb_avg" HorizontalAlignment="Right" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Margin="0,155,35,0" Height="25" Padding="0,5,0,0" Width="105"/>
+        <TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="10" Margin="-60,125,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="0"/>
+        <Label x:Name="Label10" Content="大类分区" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="34.543,0,0,130" Height="25"/>
+        <RadioButton x:Name="Rdo1" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,215,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID"/>
+        <RadioButton x:Name="Rdo2" Content="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="171.036,215,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID"/>
+        <RadioButton x:Name="Rdo3" Content="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="202.072,215,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID"/>
+        <RadioButton x:Name="Rdo4" Content="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="233.108,215,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID"/>
+        <TextBlock x:Name="TxbAvg" HorizontalAlignment="Right" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Margin="0,155,35,0" Height="25" Padding="0,5,0,0" Width="105"/>
     </Grid>
 </Window>

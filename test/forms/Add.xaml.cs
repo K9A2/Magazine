@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data.OleDb;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using test.common;
 
@@ -17,21 +19,24 @@ namespace test.forms
 
         private string IsTop = "";
 
-        private double FAVG = 0;
+        private double FAVG;
 
         private string strCon = "";
 
-        public add(string strCon)
+        private OleDbConnection _connection;
+
+        public add(OleDbConnection connection)
         {
             InitializeComponent();
 
-            this.strCon = strCon;
+            //this.strCon = strCon;
+            _connection = connection;
 
-            cbo_ClassName.SelectedIndex = 0;
+            CboClassName.SelectedIndex = 0;
 
-            rdo_yes.IsChecked = true;
+            RdoYes.IsChecked = true;
 
-            rdo_1.IsChecked = true;
+            Rdo1.IsChecked = true;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -44,17 +49,17 @@ namespace test.forms
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            WindowState = WindowState.Minimized;
         }
 
         private void button_Copy_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void button3_Click(object sender, RoutedEventArgs e)
@@ -68,7 +73,7 @@ namespace test.forms
             Add();
 
             //退出
-            this.Close();
+            Close();
         }
 
         private void button2_Click(object sender, RoutedEventArgs e)
@@ -87,90 +92,90 @@ namespace test.forms
 
         private void SetToDefault()
         {
-            txt_fname.Text = "";
-            txt_sname.Text = "";
-            txt_issn.Text = "";
-            txt_cname.Text = "";
-            cbo_ClassName.SelectedIndex = 1;
-            rdo_1.IsChecked = true;
-            txt_mclass.Text = "";
-            rdo_yes.IsChecked = true;
-            txt_note.Text = "";
-            txt_f2007.Text = "0";
-            txt_f2008.Text = "0";
-            txt_f2009.Text = "0";
-            txb_avg.Text = "0";
-            txt_q2007.Text = "0";
-            txt_q2008.Text = "0";
-            txt_q2009.Text = "0";
+            TxtFname.Text = "";
+            TxtSname.Text = "";
+            TxtIssn.Text = "";
+            TxtCname.Text = "";
+            CboClassName.SelectedIndex = 1;
+            Rdo1.IsChecked = true;
+            TxtMclass.Text = "";
+            RdoYes.IsChecked = true;
+            TxtNote.Text = "";
+            TxtF2007.Text = "0";
+            TxtF2008.Text = "0";
+            TxtF2009.Text = "0";
+            TxbAvg.Text = "0";
+            TxtQ2007.Text = "0";
+            TxtQ2008.Text = "0";
+            TxtQ2009.Text = "0";
         }
 
         private void AddData()
         {
-            if (rdo_1.IsChecked == true)
+            if (Rdo1.IsChecked == true)
             {
                 ClassID = 1;
             }
-            else if (rdo_2.IsChecked == true)
+            else if (Rdo2.IsChecked == true)
             {
                 ClassID = 2;
             }
-            else if (rdo_3.IsChecked == true)
+            else if (Rdo3.IsChecked == true)
             {
                 ClassID = 3;
             }
-            else if (rdo_4.IsChecked == true)
+            else if (Rdo4.IsChecked == true)
             {
                 ClassID = 4;
             }
 
-            if (rdo_yes.IsChecked == true)
+            if (RdoYes.IsChecked == true)
             {
                 IsTop = "Y";
             }
-            else if (rdo_no.IsChecked == true)
+            else if (RdoNo.IsChecked == true)
             {
                 IsTop = "N";
             }
 
-            FAVG = (double.Parse(txt_f2007.Text.ToString().Trim()) + double.Parse(txt_f2008.Text.ToString().Trim()) + double.Parse(txt_f2009.Text.ToString())) / 3;
+            FAVG = (double.Parse(TxtF2007.Text.Trim()) + double.Parse(TxtF2008.Text.Trim()) + double.Parse(TxtF2009.Text)) / 3;
 
             string strSql = "INSERT INTO view_all(ISSN,ShortName,FullName,ChineseName,ClassName,MultiClassName,ClassID,IsTop,Factor2007,Factor2008,Factor2009,FactorAvg,Quote2007,Quote2008,Quote2009,[Note]) VALUES ('";
-            strSql += txt_issn.Text.ToString().Trim() + "','";
-            strSql += txt_sname.Text.ToString().Trim() + "','";
-            strSql += txt_fname.Text.ToString().Trim() + "','";
-            strSql += txt_cname.Text.ToString().Trim() + "','";
-            strSql += ((System.Windows.Controls.ContentControl)cbo_ClassName.SelectedValue).Content.ToString() + "','";
-            strSql += txt_mclass.Text.ToString().Trim() + "','";
+            strSql += TxtIssn.Text.Trim() + "','";
+            strSql += TxtSname.Text.Trim() + "','";
+            strSql += TxtFname.Text.Trim() + "','";
+            strSql += TxtCname.Text.Trim() + "','";
+            strSql += ((ContentControl)CboClassName.SelectedValue).Content + "','";
+            strSql += TxtMclass.Text.Trim() + "','";
             strSql += ClassID + "','";
             strSql += IsTop + "','";
-            strSql += txt_f2007.Text.ToString().Trim() + "','";
-            strSql += txt_f2008.Text.ToString().Trim() + "','";
-            strSql += txt_f2009.Text.ToString().Trim() + "','";
-            strSql += FAVG.ToString() + "','";
-            strSql += txt_q2007.Text.ToString().Trim() + "','";
-            strSql += txt_q2008.Text.ToString().Trim() + "','";
-            strSql += txt_q2009.Text.ToString().Trim() + "','";
-            strSql += txt_note.Text.ToString().Trim() + "')";
+            strSql += TxtF2007.Text.Trim() + "','";
+            strSql += TxtF2008.Text.Trim() + "','";
+            strSql += TxtF2009.Text.Trim() + "','";
+            strSql += FAVG + "','";
+            strSql += TxtQ2007.Text.Trim() + "','";
+            strSql += TxtQ2008.Text.Trim() + "','";
+            strSql += TxtQ2009.Text.Trim() + "','";
+            strSql += TxtNote.Text.Trim() + "')";
 
-            AccessUtil util = new AccessUtil(strCon);
+            //AccessUtil util = new AccessUtil(strCon);
 
-            util.ExecuteWithoutReturn(strSql);
+            AccessUtil.ExecuteWithoutReturn(strSql, _connection);
         }
 
         private void txt_f2007_LostFocus(object sender, RoutedEventArgs e)
         {
-            txb_avg.Text = Convert.ToString((double.Parse(txt_f2007.Text.ToString().Trim()) + double.Parse(txt_f2008.Text.ToString().Trim()) + double.Parse(txt_f2009.Text.ToString())) / 3);
+            TxbAvg.Text = Convert.ToString((double.Parse(TxtF2007.Text.Trim()) + double.Parse(TxtF2008.Text.Trim()) + double.Parse(TxtF2009.Text)) / 3);
         }
 
         private void txt_f2008_LostFocus(object sender, RoutedEventArgs e)
         {
-            txb_avg.Text = Convert.ToString((double.Parse(txt_f2007.Text.ToString().Trim()) + double.Parse(txt_f2008.Text.ToString().Trim()) + double.Parse(txt_f2009.Text.ToString())) / 3);
+            TxbAvg.Text = Convert.ToString((double.Parse(TxtF2007.Text.Trim()) + double.Parse(TxtF2008.Text.Trim()) + double.Parse(TxtF2009.Text)) / 3);
         }
 
         private void txt_f2009_LostFocus(object sender, RoutedEventArgs e)
         {
-            txb_avg.Text = Convert.ToString((double.Parse(txt_f2007.Text.ToString().Trim()) + double.Parse(txt_f2008.Text.ToString().Trim()) + double.Parse(txt_f2009.Text.ToString())) / 3);
+            TxbAvg.Text = Convert.ToString((double.Parse(TxtF2007.Text.Trim()) + double.Parse(TxtF2008.Text.Trim()) + double.Parse(TxtF2009.Text)) / 3);
         }
     }
 }

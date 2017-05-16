@@ -61,7 +61,7 @@ namespace dbms
             }
             catch (Exception e)
             {
-                MessageBox.Show("详细信息"+e.ToString(), "数据库连接失败！");
+                MessageBox.Show("详细信息"+e, "数据库连接失败！");
             }
 
             return dt;

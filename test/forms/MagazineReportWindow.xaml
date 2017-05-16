@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:test.forms"
         xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
-        xmlns:Viewer="clr-namespace:SAPBusinessObjects.WPF.Viewer;assembly=SAPBusinessObjects.WPF.Viewer" x:Class="test.forms.MagazineReportWindow"
+        xmlns:viewer="clr-namespace:SAPBusinessObjects.WPF.Viewer;assembly=SAPBusinessObjects.WPF.Viewer" x:Class="test.forms.MagazineReportWindow"
         mc:Ignorable="d"
         Title="打印报表" Height="600" Width="600"
         Loaded="Window_Loaded">
     <Grid>
-        <Viewer:CrystalReportsViewer x:Name="crv" Height="571" Margin="0,0,0,-0.333"/>
+        <viewer:CrystalReportsViewer x:Name="Crv" Height="571" Margin="0,0,0,-0.333"/>
     </Grid>
 </Window>
