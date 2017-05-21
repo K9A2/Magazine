@@ -299,7 +299,7 @@
         <Image x:Name="Image" HorizontalAlignment="Left" Width="150" Margin="50,40,0,0" Source="/test;component/img/在蓝色背景下面打开书本.png" Height="150" VerticalAlignment="Top"/>
         <Label x:Name="Label" Content="阅读改变人生" HorizontalAlignment="Left" Margin="50,0,0,83.96" VerticalAlignment="Bottom" FontSize="24" d:LayoutOverrides="HorizontalAlignment" Background="Transparent" Foreground="White"/>
         <Label x:Name="Label1" Content="期刊管理系统" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Foreground="White" Padding="5,2,5,5"/>
-        <PasswordBox x:Name="PwdLogin" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="153" Margin="0,0,50,110" Height="23" Style="{DynamicResource PassUpass}" VerticalContentAlignment="Center" TabIndex="2"/>
+        <PasswordBox x:Name="PwdLogin" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="153" Margin="0,0,50,110" Height="23" Style="{DynamicResource PassUpass}" VerticalContentAlignment="Center" TabIndex="2" KeyDown="PwdLogin_KeyDown"/>
         <TextBox x:Name="TxtUname" HorizontalAlignment="Right" TextWrapping="Wrap" Width="153" Margin="0,133.333,50,143.667" Style="{DynamicResource TxtUname}" MaxLines="1" MaxLength="37" VerticalContentAlignment="Center" TabIndex="1"></TextBox>
         <TextBlock IsHitTestVisible="False" TextAlignment="Justify" Text="请输入账号" HorizontalAlignment="Right" Margin="0,133.333,111.333,143.667" Foreground="DarkGray" Height="23" VerticalAlignment="Center" Width="91.667" Padding="5,3.5,0,0">
             <TextBlock.Style>

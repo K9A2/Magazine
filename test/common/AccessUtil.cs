@@ -109,7 +109,6 @@ namespace test.common
                     connection.Open();
                 }
                 OleDbCommand command = new OleDbCommand(strSql, connection);
-                connection.Open();
                 //Returns the number of affected rows.
                 return command.ExecuteNonQuery();
             }

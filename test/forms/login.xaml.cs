@@ -32,6 +32,14 @@ namespace test.forms
         public Login()
         {
             InitializeComponent();
+
+            //Check if the Access database file exiets
+            if (!File.Exists(@"./dbo.mdb"))
+            {
+                MessageBox.Show("The Access database file does not exists" +
+                                Properties.Resources.string_program_terminated, "Fatal Error");
+                Environment.Exit(-1);
+            }
         }
 
         /// <summary>
@@ -42,15 +50,6 @@ namespace test.forms
         private void Login_Loaded(object sender, RoutedEventArgs e)
         {
             LblWronginput.Visibility = Visibility.Hidden;
-
-            //Check if the Access database file exiets
-            if (File.Exists(@"./dbo.mdb"))
-            {
-                return;
-            }
-            MessageBox.Show("The Access database file does not exists" +
-                            Properties.Resources.string_program_terminated, "Fatal Error");
-            Environment.Exit(-1);
         }
 
         /// <summary>
@@ -93,6 +92,28 @@ namespace test.forms
         /// <param name="e">Routed event</param>
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
+            UserLogin();
+        }
+
+        /// <summary>
+        /// Key down event handler
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Routed event</param>
+        private void PwdLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                //Start the login procedure
+                UserLogin();
+            }
+        }
+
+        /// <summary>
+        /// User login procedure
+        /// </summary>
+        private void UserLogin()
+        {
             string uname = TxtUname.Text.Trim();
             string ucode = Coder.StrToMD5(PwdLogin.Password.Trim());
 
@@ -105,8 +126,9 @@ namespace test.forms
 
             if (table == null)
             {
-                //Failed, and try again
+                //Failed, then try again and clear the password box
                 LblWronginput.Visibility = Visibility.Visible;
+                PwdLogin.Clear();
             }
             else if (table.Rows[0][1].ToString() == uname && table.Rows[0][2].ToString() == ucode)
             {
@@ -121,6 +143,7 @@ namespace test.forms
 
                 //Open main window
                 Main main = new Main(this);
+                _connection.Close();
                 UserLoginEvent?.Invoke(user, _connection);
                 main.Show();
 

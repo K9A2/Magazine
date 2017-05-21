@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.OleDb;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -71,6 +72,8 @@ namespace test.forms
         {
             _connection = connection;
             user = loginedUser;
+            TxbUser.Text = user.UserName;
+            GridFilter.Visibility = Visibility.Hidden;
         }
 
         /// <summary>
@@ -107,7 +110,7 @@ namespace test.forms
             string strSql = "SELECT * FROM view_all";
 
             //AccessUtil util = new AccessUtil(strCon);
-            DataTable queryResult = new DataTable();
+            DataTable queryResult;
 
             if (_connection != null)
             {
@@ -237,7 +240,7 @@ namespace test.forms
 
             //Construction
             DataRowView drv = (DataRowView)DgMain.SelectedItem;
-            magazine.ID = Int32.Parse(drv.Row[0].ToString());
+            magazine.ID = int.Parse(drv.Row[0].ToString());
             magazine.ISSN = drv.Row[1].ToString();
             magazine.ShortName = drv.Row[2].ToString();
             magazine.FullName = drv.Row[3].ToString();
@@ -310,7 +313,7 @@ namespace test.forms
         /// <summary>
         /// Quick and fuzzy query for target key word. No return values.
         /// </summary>
-        public void QuickQuery()
+        private void QuickQuery()
         {
             DgMain.IsReadOnly = false;
 
@@ -320,9 +323,12 @@ namespace test.forms
 
             //string strSql = "SELECT * FROM dbo.view_all";
 
-            DataTable queryResult = new DataTable();
-
-            queryResult = AccessUtil.Query(strSql, _connection);
+            if (_connection.State == ConnectionState.Closed)
+            {
+                _connection.Open();
+            }
+            
+            var queryResult = AccessUtil.Query(strSql, _connection);
 
             //AccessUtil util = new AccessUtil(strCon);
 
@@ -373,7 +379,7 @@ namespace test.forms
         /// <param name="title"></param>
         private void AddQueryInfo(string title)
         {
-            string time = DateTime.Now.ToString();
+            string time = DateTime.Now.ToString(CultureInfo.InvariantCulture);
 
             //Clear the database for storing query info
             string strSql = "DELETE * FROM tb_query";
@@ -855,6 +861,19 @@ namespace test.forms
         private void BtnMinimize_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        /// <summary>
+        /// Key down handler
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Routed event</param>
+        private void TxtSearch_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                QuickQuery();
+            }
         }
     }
 }

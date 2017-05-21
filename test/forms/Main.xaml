@@ -1224,7 +1224,7 @@
                 </TextBlock.Style>
             </TextBlock>
         </Grid>
-        <TextBox x:Name="TxtSearch" HorizontalAlignment="Left" TextWrapping="Wrap" Width="300" Margin="20,135,0,0" Style="{DynamicResource TxtUname}" MaxLines="1" MaxLength="37" VerticalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtSearch" HorizontalAlignment="Left" TextWrapping="Wrap" Width="300" Margin="20,135,0,0" Style="{DynamicResource TxtUname}" MaxLines="1" MaxLength="37" VerticalContentAlignment="Center" Height="25" VerticalAlignment="Top" KeyDown="TxtSearch_KeyDown"/>
         <TextBlock x:Name="TextBlock" IsHitTestVisible="False" TextWrapping="Wrap" Text="搜索ID、ISSN与题名" VerticalAlignment="Top" Margin="20,135,0,0" Width="280" Height="25" Foreground="DarkGray"  HorizontalAlignment="Left" TextAlignment="Justify" Padding="5,5,0,0">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
