@@ -74,6 +74,14 @@ namespace test.forms
             user = loginedUser;
             TxbUser.Text = user.UserName;
             GridFilter.Visibility = Visibility.Hidden;
+
+            //Access control base on user right
+            if (loginedUser.UserRight != 1)
+            {
+                //This user is not the administrator, disable some senstive features
+                BtnAdd.IsEnabled = false;
+                BtnDelete.IsEnabled = false;
+            }
         }
 
         /// <summary>

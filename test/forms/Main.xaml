@@ -1173,9 +1173,6 @@
             <Button.Background>
                 <ImageBrush ImageSource="删除正常.png"/>
             </Button.Background>
-            <Button.BorderBrush>
-                <ImageBrush ImageSource="删除正常.png"/>
-            </Button.BorderBrush>
         </Button>
         <Button x:Name="BtnUpdate" Content="" VerticalAlignment="Top" Margin="376,20.499,0,0" Width="80" Height="100" HorizontalAlignment="Left" d:LayoutOverrides="Width" BorderThickness="0" Style="{DynamicResource BtnUpdate}" Click="BtnUpdate_Click">
             <Button.Background>

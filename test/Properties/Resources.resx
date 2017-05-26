@@ -137,6 +137,6 @@
     <value>Unable to execute this command.</value>
   </data>
   <data name="string_connection_string" xml:space="preserve">
-    <value>Provider=Microsoft.Jet.OLEDB.4.0;Data Source=dbo.mdb</value>
+    <value>Provider=Microsoft.Jet.OLEDB.4.0;Data Source=dbo.mdb;Jet OLEDB:Database Password=admin;</value>
   </data>
 </root>
