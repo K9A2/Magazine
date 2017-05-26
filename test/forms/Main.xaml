@@ -1188,7 +1188,7 @@
                     <ImageBrush/>
                 </Grid.Background>
                 <Border BorderThickness="0" Background="White" CornerRadius="2">
-                    <Button x:Name="BtnSearch" Content="快速搜索" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="330,10,0,0" Height="24.501" Style="{DynamicResource BtnSearchIngrid}" BorderThickness="0" Foreground="White" Click="BtnSearch_Click">
+                    <Button x:Name="BtnSearch" Content="快速搜索" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="330,10,0,0" Height="25" Style="{DynamicResource BtnSearchIngrid}" BorderThickness="0" Foreground="White" Click="BtnSearch_Click">
                         <Button.Background>
                             <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
                         </Button.Background>
@@ -1201,7 +1201,7 @@
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                 </DataGrid>
-                <Button x:Name="BtnShowAll" Content="全显" VerticalAlignment="Top" Margin="430,10,470,0" Height="24.501" BorderThickness="0" Foreground="White" Click="BtnShowAll_Click" Style="{DynamicResource BtnViewall}">
+                <Button x:Name="BtnShowAll" Content="全显" VerticalAlignment="Top" Margin="430,10,470,0" Height="25" BorderThickness="0" Foreground="White" Click="BtnShowAll_Click" Style="{DynamicResource BtnViewall}" HorizontalAlignment="Center" Width="80">
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
                     </Button.Background>
@@ -1235,7 +1235,7 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <Button x:Name="BtnPrint" Content="打印报表" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,135,380,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="BtnPrint_Click">
+        <Button x:Name="BtnPrint" Content="打印报表" HorizontalAlignment="Right" Width="80" Margin="0,0,380,433" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="BtnPrint_Click" Height="25" VerticalAlignment="Bottom">
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
             </Button.Background>
@@ -1253,7 +1253,12 @@
             </Button.Background>
         </Button>
         <Grid x:Name="GridFilter" Margin="90,210,155,138.333">
-            <ComboBox x:Name="CboClassName" VerticalAlignment="Top" Margin="216,25,0,0" Height="25" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="140" IsEditable="True" SelectionChanged="cbo_ClassName_SelectionChanged">
+            <Label x:Name="label" Content="分类" HorizontalAlignment="Left" Margin="95,55,0,0" VerticalAlignment="Top" Width="95" Height="25" VerticalContentAlignment="Center" d:LayoutOverrides="VerticalAlignment"/>
+            <Label x:Name="label_Copy" Content="大类分区" HorizontalAlignment="Left" Margin="95,85,0,0" VerticalAlignment="Top" Width="95" Height="25" VerticalContentAlignment="Center" d:LayoutOverrides="VerticalAlignment"/>
+            <Label x:Name="label_Copy1" Content="是否 Top 期刊" HorizontalAlignment="Left" Margin="95,115,0,0" VerticalAlignment="Top" Width="95" Height="25" VerticalContentAlignment="Center"/>
+            <Label x:Name="label_Copy2" Content="影响因子范围" HorizontalAlignment="Left" Margin="95,145,0,0" VerticalAlignment="Top" Width="95" Height="25" VerticalContentAlignment="Center"/>
+            <Label x:Name="label_Copy3" Content="引用数范围" HorizontalAlignment="Left" Margin="95,0,0,194.667" VerticalAlignment="Bottom" Width="95" Height="25" VerticalContentAlignment="Center"/>
+            <ComboBox x:Name="CboClassName" VerticalAlignment="Top" Margin="211,25,0,0" Height="25" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="140" IsEditable="True" SelectionChanged="cbo_ClassName_SelectionChanged">
                 <ComboBoxItem Content="地学" VerticalContentAlignment="Center" Padding="4,1"/>
                 <ComboBoxItem Content="地学天文" VerticalContentAlignment="Center"/>
                 <ComboBoxItem Content="工程技术" VerticalContentAlignment="Center"/>
@@ -1268,40 +1273,40 @@
                 <ComboBoxItem Content="综合性期刊" VerticalContentAlignment="Center"/>
                 <ComboBoxItem Content="管理科学"/>
             </ComboBox>
-            <RadioButton x:Name="Rdo1" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="216,58.433,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID" Width="30" Checked="rdo_1_Checked"/>
-            <RadioButton x:Name="Rdo2" Content="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="251,58,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID" Width="30" Checked="rdo_2_Checked"/>
-            <RadioButton x:Name="Rdo3" Content="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="286,58.433,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID" Width="30" Checked="rdo_3_Checked"/>
-            <RadioButton x:Name="Rdo4" Content="4" VerticalAlignment="Top" Margin="321,58.433,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID" HorizontalAlignment="Left" Width="30" Checked="rdo_4_Checked"/>
-            <RadioButton x:Name="RdoYes" Content="是" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="216,93.433,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="IsTop" Width="30" Checked="rdo_yes_Checked"/>
-            <RadioButton x:Name="RdoNo" Content="否" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="251,93.433,0,0" Height="25" VerticalContentAlignment="Center" GroupName="IsTop" Width="30" Checked="rdo_no_Checked"/>
-            <TextBox x:Name="Txt1" HorizontalAlignment="Right" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Margin="0,130,310,0" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="Txt2" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Margin="495,130,0,0" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="Txt3" HorizontalAlignment="Right" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Margin="0,168.1,310,0" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="Txt4" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Margin="495,168.1,0,0" VerticalContentAlignment="Center"/>
-            <ComboBox x:Name="CboFactor" VerticalAlignment="Bottom" Margin="220,0,0,90" Height="25" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="120">
+            <RadioButton x:Name="Rdo1" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="211,55,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID" Width="30" Checked="rdo_1_Checked"/>
+            <RadioButton x:Name="Rdo2" Content="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="246,55,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID" Width="30" Checked="rdo_2_Checked"/>
+            <RadioButton x:Name="Rdo3" Content="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="281,55,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID" Width="30" Checked="rdo_3_Checked"/>
+            <RadioButton x:Name="Rdo4" Content="4" VerticalAlignment="Top" Margin="316,55,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID" HorizontalAlignment="Left" Width="30" Checked="rdo_4_Checked"/>
+            <RadioButton x:Name="RdoYes" Content="是" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="211,85,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="IsTop" Width="30" Checked="rdo_yes_Checked"/>
+            <RadioButton x:Name="RdoNo" Content="否" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="246,85,0,0" Height="25" VerticalContentAlignment="Center" GroupName="IsTop" Width="30" Checked="rdo_no_Checked"/>
+            <TextBox x:Name="Txt1" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Margin="350,115,340,0" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="Txt2" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Margin="465,115,0,0" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="Txt3" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Margin="350,145,340,0" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="Txt4" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Margin="465,145,0,0" VerticalContentAlignment="Center"/>
+            <ComboBox x:Name="CboFactor" Margin="211,115,0,104.667" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="120">
                 <ComboBoxItem Content="2007年影响因子"/>
                 <ComboBoxItem Content="2008年影响因子"/>
                 <ComboBoxItem Content="2009年影响因子"/>
                 <ComboBoxItem Content="平均影响因子"/>
             </ComboBox>
-            <ComboBox x:Name="CboQuote" VerticalAlignment="Bottom" Margin="220,0,0,51.9" Height="25" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="120">
+            <ComboBox x:Name="CboQuote" VerticalAlignment="Bottom" Margin="211,0,0,74.667" Height="25" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="120">
                 <ComboBoxItem Content="2007年引用数"/>
                 <ComboBoxItem Content="2008年引用数"/>
                 <ComboBoxItem Content="2009年引用数"/>
             </ComboBox>
-            <Label x:Name="LabelCopy" Content="~" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,275,90" IsEnabled="False" Height="25"/>
-            <Label x:Name="Label" Content="~" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,275,51.9" IsEnabled="False" Height="25"/>
-            <Button x:Name="BtnFactor" Content="确定" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,130,90,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="btn_Factor_Click">
+            <Label x:Name="LabelCopy" Content="~" HorizontalAlignment="Right" Margin="0,115,305,104.667" IsEnabled="False"/>
+            <Label x:Name="Label" Content="~" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,305,74.667" IsEnabled="False" Height="25"/>
+            <Button x:Name="BtnFactor" Content="确定" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,115,125,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="btn_Factor_Click">
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnQuote" Content="确定" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,168,90,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="btn_Quote_Click">
+            <Button x:Name="BtnQuote" Content="确定" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,145,125,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="btn_Quote_Click">
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BtnOnOff" Content="开关过滤器" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,210,455,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Background="#FFE90000" Click="btn_OnOff_Click"/>
+            <Button x:Name="BtnOnOff" Content="开关过滤器" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,190,464,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Background="#FFE90000" Click="btn_OnOff_Click"/>
         </Grid>
     </Grid>
 </Window>
