@@ -338,6 +338,12 @@ namespace test.forms
             
             var queryResult = AccessUtil.Query(strSql, _connection);
 
+            if (queryResult == null)
+            {
+                MessageBox.Show("在此关键字下没有搜索结果");
+                return;
+            }
+
             //AccessUtil util = new AccessUtil(strCon);
 
             //DataTable table = util.Query(strSql);
