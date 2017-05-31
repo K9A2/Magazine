@@ -91,10 +91,18 @@ namespace test.forms
         /// <param name="e">Routed event</param>
         private void BtnMax_Click(object sender, RoutedEventArgs e)
         {
-            Top = 0;
-            Left = 0;
-            Width = Screen.PrimaryScreen.WorkingArea.Width;
-            Height = Screen.PrimaryScreen.WorkingArea.Height;
+            if (WindowState == WindowState.Normal)
+            {
+                //Top = 0;
+                //Left = 0;
+                //Width = Screen.PrimaryScreen.WorkingArea.Width;
+                //Height = Screen.PrimaryScreen.WorkingArea.Height;
+                WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                WindowState = WindowState.Normal;
+            }
         }
 
         /// <summary>

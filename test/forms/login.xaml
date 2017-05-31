@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:test.forms"
         mc:Ignorable="d"
         Title="Login" Height="300" Width="500"
-        Background="{x:Null}" WindowStyle="None" AllowsTransparency="True" Loaded="Login_Loaded">
+        Background="{x:Null}" WindowStyle="None" AllowsTransparency="True" Loaded="Login_Loaded" Icon="在蓝色背景下面打开书本.png">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
