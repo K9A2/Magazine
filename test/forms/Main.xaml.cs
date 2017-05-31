@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.OleDb;
+using System.Drawing;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,6 +31,10 @@ namespace test.forms
         private DataTable copy = new DataTable();
 
         private OleDbConnection _connection;
+
+        private bool _isWidnwoMaximized = false;
+
+        private Rect normal;
 
         private bool IsFilterShowed;
 
@@ -91,17 +96,34 @@ namespace test.forms
         /// <param name="e">Routed event</param>
         private void BtnMax_Click(object sender, RoutedEventArgs e)
         {
+            /*
             if (WindowState == WindowState.Normal)
             {
-                //Top = 0;
-                //Left = 0;
-                //Width = Screen.PrimaryScreen.WorkingArea.Width;
-                //Height = Screen.PrimaryScreen.WorkingArea.Height;
                 WindowState = WindowState.Maximized;
             }
             else
             {
                 WindowState = WindowState.Normal;
+            }
+            */
+            if (_isWidnwoMaximized == false)
+            {
+                //This window had not been maximized yet
+                normal = new Rect(this.Left, this.Top, this.Width, this.Height); //保存下当前位置与大小
+                this.Left = 0; //设置位置
+                this.Top = 0;
+                Rect rc = SystemParameters.WorkArea; //获取工作区大小
+                this.Width = rc.Width;
+                this.Height = rc.Height;
+                _isWidnwoMaximized = true;
+            }
+            else
+            {
+                this.Left = normal.Left;
+                this.Top = normal.Top;
+                this.Width = normal.Width;
+                this.Height = normal.Height;
+                _isWidnwoMaximized = false;
             }
         }
 

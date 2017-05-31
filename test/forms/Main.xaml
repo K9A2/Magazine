@@ -1117,6 +1117,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Storyboard x:Key="OnClick1"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -1164,7 +1165,7 @@
                 <ImageBrush ImageSource="报表正常.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="BtnUserControl" Content="" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,20.499,374,0" Height="100" BorderThickness="0" Style="{DynamicResource BtnUser}" HorizontalContentAlignment="Left" Click="BtnUserControl_Click">
+        <Button x:Name="BtnUserControl" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="546,20.499,0,0" Height="100" BorderThickness="0" Style="{DynamicResource BtnUser}" HorizontalContentAlignment="Left" Click="BtnUserControl_Click">
             <Button.Background>
                 <ImageBrush ImageSource="用户账户.png"/>
             </Button.Background>
@@ -1194,6 +1195,16 @@
                         </Button.Background>
                     </Button>
                 </Border>
+                <Button x:Name="BtnPrint" Content="打印报表" Margin="530,10,0,0" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="BtnPrint_Click" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="80">
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="BtnRefresh" Content="刷新" VerticalAlignment="Top" Margin="630,10,0,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="BtnRefresh_Click" HorizontalAlignment="Left" Width="80">
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
+                    </Button.Background>
+                </Button>
                 <DataGrid x:Name="DgMain" Margin="10,40,10,10" MouseRightButtonDown="DgMain_MouseRightButtonDown">
                     <DataGrid.ContextMenu>
                         <ContextMenu>
@@ -1201,7 +1212,12 @@
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                 </DataGrid>
-                <Button x:Name="BtnShowAll" Content="全显" VerticalAlignment="Top" Margin="430,10,470,0" Height="25" BorderThickness="0" Foreground="White" Click="BtnShowAll_Click" Style="{DynamicResource BtnViewall}" HorizontalAlignment="Center" Width="80">
+                <Button x:Name="BtnFilter" Content="过滤器" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="730,10,0,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="button4_Copy1_Click">
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="BtnShowAll" Content="全显" Margin="430,10,0,0" BorderThickness="0" Foreground="White" Click="BtnShowAll_Click" Style="{DynamicResource BtnViewall}" HorizontalAlignment="Left" Width="80" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="25" VerticalAlignment="Top" d:LayoutOverrides="Height">
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
                     </Button.Background>
@@ -1235,23 +1251,8 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <Button x:Name="BtnPrint" Content="打印报表" HorizontalAlignment="Right" Width="80" Margin="0,0,380,433" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="BtnPrint_Click" Height="25" VerticalAlignment="Bottom">
-            <Button.Background>
-                <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
-            </Button.Background>
-        </Button>
         <TextBlock x:Name="TxbTip" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,32.24,0,0" Padding="5,0,0,0" Foreground="White" Width="95"><Run Text="已登录"/><Run Text="用户"/><Run Text="："/></TextBlock>
         <TextBlock x:Name="TxbUser" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Margin="10,52.48,0,0" Padding="5,0,0,0" Foreground="White"/>
-        <Button x:Name="BtnRefresh" Content="刷新" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,135.25,280,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="BtnRefresh_Click">
-            <Button.Background>
-                <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="BtnFilter" Content="过滤器" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Margin="0,135,180,0" Height="25" Foreground="White" BorderThickness="0" Style="{DynamicResource BtnRefresh}" Click="button4_Copy1_Click">
-            <Button.Background>
-                <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
-            </Button.Background>
-        </Button>
         <Grid x:Name="GridFilter" Margin="90,210,155,138.333">
             <Label x:Name="label" Content="分类" HorizontalAlignment="Left" Margin="95,55,0,0" VerticalAlignment="Top" Width="95" Height="25" VerticalContentAlignment="Center" d:LayoutOverrides="VerticalAlignment"/>
             <Label x:Name="label_Copy" Content="大类分区" HorizontalAlignment="Left" Margin="95,85,0,0" VerticalAlignment="Top" Width="95" Height="25" VerticalContentAlignment="Center" d:LayoutOverrides="VerticalAlignment"/>
