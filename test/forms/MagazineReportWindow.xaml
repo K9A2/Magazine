@@ -3,13 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:test.forms"
-        xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
         xmlns:viewer="clr-namespace:SAPBusinessObjects.WPF.Viewer;assembly=SAPBusinessObjects.WPF.Viewer" x:Class="test.forms.MagazineReportWindow"
         mc:Ignorable="d"
         Title="打印报表" Height="600" Width="600"
         Loaded="Window_Loaded">
     <Grid>
         <viewer:CrystalReportsViewer x:Name="Crv" Height="571" Margin="0,0,0,-0.333"/>
+        
     </Grid>
 </Window>

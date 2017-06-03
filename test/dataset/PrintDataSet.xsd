@@ -12,7 +12,7 @@
   <xs:element name="PrintDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="PrintDataSet" msprop:Generator_UserDSName="PrintDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Magzine" msprop:Generator_TableClassName="MagzineDataTable" msprop:Generator_TableVarName="tableMagzine" msprop:Generator_TablePropName="Magzine" msprop:Generator_RowDeletingName="MagzineRowDeleting" msprop:Generator_RowChangingName="MagzineRowChanging" msprop:Generator_RowEvHandlerName="MagzineRowChangeEventHandler" msprop:Generator_RowDeletedName="MagzineRowDeleted" msprop:Generator_UserTableName="Magzine" msprop:Generator_RowChangedName="MagzineRowChanged" msprop:Generator_RowEvArgName="MagzineRowChangeEvent" msprop:Generator_RowClassName="MagzineRow">
+        <xs:element name="Magzine" msprop:Generator_TableClassName="MagzineDataTable" msprop:Generator_TableVarName="tableMagzine" msprop:Generator_RowChangedName="MagzineRowChanged" msprop:Generator_TablePropName="Magzine" msprop:Generator_RowDeletingName="MagzineRowDeleting" msprop:Generator_RowChangingName="MagzineRowChanging" msprop:Generator_RowEvHandlerName="MagzineRowChangeEventHandler" msprop:Generator_RowDeletedName="MagzineRowDeleted" msprop:Generator_RowClassName="MagzineRow" msprop:Generator_UserTableName="Magzine" msprop:Generator_RowEvArgName="MagzineRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
@@ -35,11 +35,13 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Printer" msprop:Generator_TableClassName="PrinterDataTable" msprop:Generator_TableVarName="tablePrinter" msprop:Generator_TablePropName="Printer" msprop:Generator_RowDeletingName="PrinterRowDeleting" msprop:Generator_RowChangingName="PrinterRowChanging" msprop:Generator_RowEvHandlerName="PrinterRowChangeEventHandler" msprop:Generator_RowDeletedName="PrinterRowDeleted" msprop:Generator_UserTableName="Printer" msprop:Generator_RowChangedName="PrinterRowChanged" msprop:Generator_RowEvArgName="PrinterRowChangeEvent" msprop:Generator_RowClassName="PrinterRow">
+        <xs:element name="Printer" msprop:Generator_TableClassName="PrinterDataTable" msprop:Generator_TableVarName="tablePrinter" msprop:Generator_RowChangedName="PrinterRowChanged" msprop:Generator_TablePropName="Printer" msprop:Generator_RowDeletingName="PrinterRowDeleting" msprop:Generator_RowChangingName="PrinterRowChanging" msprop:Generator_RowEvHandlerName="PrinterRowChangeEventHandler" msprop:Generator_RowDeletedName="PrinterRowDeleted" msprop:Generator_RowClassName="PrinterRow" msprop:Generator_UserTableName="Printer" msprop:Generator_RowEvArgName="PrinterRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
-              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="UserID" msprop:Generator_ColumnVarNameInTable="columnUserID" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" msprop:Generator_UserColumnName="UserID" type="xs:string" minOccurs="0" />
+              <xs:element name="UserName" msprop:Generator_ColumnVarNameInTable="columnUserName" msprop:Generator_ColumnPropNameInRow="UserName" msprop:Generator_ColumnPropNameInTable="UserNameColumn" msprop:Generator_UserColumnName="UserName" type="xs:string" minOccurs="0" />
+              <xs:element name="ReportTitle" msprop:Generator_ColumnVarNameInTable="columnReportTitle" msprop:Generator_ColumnPropNameInRow="ReportTitle" msprop:Generator_ColumnPropNameInTable="ReportTitleColumn" msprop:Generator_UserColumnName="ReportTitle" type="xs:string" minOccurs="0" />
+              <xs:element name="PrintDate" msprop:Generator_ColumnVarNameInTable="columnPrintDate" msprop:Generator_ColumnPropNameInRow="PrintDate" msprop:Generator_ColumnPropNameInTable="PrintDateColumn" msprop:Generator_UserColumnName="PrintDate" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

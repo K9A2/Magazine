@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:test.forms"
+        xmlns:winForms="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
         mc:Ignorable="d"
         Title="Report" Height="300" Width="300">
     <Grid>
-        
+        <WindowsFormsHost>
+            <winForms:ReportViewer x:Name="ReportViewer"/>
+        </WindowsFormsHost>
     </Grid>
 </Window>

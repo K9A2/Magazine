@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Data;
 using System.Data.OleDb;
-using System.Drawing;
 using System.Globalization;
+using System.Web.WebSockets;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
 using System.Windows.Input;
 using test.common;
 using test.entities;
-using MessageBox = System.Windows.MessageBox;
 
 namespace test.forms
 {
@@ -32,7 +30,7 @@ namespace test.forms
 
         private OleDbConnection _connection;
 
-        private bool _isWidnwoMaximized = false;
+        private bool _isWidnwoMaximized;
 
         private Rect normal;
 
@@ -109,20 +107,20 @@ namespace test.forms
             if (_isWidnwoMaximized == false)
             {
                 //This window had not been maximized yet
-                normal = new Rect(this.Left, this.Top, this.Width, this.Height); //保存下当前位置与大小
-                this.Left = 0; //设置位置
-                this.Top = 0;
+                normal = new Rect(Left, Top, Width, Height); //保存下当前位置与大小
+                Left = 0; //设置位置
+                Top = 0;
                 Rect rc = SystemParameters.WorkArea; //获取工作区大小
-                this.Width = rc.Width;
-                this.Height = rc.Height;
+                Width = rc.Width;
+                Height = rc.Height;
                 _isWidnwoMaximized = true;
             }
             else
             {
-                this.Left = normal.Left;
-                this.Top = normal.Top;
-                this.Width = normal.Width;
-                this.Height = normal.Height;
+                Left = normal.Left;
+                Top = normal.Top;
+                Width = normal.Width;
+                Height = normal.Height;
                 _isWidnwoMaximized = false;
             }
         }
@@ -186,6 +184,7 @@ namespace test.forms
         private void BtnPrint_Click(object sender, RoutedEventArgs e)
         {
             //打印报表
+            /*
             if (source.Rows.Count == 0)
             {
                 MessageBox.Show("无数据可供打印");
@@ -194,6 +193,19 @@ namespace test.forms
             {
                 MagazineReportWindow report = new MagazineReportWindow(TableNameChnToEng(copy), user, TxtSearch.Text.Trim());
                 report.ShowDialog();
+            }
+            */
+
+            //Open the RDLC report
+            if (source.Rows.Count == 0)
+            {
+                MessageBox.Show("无数据可供打印");
+            }
+            else
+            {
+                string reportTitle = "关键字“" + TxtSearch.Text.Trim() + "“的搜索结果";
+                Report report = new Report(source, user, reportTitle);
+                report.Show();
             }
 
             /*
@@ -850,7 +862,7 @@ namespace test.forms
             return table;
         }
 
-        private DataTable TableNameChnToEng(DataTable table)
+        public static DataTable TableNameChnToEng(DataTable table)
         {
             table.Columns[0].ColumnName = "ID";
             table.Columns[1].ColumnName = "ISSN";
@@ -912,7 +924,7 @@ namespace test.forms
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
-        private void TxtSearch_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void TxtSearch_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
