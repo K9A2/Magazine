@@ -129,7 +129,7 @@ namespace test.report {
         }
         
         public virtual ReportDocument CreateReport() {
-            FullReport rpt = new FullReport();
+            var rpt = new FullReport();
             rpt.Site = this.Site;
             return rpt;
         }

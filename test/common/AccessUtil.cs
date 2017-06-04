@@ -6,16 +6,14 @@ using test.Properties;
 
 namespace test.common
 {
-
     /// <summary>
-    /// A static class responsible for Access operations.
+    ///     A static class responsible for Access operations.
     /// </summary>
     public static class AccessUtil
     {
-
         /// <summary>
-        /// Get the database connection according to the given connection string and return it as result. If it is 
-        /// unable to get to the database connection, it returns null.
+        ///     Get the database connection according to the given connection string and return it as result. If it is
+        ///     unable to get to the database connection, it returns null.
         /// </summary>
         /// <param name="strCon">Connection string</param>
         /// <returns>Valid database connection</returns>
@@ -37,15 +35,15 @@ namespace test.common
         }
 
         /// <summary>
-        /// Execute the database query command and return the results in a DataTable. If it is unable to finish 
-        /// successfully, it return null.
+        ///     Execute the database query command and return the results in a DataTable. If it is unable to finish
+        ///     successfully, it return null.
         /// </summary>
         /// <param name="strSql">SQL command to be excuted.</param>
         /// <param name="connection">Open or non-open database connection.</param>
         /// <returns>Resulats in a DataTable.</returns>
         public static DataTable Query(string strSql, OleDbConnection connection)
         {
-            DataTable result = new DataTable();
+            var result = new DataTable();
 
             /**
              * If the program unable to get the required database connection, it simply reports this error and
@@ -59,7 +57,6 @@ namespace test.common
             }
 
             if (connection.State != ConnectionState.Open)
-            {
                 try
                 {
                     connection.Open();
@@ -70,17 +67,14 @@ namespace test.common
                                     Resources.string_try_again_later);
                     return null;
                 }
-            }
 
             //Successfully get the connection. Execute the command.
-            OleDbCommand command = new OleDbCommand(strSql, connection);
+            var command = new OleDbCommand(strSql, connection);
             try
             {
-                OleDbDataReader reader = command.ExecuteReader();
+                var reader = command.ExecuteReader();
                 if (!reader.HasRows)
-                {
                     return null;
-                }
                 result.Load(reader);
             }
             catch (Exception e)
@@ -93,9 +87,9 @@ namespace test.common
         }
 
         /// <summary>
-        /// Execute the SQL command without return value, such as DELETE. If it is unable to finish successfully, 
-        /// it returns -1.
-        /// Rrturns the number of rows affected.
+        ///     Execute the SQL command without return value, such as DELETE. If it is unable to finish successfully,
+        ///     it returns -1.
+        ///     Rrturns the number of rows affected.
         /// </summary>
         /// <param name="strSql">SQL command to be executed.</param>
         /// <param name="connection">Open or non-open database connection.</param>
@@ -105,10 +99,8 @@ namespace test.common
             try
             {
                 if (connection.State != ConnectionState.Open)
-                {
                     connection.Open();
-                }
-                OleDbCommand command = new OleDbCommand(strSql, connection);
+                var command = new OleDbCommand(strSql, connection);
                 //Returns the number of affected rows.
                 return command.ExecuteNonQuery();
             }
@@ -120,5 +112,4 @@ namespace test.common
             }
         }
     }
-
 }

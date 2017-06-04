@@ -8,7 +8,7 @@
         Title="Report" Height="300" Width="300">
     <Grid>
         <WindowsFormsHost>
-            <winForms:ReportViewer x:Name="ReportViewer"/>
+            <winForms:ReportViewer x:Name="ReportViewer" />
         </WindowsFormsHost>
     </Grid>
 </Window>

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.OleDb;
-using System.Globalization;
-using System.Web.WebSockets;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,70 +10,46 @@ using test.entities;
 namespace test.forms
 {
     /// <summary>
-    /// Main window for this program.
+    ///     Main window for this program.
     /// </summary>
-    public partial class Main : Window
+    public partial class Main
     {
-
-        //TODO: Fix all the errors.
-        //TODO: Use delegation and event to exchange messages between windows
-
-        private string currentSql = "";
-
-        private User user = new User();
-
-        private DataTable source = new DataTable();
-
-        private DataTable copy = new DataTable();
-
         private OleDbConnection _connection;
 
+        //For modification
+        private DataTable _copy = new DataTable();
+
+        //Current SQL query command
+        private string _currentSql = "";
+
+        private bool _isFilterShowed;
         private bool _isWidnwoMaximized;
+        private Rect _originalLocation;
 
-        private Rect normal;
+        //Original query result
+        private DataTable _source = new DataTable();
 
-        private bool IsFilterShowed;
+        //Logined user
+        private User _user = new User();
 
-        private bool IsFilterEnabled = true;
-
-        private bool IsClassNameFilterEnabled = false;
-
-        private bool IsClassIDFilterEnabled = false;
-
-        private bool IsIsTopFilterEnabled = false;
-
-        private bool IsFactorFilterEnabled = false;
-
-        private bool IsQuoteFilterEnabled = false;
-
-        public Main(Login window_login)
+        public Main(Login windowLogin)
         {
             InitializeComponent();
-
-            window_login.UserLoginEvent += Init;
-
-            /*
-            this.user = user;
-
-            txb_user.Text = user.UserName;
-
-            grid_filter.Visibility = Visibility.Hidden;
-
-            this.connection = connection;
-            */
-
+            windowLogin.UserLoginEvent += Init;
         }
 
+        private bool IsFilterEnabled { get; set; } = true;
+
         /// <summary>
-        /// Delegation method for initialize the database connection and user entity.
+        ///     Delegation method for initialize the database connection and user entity.
         /// </summary>
         /// <param name="loginedUser">Logined user</param>
         /// <param name="connection">Database connection</param>
         private void Init(User loginedUser, OleDbConnection connection)
         {
             _connection = connection;
-            user = loginedUser;
-            TxbUser.Text = user.UserName;
+            _user = loginedUser;
+            TxbUser.Text = _user.UserName;
             GridFilter.Visibility = Visibility.Hidden;
 
             //Access control base on user right
@@ -88,45 +62,35 @@ namespace test.forms
         }
 
         /// <summary>
-        /// Click this button to maximize this window
+        ///     Click this button to maximize or resotre this window
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
         private void BtnMax_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            if (WindowState == WindowState.Normal)
-            {
-                WindowState = WindowState.Maximized;
-            }
-            else
-            {
-                WindowState = WindowState.Normal;
-            }
-            */
             if (_isWidnwoMaximized == false)
             {
                 //This window had not been maximized yet
-                normal = new Rect(Left, Top, Width, Height); //保存下当前位置与大小
-                Left = 0; //设置位置
+                _originalLocation = new Rect(Left, Top, Width, Height);
+                Left = 0;
                 Top = 0;
-                Rect rc = SystemParameters.WorkArea; //获取工作区大小
+                var rc = SystemParameters.WorkArea;
                 Width = rc.Width;
                 Height = rc.Height;
                 _isWidnwoMaximized = true;
             }
             else
             {
-                Left = normal.Left;
-                Top = normal.Top;
-                Width = normal.Width;
-                Height = normal.Height;
+                Left = _originalLocation.Left;
+                Top = _originalLocation.Top;
+                Width = _originalLocation.Width;
+                Height = _originalLocation.Height;
                 _isWidnwoMaximized = false;
             }
         }
 
         /// <summary>
-        /// Click this button to start a quick and fuzzy query process.
+        ///     Click this button to start a quick and fuzzy query process.
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
@@ -136,16 +100,14 @@ namespace test.forms
         }
 
         /// <summary>
-        /// Show all records in the database.
+        ///     Show all records in the database.
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
         private void BtnShowAll_Click(object sender, RoutedEventArgs e)
         {
             //Show all records
-            string strSql = "SELECT * FROM view_all";
-
-            //AccessUtil util = new AccessUtil(strCon);
+            var strSql = "SELECT * FROM view_all";
             DataTable queryResult;
 
             if (_connection != null)
@@ -158,69 +120,43 @@ namespace test.forms
                 return;
             }
 
+            //Bind the query result to datagrid
             DgMain.ItemsSource = queryResult.DefaultView;
-
-            source = queryResult;
-
-            AddQueryInfo("所有记录");
+            _source = queryResult;
         }
 
         /// <summary>
-        /// Click this button to open Add window
+        ///     Click this button to open Add window
         /// </summary>
         /// <param name="sender">Evnet sender</param>
         /// <param name="e">Routed event</param>
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            add add = new add(_connection);
+            var add = new Add(_connection);
             add.ShowDialog();
         }
 
         /// <summary>
-        /// Print report for query result
+        ///     Print report for query result
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
         private void BtnPrint_Click(object sender, RoutedEventArgs e)
         {
             //打印报表
-            /*
-            if (source.Rows.Count == 0)
+            if (_source.Rows.Count == 0)
             {
                 MessageBox.Show("无数据可供打印");
             }
             else
             {
-                MagazineReportWindow report = new MagazineReportWindow(TableNameChnToEng(copy), user, TxtSearch.Text.Trim());
+                var report = new MagazineReportWindow(TableNameChnToEng(_copy), _user, TxtSearch.Text.Trim());
                 report.ShowDialog();
             }
-            */
-
-            //Open the RDLC report
-            if (source.Rows.Count == 0)
-            {
-                MessageBox.Show("无数据可供打印");
-            }
-            else
-            {
-                string reportTitle = "关键字“" + TxtSearch.Text.Trim() + "“的搜索结果";
-                Report report = new Report(source, user, reportTitle);
-                report.Show();
-            }
-
-            /*
-            PrintDialog dialog = new PrintDialog();
-            dialog.PrintTicket.PageOrientation = dg.PageOrientation.Portrait;
-            Nullable<bool> result = dialog.ShowDialog();
-            if (result == true)
-            {
-                dialog.PrintVisual(this.lbPrintList, "Print ListBox");
-            }
-            */
         }
 
         /// <summary>
-        /// Open the Delete window
+        ///     Open the Delete window
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
@@ -228,7 +164,7 @@ namespace test.forms
         {
             if (DgMain.Items.Count != 0 && DgMain.SelectedItem != null)
             {
-                Delete delete = new Delete(_connection, CreateMagazine());
+                var delete = new Delete(_connection, CreateMagazine());
                 delete.ShowDialog();
             }
             else
@@ -238,81 +174,71 @@ namespace test.forms
         }
 
         /// <summary>
-        /// Open user control panel
+        ///     Open user control panel
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
         private void BtnUserControl_Click(object sender, RoutedEventArgs e)
         {
-            Account account = new Account(_connection, user);
+            var account = new Account(_connection, _user);
             account.ShowDialog();
         }
 
         /// <summary>
-        /// Refresh DgMain base the stored query command
+        ///     Refresh DgMain base the stored query command
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
         private void BtnRefresh_Click(object sender, RoutedEventArgs e)
-        { 
-            if (currentSql == "")
+        {
+            if (_currentSql == "")
             {
                 MessageBox.Show("您还没有进行过查询，无法刷新");
             }
             else
             {
-                //用户已经进行过查询
+                //User had queried before
                 DgMain.IsReadOnly = false;
-
-                DataTable queryResult = AccessUtil.Query(currentSql, _connection);
-
-                //AccessUtil util = new AccessUtil(strCon);
-
-                //DataTable table = util.Query(currentSql);
-
+                var queryResult = AccessUtil.Query(_currentSql, _connection);
                 queryResult = TableNameEngToChn(queryResult);
-
                 DgMain.ItemsSource = queryResult.DefaultView;
-
                 DgMain.IsReadOnly = true;
             }
         }
 
         /// <summary>
-        /// Cteate a magazine entity from selected item in DgMain for further use
+        ///     Cteate a magazine entity from selected item in DgMain for further use
         /// </summary>
         /// <returns>Constructed magazine entity</returns>
         private Magazine CreateMagazine()
         {
-
-            //Initialization
-            Magazine magazine = new Magazine();
+            var magazine = new Magazine();
 
             //Construction
-            DataRowView drv = (DataRowView)DgMain.SelectedItem;
-            magazine.ID = int.Parse(drv.Row[0].ToString());
-            magazine.ISSN = drv.Row[1].ToString();
+            var drv = (DataRowView) DgMain.SelectedItem;
+            magazine.Id = int.Parse(drv.Row[0].ToString());
+            magazine.Issn = drv.Row[1].ToString();
             magazine.ShortName = drv.Row[2].ToString();
             magazine.FullName = drv.Row[3].ToString();
             magazine.ChineseName = drv.Row[4].ToString();
             magazine.ClassName = drv.Row[5].ToString();
             magazine.MultyClassName = drv.Row[6].ToString();
-            magazine.ClassID = drv.Row[7].ToString();
-            magazine.isTop = drv.Row[8].ToString();
-            magazine.f2007 = drv.Row[9].ToString();
-            magazine.f2008 = drv.Row[10].ToString();
-            magazine.f2009 = drv.Row[11].ToString();
-            magazine.fAVG = drv.Row[12].ToString();
-            magazine.q2007 = drv.Row[13].ToString();
-            magazine.q2008 = drv.Row[14].ToString();
-            magazine.q2009 = drv.Row[15].ToString();
+            magazine.ClassId = drv.Row[7].ToString();
+            magazine.IsTop = drv.Row[8].ToString();
+            magazine.F2007 = drv.Row[9].ToString();
+            magazine.F2008 = drv.Row[10].ToString();
+            magazine.F2009 = drv.Row[11].ToString();
+            magazine.FAvg = drv.Row[12].ToString();
+            magazine.Q2007 = drv.Row[13].ToString();
+            magazine.Q2008 = drv.Row[14].ToString();
+            magazine.Q2009 = drv.Row[15].ToString();
             magazine.Note = drv.Row[16].ToString();
 
             return magazine;
         }
 
         /// <summary>
-        /// Update selected item
+        ///     Update selected item
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
@@ -324,26 +250,24 @@ namespace test.forms
             }
             else
             {
-                Update update = new Update(_connection, CreateMagazine());
+                var update = new Update(_connection, CreateMagazine());
                 update.ShowDialog();
             }
         }
 
         /// <summary>
-        /// Open context menu for DgMain
+        ///     Open context menu for DgMain
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed evetn</param>
         private void DgMain_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (DgMain.SelectedItem == null)
-            {
                 e.Handled = true;
-            }
         }
 
         /// <summary>
-        /// Open detail information window for a selected item in DgMain
+        ///     Open detail information window for a selected item in DgMain
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
@@ -355,29 +279,25 @@ namespace test.forms
             }
             else
             {
-                Details detail = new Details(CreateMagazine());
+                var detail = new Details(CreateMagazine());
                 detail.ShowDialog();
             }
         }
 
         /// <summary>
-        /// Quick and fuzzy query for target key word. No return values.
+        ///     Quick and fuzzy query for target key word. No return values.
         /// </summary>
         private void QuickQuery()
         {
             DgMain.IsReadOnly = false;
-
-            string target = "'%" + TxtSearch.Text.Trim().ToUpper() + "%'";
-
-            string strSql = "SELECT * FROM view_all WHERE ID like " + target + " or ISSN like " + target + " or ShortName like " + target + " or FullName like " + target + " or ChineseName like " + target;
-
-            //string strSql = "SELECT * FROM dbo.view_all";
+            var target = "'%" + TxtSearch.Text.Trim().ToUpper() + "%'";
+            var strSql = "SELECT * FROM view_all WHERE ID like " + target + " or ISSN like " + target +
+                         " or ShortName like " + target + " or FullName like " + target + " or ChineseName like " +
+                         target;
 
             if (_connection.State == ConnectionState.Closed)
-            {
                 _connection.Open();
-            }
-            
+
             var queryResult = AccessUtil.Query(strSql, _connection);
 
             if (queryResult == null)
@@ -386,242 +306,152 @@ namespace test.forms
                 return;
             }
 
-            //AccessUtil util = new AccessUtil(strCon);
-
-            //DataTable table = util.Query(strSql);
-
-            /*
-            table.Columns[2].ColumnName = "刊名简称";
-            table.Columns[3].ColumnName = "刊名全称";
-            table.Columns[4].ColumnName = "中文名称";
-            table.Columns[5].ColumnName = "大类名称";
-            table.Columns[6].ColumnName = "复分";
-            table.Columns[7].ColumnName = "大类分区";
-            table.Columns[8].ColumnName = "是否为Top期刊";
-            table.Columns[9].ColumnName = "2007年影响因子";
-            table.Columns[10].ColumnName = "2008年影响因子";
-            table.Columns[11].ColumnName = "2009年影响因子";
-            table.Columns[12].ColumnName = "平均影响因子";
-            table.Columns[13].ColumnName = "2007年引用数";
-            table.Columns[14].ColumnName = "2008年引用数";
-            table.Columns[15].ColumnName = "2009年引用数";
-            table.Columns[16].ColumnName = "备注";
-            */
-
-
-            currentSql = strSql;
-
+            _currentSql = strSql;
             queryResult = TableNameEngToChn(queryResult);
-
             DgMain.ItemsSource = queryResult.DefaultView;
-
             DgMain.IsReadOnly = true;
-
-            source = queryResult;
-
-            copy = source.Copy();
-
-            //copy = table;
-
-            //往数据库中添加这次查询的详细资料
-
-            AddQueryInfo(TxtSearch.Text.Trim());
-
-        }
-
-        /// <summary>
-        /// Add query info to database
-        /// </summary>
-        /// <param name="title"></param>
-        private void AddQueryInfo(string title)
-        {
-            string time = DateTime.Now.ToString(CultureInfo.InvariantCulture);
-
-            //Clear the database for storing query info
-            string strSql = "DELETE * FROM tb_query";
-            AccessUtil.ExecuteWithoutReturn(strSql, _connection);
-
-            //AccessUtil util = new AccessUtil(strCon);
-
-            //util.ExecuteWithoutReturn(strSql);
-
-            if (title != "所有记录")
-            {
-                strSql = "INSERT INTO tb_query VALUES('关键字" + title + "的搜索结果','" + user.UserID + "','" + user.UserName + "','" + time + "')";
-            }
-            else
-            {
-                strSql = "INSERT INTO tb_query VALUES('" + title + "','" + user.UserID + "','" + user.UserName + "','" + time + "')";
-            }
-
-            AccessUtil.ExecuteWithoutReturn(strSql, _connection);
+            _source = queryResult;
+            _copy = _source.Copy();
         }
 
         private void button4_Copy1_Click(object sender, RoutedEventArgs e)
         {
-            //过滤器，得到数据后筛选，而非在SQL语句中添加条件
-
-            if (IsFilterShowed)
+            //Display filter
+            if (_isFilterShowed)
             {
-                //过滤器已打开，隐藏过滤器
                 DgMain.Visibility = Visibility.Visible;
-
                 GridFilter.Visibility = Visibility.Hidden;
-
-                IsFilterShowed = false;
-
+                _isFilterShowed = false;
             }
             else
             {
-                //过滤器已关闭，显示过滤器
                 DgMain.Visibility = Visibility.Hidden;
-
                 GridFilter.Visibility = Visibility.Visible;
-
-                IsFilterShowed = true;
+                _isFilterShowed = true;
             }
-
         }
 
         private void Rdo4Filter()
         {
-            if (copy.Rows.Count != 0)
+            if (_copy.Rows.Count == 0) return;
+            for (var i = 0; i < _copy.Rows.Count; i++)
             {
-                for (int i = 0; i < copy.Rows.Count; i++)
-                {
-                    if (copy.Rows[i][7].ToString() != Rdo4.Content.ToString())
-                    {
-                        copy.Rows.RemoveAt(i);
-                        i--;
-                    }
-                }
-                DgMain.ItemsSource = copy.DefaultView;
+                if (_copy.Rows[i][7].ToString() == Rdo4.Content.ToString()) continue;
+                _copy.Rows.RemoveAt(i);
+                i--;
             }
+            DgMain.ItemsSource = _copy.DefaultView;
         }
 
         private void RdoYesFilter()
         {
-            if (copy.Rows.Count != 0)
+            if (_copy.Rows.Count == 0) return;
+            for (var i = 0; i < _copy.Rows.Count; i++)
             {
-                for (int i = 0; i < copy.Rows.Count; i++)
-                {
-                    if (copy.Rows[i][8].ToString() != "Y")
-                    {
-                        copy.Rows.RemoveAt(i);
-                        i--;
-                    }
-                }
-                DgMain.ItemsSource = copy.DefaultView;
+                if (_copy.Rows[i][8].ToString() == "Y") continue;
+                _copy.Rows.RemoveAt(i);
+                i--;
             }
+            DgMain.ItemsSource = _copy.DefaultView;
         }
 
         private void RdoNoFIlter()
         {
-            if (copy.Rows.Count != 0)
+            if (_copy.Rows.Count == 0) return;
+            for (var i = 0; i < _copy.Rows.Count; i++)
             {
-                for (int i = 0; i < copy.Rows.Count; i++)
-                {
-                    if (copy.Rows[i][8].ToString() != "N")
-                    {
-                        copy.Rows.RemoveAt(i);
-                        i--;
-                    }
-                }
-                DgMain.ItemsSource = copy.DefaultView;
+                if (_copy.Rows[i][8].ToString() == "N") continue;
+                _copy.Rows.RemoveAt(i);
+                i--;
             }
+            DgMain.ItemsSource = _copy.DefaultView;
         }
 
         private void FactorFilter()
         {
-            if (copy.Rows.Count != 0)
+            if (_copy.Rows.Count == 0) return;
+            int column;
+            switch (((ContentControl) CboFactor.SelectedValue).Content.ToString())
             {
-                int column;
-                switch (((ContentControl)CboFactor.SelectedValue).Content.ToString())
-                {
-                    case "2007年影响因子": column = 9; break;
-                    case "2008年影响因子": column = 10; break;
-                    case "2009年影响因子": column = 11; break;
-                    case "平均影响因子": column = 12; break;
-                    default: column = 9; break;
-                }
-                for (int i = 0; i < copy.Rows.Count; i++)
-                {
-                    if (!(double.Parse(copy.Rows[i][column].ToString()) <= double.Parse(Txt2.Text.Trim()) && double.Parse(copy.Rows[i][column].ToString()) >= double.Parse(Txt1.Text.Trim())))
-                    {
-                        copy.Rows.RemoveAt(i);
-                        i--;
-                    }
-                }
-                DgMain.ItemsSource = copy.DefaultView;
+                case "2007年影响因子":
+                    column = 9;
+                    break;
+                case "2008年影响因子":
+                    column = 10;
+                    break;
+                case "2009年影响因子":
+                    column = 11;
+                    break;
+                case "平均影响因子":
+                    column = 12;
+                    break;
+                default:
+                    column = 9;
+                    break;
             }
+            for (var i = 0; i < _copy.Rows.Count; i++)
+            {
+                if (double.Parse(_copy.Rows[i][column].ToString()) <= double.Parse(Txt2.Text.Trim()) &&
+                    double.Parse(_copy.Rows[i][column].ToString()) >= double.Parse(Txt1.Text.Trim())) continue;
+                _copy.Rows.RemoveAt(i);
+                i--;
+            }
+            DgMain.ItemsSource = _copy.DefaultView;
         }
 
         private void QuoteFilter()
         {
-            if (copy.Rows.Count != 0)
+            if (_copy.Rows.Count == 0) return;
+            int column;
+            switch (((ContentControl) CboQuote.SelectedValue).Content.ToString())
             {
-                int column;
-                switch (((ContentControl)CboQuote.SelectedValue).Content.ToString())
-                {
-                    case "2007年引用数": column = 14; break;
-                    case "2008年引用数": column = 15; break;
-                    case "2009年引用数": column = 16; break;
-                    default: column = 13; break;
-                }
-                for (int i = 0; i < copy.Rows.Count; i++)
-                {
-                    if (!(double.Parse(copy.Rows[i][column].ToString()) <= double.Parse(Txt4.Text.Trim()) && double.Parse(copy.Rows[i][column].ToString()) >= double.Parse(Txt3.Text.Trim())))
-                    {
-                        copy.Rows.RemoveAt(i);
-                        i--;
-                    }
-                }
-                DgMain.ItemsSource = copy.DefaultView;
+                case "2007年引用数":
+                    column = 14;
+                    break;
+                case "2008年引用数":
+                    column = 15;
+                    break;
+                case "2009年引用数":
+                    column = 16;
+                    break;
+                default:
+                    column = 13;
+                    break;
             }
+            for (var i = 0; i < _copy.Rows.Count; i++)
+            {
+                if (double.Parse(_copy.Rows[i][column].ToString()) <= double.Parse(Txt4.Text.Trim()) &&
+                    double.Parse(_copy.Rows[i][column].ToString()) >= double.Parse(Txt3.Text.Trim())) continue;
+                _copy.Rows.RemoveAt(i);
+                i--;
+            }
+            DgMain.ItemsSource = _copy.DefaultView;
         }
 
         private void FilterScanner()
         {
-            //逐项扫描各选项，若选中则调用指定的时间处理程序
-            copy.Clear();
-            copy = source.Copy();
+            //逐项扫描各选项，若选中则调用指定的事件处理程序
+            _copy.Clear();
+            _copy = _source.Copy();
 
             if (CboClassName.SelectedIndex != -1)
-            {
                 ClassNameFilter();
-            }
             if (Rdo1.IsChecked == true)
-            {
                 Rdo1Filter();
-            }
             if (Rdo2.IsChecked == true)
-            {
                 Rdo2Filter();
-            }
             if (Rdo3.IsChecked == true)
-            {
                 Rdo3Filter();
-            }
             if (Rdo4.IsChecked == true)
-            {
                 Rdo4Filter();
-            }
             if (RdoYes.IsChecked == true)
-            {
                 RdoYesFilter();
-            }
             if (RdoNo.IsChecked == true)
-            {
                 RdoNoFIlter();
-            }
             if (CboFactor.SelectedIndex != -1)
-            {
                 FactorFilter();
-            }
             if (CboQuote.SelectedIndex != -1)
-            {
                 QuoteFilter();
-            }
         }
 
         private void ClearFilter()
@@ -651,7 +481,7 @@ namespace test.forms
             Txt4.Text = "";
 
             //还原数据视图
-            DgMain.ItemsSource = source.DefaultView;
+            DgMain.ItemsSource = _source.DefaultView;
         }
 
         private void TurnOffFilter()
@@ -732,65 +562,54 @@ namespace test.forms
         private void ClassNameFilter()
         {
             //大类名称过滤器     
-            if (copy.Rows.Count != 0 && CboClassName.SelectedValue != null)
+            if (_copy.Rows.Count == 0 || CboClassName.SelectedValue == null) return;
+            for (var i = 0; i < _copy.Rows.Count; i++)
             {
-                for (int i = 0; i < copy.Rows.Count; i++)
-                {
-                    if (copy.Rows[i][5].ToString() != ((ContentControl)CboClassName.SelectedValue).Content.ToString())
-                    {
-                        copy.Rows.RemoveAt(i);
-                        i--;
-                    }
-                }
-                DgMain.ItemsSource = copy.DefaultView;
+                if (_copy.Rows[i][5].ToString() ==
+                    ((ContentControl) CboClassName.SelectedValue).Content.ToString()) continue;
+                _copy.Rows.RemoveAt(i);
+                i--;
             }
+            DgMain.ItemsSource = _copy.DefaultView;
         }
 
         private void Rdo1Filter()
         {
-            if (copy.Rows.Count != 0)
+            if (_copy.Rows.Count == 0) return;
+            for (var i = 0; i < _copy.Rows.Count; i++)
             {
-                for (int i = 0; i < copy.Rows.Count; i++)
-                {
-                    if (copy.Rows[i][7].ToString() != Rdo1.Content.ToString())
-                    {
-                        copy.Rows.RemoveAt(i);
-                        i--;
-                    }
-                }
-                DgMain.ItemsSource = copy.DefaultView;
+                if (_copy.Rows[i][7].ToString() == Rdo1.Content.ToString()) continue;
+                _copy.Rows.RemoveAt(i);
+                i--;
             }
+            DgMain.ItemsSource = _copy.DefaultView;
         }
 
         private void Rdo2Filter()
         {
-            if (copy.Rows.Count != 0)
+            if (_copy.Rows.Count != 0)
             {
-                for (int i = 0; i < copy.Rows.Count; i++)
-                {
-                    if (copy.Rows[i][7].ToString() != Rdo2.Content.ToString())
+                for (var i = 0; i < _copy.Rows.Count; i++)
+                    if (_copy.Rows[i][7].ToString() != Rdo2.Content.ToString())
                     {
-                        copy.Rows.RemoveAt(i);
+                        _copy.Rows.RemoveAt(i);
                         i--;
                     }
-                }
-                DgMain.ItemsSource = copy.DefaultView;
+                DgMain.ItemsSource = _copy.DefaultView;
             }
         }
 
         private void Rdo3Filter()
         {
-            if (copy.Rows.Count != 0)
+            if (_copy.Rows.Count != 0)
             {
-                for (int i = 0; i < copy.Rows.Count; i++)
-                {
-                    if (copy.Rows[i][7].ToString() != Rdo3.Content.ToString())
+                for (var i = 0; i < _copy.Rows.Count; i++)
+                    if (_copy.Rows[i][7].ToString() != Rdo3.Content.ToString())
                     {
-                        copy.Rows.RemoveAt(i);
+                        _copy.Rows.RemoveAt(i);
                         i--;
                     }
-                }
-                DgMain.ItemsSource = copy.DefaultView;
+                DgMain.ItemsSource = _copy.DefaultView;
             }
         }
 
@@ -886,7 +705,7 @@ namespace test.forms
         }
 
         /// <summary>
-        /// Close this program while clicked.
+        ///     Close this program while clicked.
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
@@ -897,20 +716,18 @@ namespace test.forms
         }
 
         /// <summary>
-        /// Make this window dragable.
+        ///     Make this window dragable.
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Mouse button event</param>
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
-            {
                 DragMove();
-            }
         }
 
         /// <summary>
-        /// Minimize this program when clicked.
+        ///     Minimize this program when clicked.
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
@@ -920,16 +737,14 @@ namespace test.forms
         }
 
         /// <summary>
-        /// Key down handler
+        ///     Key down handler
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
         private void TxtSearch_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-            {
                 QuickQuery();
-            }
         }
     }
 }

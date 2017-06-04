@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using System.Data.OleDb;
 using System.IO;
 using System.Windows;
@@ -9,25 +8,16 @@ using test.entities;
 
 namespace test.forms
 {
-
-    //Event handler for user login
-    //public delegate void UserLoginHandler(OleDbConnection connection, User user);
-
-
     /// <summary>
-    /// Login window.
+    ///     Login window.
     /// </summary>
     public partial class Login
     {
-
-        //TODO: Use delegation and event to exchange messages between windows
+        //User login event and delegation
+        public delegate void UserLoginHandler(User user, OleDbConnection connection);
 
         //Database connection.
         private OleDbConnection _connection;
-
-        //User login event and delegate
-        public delegate void UserLoginHandler(User user, OleDbConnection connection);
-        public event UserLoginHandler UserLoginEvent;
 
         public Login()
         {
@@ -36,14 +26,17 @@ namespace test.forms
             //Check if the Access database file exiets
             if (!File.Exists(@"./dbo.mdb"))
             {
-                MessageBox.Show("The Access database file does not exists" +
-                                Properties.Resources.string_program_terminated, "Fatal Error");
+                MessageBox.Show(
+                    "The Access database file does not exists" + Properties.Resources.string_program_terminated,
+                    "Fatal Error");
                 Environment.Exit(-1);
             }
         }
 
+        public event UserLoginHandler UserLoginEvent;
+
         /// <summary>
-        /// Execute while login windown loaded. Designed for set lbl_woronginput as an invisible control.
+        ///     Execute while login windown loaded. Designed for set lbl_woronginput as an invisible control.
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
@@ -53,20 +46,18 @@ namespace test.forms
         }
 
         /// <summary>
-        /// Make this window dragable.
+        ///     Make this window dragable.
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Mouse button event</param>
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
-            {
                 DragMove();
-            }
         }
 
         /// <summary>
-        /// Mininize this window when clicked.
+        ///     Mininize this window when clicked.
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
@@ -76,7 +67,7 @@ namespace test.forms
         }
 
         /// <summary>
-        /// Close this window and terminate this program when clicked.
+        ///     Close this window and terminate this program when clicked.
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
@@ -86,7 +77,7 @@ namespace test.forms
         }
 
         /// <summary>
-        /// Start the authentication process when clicked.
+        ///     Start the authentication process when clicked.
         /// </summary>
         /// <param name="sender">Event Sender</param>
         /// <param name="e">Routed event</param>
@@ -96,33 +87,30 @@ namespace test.forms
         }
 
         /// <summary>
-        /// Key down event handler
+        ///     Key down event handler
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="e">Routed event</param>
         private void PwdLogin_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-            {
-                //Start the login procedure
                 UserLogin();
-            }
         }
 
         /// <summary>
-        /// User login procedure
+        ///     User login procedure
         /// </summary>
         private void UserLogin()
         {
-            string uname = TxtUname.Text.Trim();
-            string ucode = Coder.StrToMD5(PwdLogin.Password.Trim());
+            var uname = TxtUname.Text.Trim();
+            var ucode = Coder.StrToMd5(PwdLogin.Password.Trim());
 
-            string strSql = "SELECT * FROM view_user WHERE uname='" + uname + "' AND upass='" + ucode + "'";
+            var strSql = "SELECT * FROM view_user WHERE uname='" + uname + "' AND upass='" + ucode + "'";
 
             //Get database connection
             _connection = AccessUtil.GetConnection(Properties.Resources.string_connection_string);
             //Get query result
-            DataTable table = AccessUtil.Query(strSql, _connection);
+            var table = AccessUtil.Query(strSql, _connection);
 
             if (table == null)
             {
@@ -133,16 +121,16 @@ namespace test.forms
             else if (table.Rows[0][1].ToString() == uname && table.Rows[0][2].ToString() == ucode)
             {
                 //Success, construct user entity
-                User user = new User
+                var user = new User
                 {
-                    UserID = table.Rows[0][0].ToString().Trim(),
+                    UserId = table.Rows[0][0].ToString().Trim(),
                     UserName = table.Rows[0][1].ToString().Trim(),
                     UserPassWord = ucode,
                     UserRight = int.Parse(table.Rows[0][3].ToString().Trim())
                 };
 
                 //Open main window
-                Main main = new Main(this);
+                var main = new Main(this);
                 _connection.Close();
                 UserLoginEvent?.Invoke(user, _connection);
                 main.Show();
@@ -151,6 +139,5 @@ namespace test.forms
                 Close();
             }
         }
-
     }
 }

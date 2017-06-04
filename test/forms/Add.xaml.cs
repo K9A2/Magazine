@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.OleDb;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -8,43 +9,33 @@ using test.common;
 namespace test.forms
 {
     /// <summary>
-    /// add.xaml 的交互逻辑
+    ///     add.xaml 的交互逻辑
     /// </summary>
-    public partial class add : Window
+    public partial class Add
     {
+        private readonly OleDbConnection _connection;
 
-        //非空
+        private double _classId = 1;
 
-        private double ClassID = 1;
+        //Average factor
+        private double _favg;
 
-        private string IsTop = "";
+        private string _isTop = "";
 
-        private double FAVG;
-
-        private string strCon = "";
-
-        private OleDbConnection _connection;
-
-        public add(OleDbConnection connection)
+        public Add(OleDbConnection connection)
         {
             InitializeComponent();
 
-            //this.strCon = strCon;
             _connection = connection;
-
             CboClassName.SelectedIndex = 0;
-
             RdoYes.IsChecked = true;
-
             Rdo1.IsChecked = true;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
-            {
                 DragMove();
-            }
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -62,34 +53,31 @@ namespace test.forms
             Close();
         }
 
-        private void button3_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        ///     Add data and exit
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Routed event</param>
         private void button3_Click_1(object sender, RoutedEventArgs e)
         {
-            //添加并退出
-            Add();
-
-            //退出
+            AddData();
             Close();
         }
 
+        /// <summary>
+        ///     Add data but not exit
+        /// </summary>
+        /// <param name="sender">>Event sender</param>
+        /// <param name="e">Routed event</param>
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            //添加数据
             AddData();
-            //添加并恢复默认值
             SetToDefault();
         }
 
-        private void Add()
-        {
-            //添加数据
-            AddData();
-        }
-
+        /// <summary>
+        ///     Set all dispalyed options to default value
+        /// </summary>
         private void SetToDefault()
         {
             TxtFname.Text = "";
@@ -110,72 +98,75 @@ namespace test.forms
             TxtQ2009.Text = "0";
         }
 
+        /// <summary>
+        ///     Add new record to database
+        /// </summary>
         private void AddData()
         {
             if (Rdo1.IsChecked == true)
-            {
-                ClassID = 1;
-            }
+                _classId = 1;
             else if (Rdo2.IsChecked == true)
-            {
-                ClassID = 2;
-            }
+                _classId = 2;
             else if (Rdo3.IsChecked == true)
-            {
-                ClassID = 3;
-            }
+                _classId = 3;
             else if (Rdo4.IsChecked == true)
-            {
-                ClassID = 4;
-            }
+                _classId = 4;
 
             if (RdoYes.IsChecked == true)
-            {
-                IsTop = "Y";
-            }
+                _isTop = "Y";
             else if (RdoNo.IsChecked == true)
-            {
-                IsTop = "N";
-            }
+                _isTop = "N";
 
-            FAVG = (double.Parse(TxtF2007.Text.Trim()) + double.Parse(TxtF2008.Text.Trim()) + double.Parse(TxtF2009.Text)) / 3;
+            _favg = (double.Parse(TxtF2007.Text.Trim()) + double.Parse(TxtF2008.Text.Trim()) +
+                     double.Parse(TxtF2009.Text)) / 3;
 
-            string strSql = "INSERT INTO view_all(ISSN,ShortName,FullName,ChineseName,ClassName,MultiClassName,ClassID,IsTop,Factor2007,Factor2008,Factor2009,FactorAvg,Quote2007,Quote2008,Quote2009,[Note]) VALUES ('";
+            var strSql =
+                "INSERT INTO view_all(ISSN,ShortName,FullName,ChineseName,ClassName,MultiClassName,ClassID,IsTop,Factor2007,Factor2008,Factor2009,FactorAvg,Quote2007,Quote2008,Quote2009,[Note]) VALUES ('";
             strSql += TxtIssn.Text.Trim() + "','";
             strSql += TxtSname.Text.Trim() + "','";
             strSql += TxtFname.Text.Trim() + "','";
             strSql += TxtCname.Text.Trim() + "','";
-            strSql += ((ContentControl)CboClassName.SelectedValue).Content + "','";
+            strSql += ((ContentControl) CboClassName.SelectedValue).Content + "','";
             strSql += TxtMclass.Text.Trim() + "','";
-            strSql += ClassID + "','";
-            strSql += IsTop + "','";
+            strSql += _classId + "','";
+            strSql += _isTop + "','";
             strSql += TxtF2007.Text.Trim() + "','";
             strSql += TxtF2008.Text.Trim() + "','";
             strSql += TxtF2009.Text.Trim() + "','";
-            strSql += FAVG + "','";
+            strSql += _favg + "','";
             strSql += TxtQ2007.Text.Trim() + "','";
             strSql += TxtQ2008.Text.Trim() + "','";
             strSql += TxtQ2009.Text.Trim() + "','";
             strSql += TxtNote.Text.Trim() + "')";
 
-            //AccessUtil util = new AccessUtil(strCon);
-
             AccessUtil.ExecuteWithoutReturn(strSql, _connection);
         }
 
+        /*
+         * Below are methods to calculate and set the average of Factors
+         */
         private void txt_f2007_LostFocus(object sender, RoutedEventArgs e)
         {
-            TxbAvg.Text = Convert.ToString((double.Parse(TxtF2007.Text.Trim()) + double.Parse(TxtF2008.Text.Trim()) + double.Parse(TxtF2009.Text)) / 3);
+            TxbAvg.Text =
+                Convert.ToString(
+                    (double.Parse(TxtF2007.Text.Trim()) + double.Parse(TxtF2008.Text.Trim()) +
+                     double.Parse(TxtF2009.Text)) / 3, CultureInfo.CurrentCulture);
         }
 
         private void txt_f2008_LostFocus(object sender, RoutedEventArgs e)
         {
-            TxbAvg.Text = Convert.ToString((double.Parse(TxtF2007.Text.Trim()) + double.Parse(TxtF2008.Text.Trim()) + double.Parse(TxtF2009.Text)) / 3);
+            TxbAvg.Text =
+                Convert.ToString(
+                    (double.Parse(TxtF2007.Text.Trim()) + double.Parse(TxtF2008.Text.Trim()) +
+                     double.Parse(TxtF2009.Text)) / 3, CultureInfo.CurrentCulture);
         }
 
         private void txt_f2009_LostFocus(object sender, RoutedEventArgs e)
         {
-            TxbAvg.Text = Convert.ToString((double.Parse(TxtF2007.Text.Trim()) + double.Parse(TxtF2008.Text.Trim()) + double.Parse(TxtF2009.Text)) / 3);
+            TxbAvg.Text =
+                Convert.ToString(
+                    (double.Parse(TxtF2007.Text.Trim()) + double.Parse(TxtF2008.Text.Trim()) +
+                     double.Parse(TxtF2009.Text)) / 3, CultureInfo.CurrentCulture);
         }
     }
 }

@@ -6,26 +6,25 @@ using test.entities;
 namespace test.forms
 {
     /// <summary>
-    /// Search.xaml 的交互逻辑
+    ///     Search.xaml 的交互逻辑
     /// </summary>
     public partial class Search : Window
     {
+        private string _currentSql = "";
 
-        private string strCon = "";
+        private DataTable _source = new DataTable();
 
-        User user = new User();
+        private string _strCon = "";
 
-        private string currentSql = "";
-
-        DataTable source = new DataTable();
+        private User _user = new User();
 
         public Search(string strCon, User user)
         {
             InitializeComponent();
 
-            this.strCon = strCon;
+            _strCon = strCon;
 
-            this.user = user;
+            _user = user;
         }
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
@@ -69,9 +68,7 @@ namespace test.forms
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
-            {
                 DragMove();
-            }
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

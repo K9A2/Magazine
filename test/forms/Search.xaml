@@ -11,77 +11,89 @@
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true"
+                                   Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                                   StrokeThickness="1" StrokeDashArray="1 2" />
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
-        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
-        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
-        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
-        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD" />
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070" />
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1" />
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B" />
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5" />
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383" />
         <Style x:Key="BtnMinimize" TargetType="{x:Type Button}">
-            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="1"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="1" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsDefaulted" Value="true">
                                 <Setter Property="BorderBrush" TargetName="border">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="最小化普通.png"/>
+                                        <ImageBrush ImageSource="最小化普通.png" />
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.MouseOver.Border}" />
                                 <Setter Property="Background">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="最小化普通.png"/>
+                                        <ImageBrush ImageSource="最小化普通.png" />
                                     </Setter.Value>
                                 </Setter>
                                 <Setter Property="Background" TargetName="border">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="对话框最小化激活.png"/>
+                                        <ImageBrush ImageSource="对话框最小化激活.png" />
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.Pressed.Border}" />
                                 <Setter Property="Background">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="最小化激活.png"/>
+                                        <ImageBrush ImageSource="最小化激活.png" />
                                     </Setter.Value>
                                 </Setter>
                                 <Setter Property="Background" TargetName="border">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="对话框最小化激活.png"/>
+                                        <ImageBrush ImageSource="对话框最小化激活.png" />
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
-                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.Disabled.Border}" />
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter"
+                                        Value="{StaticResource Button.Disabled.Foreground}" />
                                 <Setter Property="Background">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="最小化普通.png"/>
+                                        <ImageBrush ImageSource="最小化普通.png" />
                                     </Setter.Value>
                                 </Setter>
                                 <Setter Property="Background" TargetName="border">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="对话框最小化普通.png"/>
+                                        <ImageBrush ImageSource="对话框最小化普通.png" />
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -91,65 +103,75 @@
             </Setter>
         </Style>
         <Style x:Key="BtnClose" TargetType="{x:Type Button}">
-            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="1"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="1" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsDefaulted" Value="true">
                                 <Setter Property="BorderBrush" TargetName="border">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="最小化普通.png"/>
+                                        <ImageBrush ImageSource="最小化普通.png" />
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.MouseOver.Border}" />
                                 <Setter Property="Background">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="最小化普通.png"/>
+                                        <ImageBrush ImageSource="最小化普通.png" />
                                     </Setter.Value>
                                 </Setter>
                                 <Setter Property="Background" TargetName="border">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="关闭激活.png"/>
+                                        <ImageBrush ImageSource="关闭激活.png" />
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.Pressed.Border}" />
                                 <Setter Property="Background">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="最小化激活.png"/>
+                                        <ImageBrush ImageSource="最小化激活.png" />
                                     </Setter.Value>
                                 </Setter>
                                 <Setter Property="Background" TargetName="border">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="关闭激活.png"/>
+                                        <ImageBrush ImageSource="关闭激活.png" />
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
-                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.Disabled.Border}" />
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter"
+                                        Value="{StaticResource Button.Disabled.Foreground}" />
                                 <Setter Property="Background">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="对话框关闭正常.png"/>
+                                        <ImageBrush ImageSource="对话框关闭正常.png" />
                                     </Setter.Value>
                                 </Setter>
                                 <Setter Property="Background" TargetName="border">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="对话框关闭正常.png"/>
+                                        <ImageBrush ImageSource="对话框关闭正常.png" />
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -158,35 +180,40 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
-        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
-        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3" />
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA" />
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5" />
         <Style x:Key="TxtNote" TargetType="{x:Type TextBox}">
-            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-            <Setter Property="AllowDrop" Value="true"/>
-            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
-            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="AllowDrop" Value="true" />
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false"
+                                          HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                                <Setter Property="Opacity" TargetName="border" Value="0.56" />
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource TextBox.MouseOver.Border}" />
                             </Trigger>
                             <Trigger Property="IsKeyboardFocused" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource TextBox.Focus.Border}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -195,47 +222,62 @@
             <Style.Triggers>
                 <MultiTrigger>
                     <MultiTrigger.Conditions>
-                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
-                        <Condition Property="IsSelectionActive" Value="false"/>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true" />
+                        <Condition Property="IsSelectionActive" Value="false" />
                     </MultiTrigger.Conditions>
-                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                    <Setter Property="SelectionBrush"
+                            Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}" />
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
-        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
-        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
-        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD" />
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6" />
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4" />
         <Style x:Key="BtnAddReturn" TargetType="{x:Type Button}">
-            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="1"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="1" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" CornerRadius="2">
-                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}" SnapsToDevicePixels="true" CornerRadius="2">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsDefaulted" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                                <Setter Property="Background" TargetName="border"
+                                        Value="{StaticResource Button.MouseOver.Background}" />
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.MouseOver.Border}" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                                <Setter Property="Background" TargetName="border"
+                                        Value="{StaticResource Button.Pressed.Background}" />
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.Pressed.Border}" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
-                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                                <Setter Property="Background" TargetName="border"
+                                        Value="{StaticResource Button.Disabled.Background}" />
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.Disabled.Border}" />
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter"
+                                        Value="{StaticResource Button.Disabled.Foreground}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -243,36 +285,50 @@
             </Setter>
         </Style>
         <Style x:Key="BtnAddMore" TargetType="{x:Type Button}">
-            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="1"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="1" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" CornerRadius="2">
-                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}" SnapsToDevicePixels="true" CornerRadius="2">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsDefaulted" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                                <Setter Property="Background" TargetName="border"
+                                        Value="{StaticResource Button.MouseOver.Background}" />
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.MouseOver.Border}" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                                <Setter Property="Background" TargetName="border"
+                                        Value="{StaticResource Button.Pressed.Background}" />
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.Pressed.Border}" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
-                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                                <Setter Property="Background" TargetName="border"
+                                        Value="{StaticResource Button.Disabled.Background}" />
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.Disabled.Border}" />
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter"
+                                        Value="{StaticResource Button.Disabled.Foreground}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -280,36 +336,49 @@
             </Setter>
         </Style>
         <Style x:Key="BtnAddFinish" TargetType="{x:Type Button}">
-            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="1"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="1" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" CornerRadius="2">
-                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}" SnapsToDevicePixels="true" CornerRadius="2">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsDefaulted" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                                <Setter Property="Background" TargetName="border"
+                                        Value="{StaticResource Button.MouseOver.Background}" />
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.MouseOver.Border}" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                                <Setter Property="Background" TargetName="border"
+                                        Value="{StaticResource Button.Pressed.Background}" />
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.Pressed.Border}" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
-                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                                <Setter Property="Background" TargetName="border"
+                                        Value="{StaticResource Button.Disabled.Background}" />
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.Disabled.Border}" />
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter"
+                                        Value="{StaticResource Button.Disabled.Foreground}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -317,32 +386,37 @@
             </Setter>
         </Style>
         <Style x:Key="TxtUname" TargetType="{x:Type TextBox}">
-            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-            <Setter Property="AllowDrop" Value="true"/>
-            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
-            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="AllowDrop" Value="true" />
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" CornerRadius="2">
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}" SnapsToDevicePixels="True" CornerRadius="2">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false"
+                                          HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" />
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="Text" Value="&quot;&quot;"/>
+                            <Trigger Property="Text" Value="&quot;&quot;" />
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                                <Setter Property="Opacity" TargetName="border" Value="0.56" />
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource TextBox.MouseOver.Border}" />
                             </Trigger>
                             <Trigger Property="IsKeyboardFocused" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource TextBox.Focus.Border}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -351,44 +425,59 @@
             <Style.Triggers>
                 <MultiTrigger>
                     <MultiTrigger.Conditions>
-                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
-                        <Condition Property="IsSelectionActive" Value="false"/>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true" />
+                        <Condition Property="IsSelectionActive" Value="false" />
                     </MultiTrigger.Conditions>
-                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                    <Setter Property="SelectionBrush"
+                            Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}" />
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="BtnSearchIngrid" TargetType="{x:Type Button}">
-            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="1"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="1" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" CornerRadius="2">
-                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}" SnapsToDevicePixels="true" CornerRadius="2">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsDefaulted" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                                <Setter Property="Background" TargetName="border"
+                                        Value="{StaticResource Button.MouseOver.Background}" />
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.MouseOver.Border}" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                                <Setter Property="Background" TargetName="border"
+                                        Value="{StaticResource Button.Pressed.Background}" />
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.Pressed.Border}" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
-                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                                <Setter Property="Background" TargetName="border"
+                                        Value="{StaticResource Button.Disabled.Background}" />
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.Disabled.Border}" />
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter"
+                                        Value="{StaticResource Button.Disabled.Foreground}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -397,121 +486,160 @@
         </Style>
     </Window.Resources>
     <Grid Height="370">
-        <Border BorderThickness="0" MouseDown="Border_MouseDown" CornerRadius="2" Height="370" VerticalAlignment="Top" Margin="0,0,-0.667,0" Background="#FF32A9FD"/>
-        <Button x:Name="Button" Content="" VerticalAlignment="Top" Margin="0,10,34.333,0" HorizontalAlignment="Right" Width="20" Height="20" BorderThickness="0" Style="{DynamicResource BtnMinimize}" Click="button_Click">
+        <Border BorderThickness="0" MouseDown="Border_MouseDown" CornerRadius="2" Height="370" VerticalAlignment="Top"
+                Margin="0,0,-0.667,0" Background="#FF32A9FD" />
+        <Button x:Name="Button" Content="" VerticalAlignment="Top" Margin="0,10,34.333,0" HorizontalAlignment="Right"
+                Width="20" Height="20" BorderThickness="0" Style="{DynamicResource BtnMinimize}" Click="button_Click">
             <Button.Background>
-                <ImageBrush ImageSource="对话框最小化普通.png"/>
+                <ImageBrush ImageSource="对话框最小化普通.png" />
             </Button.Background>
         </Button>
-        <Button x:Name="ButtonCopy" Content="" VerticalAlignment="Top" Margin="0,10,9.333,0" HorizontalAlignment="Right" Width="20" Height="20" BorderThickness="0" Style="{DynamicResource BtnClose}" Click="button_Copy_Click">
+        <Button x:Name="ButtonCopy" Content="" VerticalAlignment="Top" Margin="0,10,9.333,0"
+                HorizontalAlignment="Right" Width="20" Height="20" BorderThickness="0"
+                Style="{DynamicResource BtnClose}" Click="button_Copy_Click">
             <Button.Background>
-                <ImageBrush ImageSource="对话框关闭正常.png"/>
+                <ImageBrush ImageSource="对话框关闭正常.png" />
             </Button.Background>
         </Button>
-        <Label x:Name="Label" Content="增加资料" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Margin="10,8,0,0" Padding="5,4,5,5"/>
+        <Label x:Name="Label" Content="增加资料" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White"
+               Margin="10,8,0,0" Padding="5,4,5,5" />
         <Grid Margin="10,37.24,-0.667,380">
             <Grid.Background>
-                <ImageBrush/>
+                <ImageBrush />
             </Grid.Background>
             <Border BorderThickness="1" CornerRadius="2" Margin="0,1,9.667,-323" Background="White">
-                <TextBox x:Name="TxtSearch" HorizontalAlignment="Left" TextWrapping="Wrap" Width="300" Style="{DynamicResource TxtUname}" MaxLines="1" MaxLength="37" VerticalContentAlignment="Center" Height="25" VerticalAlignment="Top" Margin="24,30,0,0"/>
+                <TextBox x:Name="TxtSearch" HorizontalAlignment="Left" TextWrapping="Wrap" Width="300"
+                         Style="{DynamicResource TxtUname}" MaxLines="1" MaxLength="37"
+                         VerticalContentAlignment="Center" Height="25" VerticalAlignment="Top" Margin="24,30,0,0" />
             </Border>
         </Grid>
-        <GroupBox x:Name="GroupBox2" Header="引用数" HorizontalAlignment="Right" Margin="0,200,19.333,270" Width="275"/>
-        <Label x:Name="Label12" Content="2009年引用数" HorizontalAlignment="Right" Margin="0,275.141,191.333,194.859"/>
-        <TextBlock x:Name="TextBlock" IsHitTestVisible="False" TextAlignment="Justify" Foreground="DarkGray" HorizontalAlignment="Left" TextWrapping="Wrap" Text="如有需要，可输入备注" Margin="40,283,0,187" Padding="2,0,0,0">
+        <GroupBox x:Name="GroupBox2" Header="引用数" HorizontalAlignment="Right" Margin="0,200,19.333,270" Width="275" />
+        <Label x:Name="Label12" Content="2009年引用数" HorizontalAlignment="Right" Margin="0,275.141,191.333,194.859" />
+        <TextBlock x:Name="TextBlock" IsHitTestVisible="False" TextAlignment="Justify" Foreground="DarkGray"
+                   HorizontalAlignment="Left" TextWrapping="Wrap" Text="如有需要，可输入备注" Margin="40,283,0,187"
+                   Padding="2,0,0,0">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                    <Setter Property="UseLayoutRounding" Value="False"/>
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Setter Property="UseLayoutRounding" Value="False" />
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Text, ElementName=txt_note}" Value="">
-                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="Visibility" Value="Visible" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <TextBlock x:Name="TextBlock1" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,160,84.186,0"/>
-        <TextBox x:Name="TextBox8Copy1" HorizontalAlignment="Right" TextWrapping="Wrap" Width="105" Margin="0,276,34.333,194"/>
-        <TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="10" Margin="-60,125,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="0"/>
-        <CheckBox x:Name="CheckBox" Content="启用大类名称过滤器" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,114,0,0"/>
-        <CheckBox x:Name="CheckBoxCopy" Content="启用大类分区过滤器" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,149,0,0"/>
-        <CheckBox x:Name="CheckBoxCopy1" Content="启用影响因子区间过滤器" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,221,0,0"/>
-        <CheckBox x:Name="CheckBoxCopy2" Content="启用引用数过滤器" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,261,0,0"/>
-        <Button x:Name="BtnSearch" Content="搜索" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="355,70,0,0" Height="25" Style="{DynamicResource BtnSearchIngrid}" BorderThickness="0" Foreground="White" Click="btn_search_Click">
+        <TextBlock x:Name="TextBlock1" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top"
+                   Margin="0,160,84.186,0" />
+        <TextBox x:Name="TextBox8Copy1" HorizontalAlignment="Right" TextWrapping="Wrap" Width="105"
+                 Margin="0,276,34.333,194" />
+        <TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="10" Margin="-60,125,0,0" TextWrapping="Wrap"
+                 Text="TextBox" VerticalAlignment="Top" Width="0" />
+        <CheckBox x:Name="CheckBox" Content="启用大类名称过滤器" HorizontalAlignment="Left" VerticalAlignment="Top"
+                  Margin="40,114,0,0" />
+        <CheckBox x:Name="CheckBoxCopy" Content="启用大类分区过滤器" HorizontalAlignment="Left" VerticalAlignment="Top"
+                  Margin="40,149,0,0" />
+        <CheckBox x:Name="CheckBoxCopy1" Content="启用影响因子区间过滤器" HorizontalAlignment="Left" VerticalAlignment="Top"
+                  Margin="40,221,0,0" />
+        <CheckBox x:Name="CheckBoxCopy2" Content="启用引用数过滤器" HorizontalAlignment="Left" VerticalAlignment="Top"
+                  Margin="40,261,0,0" />
+        <Button x:Name="BtnSearch" Content="搜索" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80"
+                Margin="355,70,0,0" Height="25" Style="{DynamicResource BtnSearchIngrid}" BorderThickness="0"
+                Foreground="White" Click="btn_search_Click">
             <Button.Background>
-                <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}"/>
+                <SolidColorBrush Color="{DynamicResource 淡蓝色背景二}" />
             </Button.Background>
         </Button>
-        <TextBlock x:Name="TextBlockCopy" IsHitTestVisible="False" TextWrapping="Wrap" Text="搜索ID、ISSN与题名" VerticalAlignment="Top" Margin="40,70,0,0" Width="280" Height="25" Foreground="DarkGray"  HorizontalAlignment="Left" TextAlignment="Justify" Padding="5,5,0,0">
+        <TextBlock x:Name="TextBlockCopy" IsHitTestVisible="False" TextWrapping="Wrap" Text="搜索ID、ISSN与题名"
+                   VerticalAlignment="Top" Margin="40,70,0,0" Width="280" Height="25" Foreground="DarkGray"
+                   HorizontalAlignment="Left" TextAlignment="Justify" Padding="5,5,0,0">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                    <Setter Property="UseLayoutRounding" Value="False"/>
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Setter Property="UseLayoutRounding" Value="False" />
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Text, ElementName=TxtSearch}" Value="">
-                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="Visibility" Value="Visible" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <CheckBox x:Name="CheckBoxCopy3" Content="启用是否为Top期刊过滤器" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,185,0,0"/>
-        <ComboBox x:Name="CboClassName" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Margin="215,110,0,0" Height="25" VerticalContentAlignment="Center">
-            <ComboBoxItem Content="地学" VerticalContentAlignment="Center" Padding="4,1"/>
-            <ComboBoxItem Content="地学天文" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="工程技术" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="化学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="环境科学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="农林科学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="社会科学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="生物" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="数学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="物理" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="医学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="综合性期刊" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="管理科学"/>
+        <CheckBox x:Name="CheckBoxCopy3" Content="启用是否为Top期刊过滤器" HorizontalAlignment="Left" VerticalAlignment="Top"
+                  Margin="40,185,0,0" />
+        <ComboBox x:Name="CboClassName" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140"
+                  Margin="215,110,0,0" Height="25" VerticalContentAlignment="Center">
+            <ComboBoxItem Content="地学" VerticalContentAlignment="Center" Padding="4,1" />
+            <ComboBoxItem Content="地学天文" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="工程技术" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="化学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="环境科学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="农林科学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="社会科学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="生物" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="数学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="物理" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="医学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="综合性期刊" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="管理科学" />
         </ComboBox>
-        <RadioButton x:Name="Rdo1" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="216,147,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID"/>
-        <RadioButton x:Name="Rdo2" Content="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="247,147,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID"/>
-        <RadioButton x:Name="Rdo3" Content="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,147,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID"/>
-        <RadioButton x:Name="Rdo4" Content="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="309,147,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="ClassID"/>
-        <RadioButton x:Name="RdoYes" Content="是" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="219,179,0,0" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" GroupName="IsTop"/>
-        <RadioButton x:Name="RdoNo" Content="否" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="255,179,0,0" Height="25" VerticalContentAlignment="Center" GroupName="IsTop"/>
-        <ComboBox x:Name="CboClassNameCopy" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Margin="215,221,0,0" Height="25" VerticalContentAlignment="Center">
-            <ComboBoxItem Content="地学" VerticalContentAlignment="Center" Padding="4,1"/>
-            <ComboBoxItem Content="地学天文" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="工程技术" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="化学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="环境科学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="农林科学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="社会科学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="生物" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="数学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="物理" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="医学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="综合性期刊" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="管理科学"/>
+        <RadioButton x:Name="Rdo1" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="216,147,0,0"
+                     Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                     GroupName="ClassID" />
+        <RadioButton x:Name="Rdo2" Content="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="247,147,0,0"
+                     Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                     GroupName="ClassID" />
+        <RadioButton x:Name="Rdo3" Content="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,147,0,0"
+                     Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                     GroupName="ClassID" />
+        <RadioButton x:Name="Rdo4" Content="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="309,147,0,0"
+                     Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                     GroupName="ClassID" />
+        <RadioButton x:Name="RdoYes" Content="是" HorizontalAlignment="Left" VerticalAlignment="Top"
+                     Margin="219,179,0,0" Height="25" HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center" GroupName="IsTop" />
+        <RadioButton x:Name="RdoNo" Content="否" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="255,179,0,0"
+                     Height="25" VerticalContentAlignment="Center" GroupName="IsTop" />
+        <ComboBox x:Name="CboClassNameCopy" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140"
+                  Margin="215,221,0,0" Height="25" VerticalContentAlignment="Center">
+            <ComboBoxItem Content="地学" VerticalContentAlignment="Center" Padding="4,1" />
+            <ComboBoxItem Content="地学天文" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="工程技术" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="化学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="环境科学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="农林科学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="社会科学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="生物" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="数学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="物理" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="医学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="综合性期刊" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="管理科学" />
         </ComboBox>
-        <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="65" Margin="370,221,0,0"/>
-        <TextBox x:Name="TextBox1Copy" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="55" Margin="470,221,0,0"/>
-        <ComboBox x:Name="CboClassNameCopy1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Margin="216,251,0,0" Height="25" VerticalContentAlignment="Center">
-            <ComboBoxItem Content="地学" VerticalContentAlignment="Center" Padding="4,1"/>
-            <ComboBoxItem Content="地学天文" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="工程技术" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="化学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="环境科学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="农林科学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="社会科学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="生物" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="数学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="物理" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="医学" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="综合性期刊" VerticalContentAlignment="Center"/>
-            <ComboBoxItem Content="管理科学"/>
+        <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox"
+                 VerticalAlignment="Top" Width="65" Margin="370,221,0,0" />
+        <TextBox x:Name="TextBox1Copy" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox"
+                 VerticalAlignment="Top" Width="55" Margin="470,221,0,0" />
+        <ComboBox x:Name="CboClassNameCopy1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140"
+                  Margin="216,251,0,0" Height="25" VerticalContentAlignment="Center">
+            <ComboBoxItem Content="地学" VerticalContentAlignment="Center" Padding="4,1" />
+            <ComboBoxItem Content="地学天文" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="工程技术" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="化学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="环境科学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="农林科学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="社会科学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="生物" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="数学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="物理" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="医学" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="综合性期刊" VerticalContentAlignment="Center" />
+            <ComboBoxItem Content="管理科学" />
         </ComboBox>
-        <TextBox x:Name="TextBox1Copy1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="65" Margin="370,251,0,0"/>
-        <TextBox x:Name="TextBox1Copy2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="65" Margin="470,253,0,0"/>
+        <TextBox x:Name="TextBox1Copy1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox"
+                 VerticalAlignment="Top" Width="65" Margin="370,251,0,0" />
+        <TextBox x:Name="TextBox1Copy2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox"
+                 VerticalAlignment="Top" Width="65" Margin="470,253,0,0" />
     </Grid>
 </Window>

@@ -7,24 +7,23 @@ using test.entities;
 namespace test.forms
 {
     /// <summary>
-    /// Account.xaml 的交互逻辑
+    ///     Account.xaml 的交互逻辑
     /// </summary>
     public partial class Account : Window
     {
-
-        private User _user;
-
-        private string UserID = "";
-
-        private string UserName = "";
-
-        private string UserPassWord = "";
-
-        private int UserRight;
-
         //private string strCon = "";
 
-        private OleDbConnection _connection;
+        private readonly OleDbConnection _connection;
+
+        private readonly User _user;
+
+        private string _userId = "";
+
+        private string _userName = "";
+
+        private string _userPassWord = "";
+
+        private int _userRight;
 
         public Account(OleDbConnection connection, User user)
         {
@@ -34,13 +33,13 @@ namespace test.forms
 
             _connection = connection;
 
-            UserID = user.UserID;
-            UserName = user.UserName;
-            UserPassWord = user.UserPassWord;
-            UserRight = user.UserRight;
+            _userId = user.UserId;
+            _userName = user.UserName;
+            _userPassWord = user.UserPassWord;
+            _userRight = user.UserRight;
 
             //this.strCon = strCon;
-       }
+        }
 
         private void button_Copy_Click(object sender, RoutedEventArgs e)
         {
@@ -56,7 +55,8 @@ namespace test.forms
         {
             if (TxtOldName.Text.Trim() == _user.UserName)
             {
-                string strSql = "UPDATE view_user SET uname='" + TxtNewName.Text.Trim() + "' WHERE uid='" + _user.UserID + "'";
+                var strSql = "UPDATE view_user SET uname='" + TxtNewName.Text.Trim() + "' WHERE uid='" + _user.UserId +
+                             "'";
 
                 AccessUtil.ExecuteWithoutReturn(strSql, _connection);
 
@@ -70,15 +70,12 @@ namespace test.forms
             {
                 MessageBox.Show("您输入了错误的账户名");
             }
-
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
-            {
                 DragMove();
-            }
         }
 
         private void btn_confirm_Copy1_Click(object sender, RoutedEventArgs e)
@@ -95,9 +92,10 @@ namespace test.forms
 
         private void btn_confirm_Copy2_Click(object sender, RoutedEventArgs e)
         {
-            if (Coder.StrToMD5(PwdOldPass.Password.Trim()) == _user.UserPassWord)
+            if (Coder.StrToMd5(PwdOldPass.Password.Trim()) == _user.UserPassWord)
             {
-                string strSql = "UPDATE view_user SET upass='" + Coder.StrToMD5(PwdNewPass.Password.Trim()) + "' WHERE uid='" + _user.UserID + "'";
+                var strSql = "UPDATE view_user SET upass='" + Coder.StrToMd5(PwdNewPass.Password.Trim()) +
+                             "' WHERE uid='" + _user.UserId + "'";
 
                 AccessUtil.ExecuteWithoutReturn(strSql, _connection);
 
@@ -111,7 +109,6 @@ namespace test.forms
             {
                 MessageBox.Show("您输入了错误的密码");
             }
-
         }
     }
 }

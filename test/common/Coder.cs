@@ -3,22 +3,18 @@ using System.Text;
 
 namespace test.common
 {
-    class Coder
+    internal class Coder
     {
-
-        public static string StrToMD5(string str)
+        public static string StrToMd5(string str)
         {
-            byte[] data = Encoding.GetEncoding("GB2312").GetBytes(str);
+            var data = Encoding.GetEncoding("GB2312").GetBytes(str);
             MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] OutBytes = md5.ComputeHash(data);
+            var outBytes = md5.ComputeHash(data);
 
-            string OutString = "";
-            for (int i = 0; i < OutBytes.Length; i++)
-            {
-                OutString += OutBytes[i].ToString("x2");
-            }
-            return OutString.ToLower();
+            var outString = "";
+            for (var i = 0; i < outBytes.Length; i++)
+                outString += outBytes[i].ToString("x2");
+            return outString.ToLower();
         }
-
     }
 }
